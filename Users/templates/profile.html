@@ -1,0 +1,79 @@
+    {% extends 'base_2.html' %}
+    {%load static%}
+
+
+    {% block contenido%}
+   
+    </style>
+    <div class="container rounded bg-white mt-5 mb-5">
+        
+        
+        <div class="row p-5">
+            
+            <div class="col-md-12 align-items-center text-center mx-auto">
+                
+                    <div class=" d-flex flex-column align-items-center text-center p-3"><strong class="titlebody "style="margin-bottom: 0px;"> 
+                    {%ifequal user.sexo 'hombre'%}
+                        Bienvenido {{user.nombre|title }}
+                    {%endifequal%}
+                    {%ifequal user.sexo 'mujer'%}
+                        Bienvenida {{user.nombre|title }}
+                    {%endifequal%}
+                    {%ifequal user.sexo 'ninguno'%}
+                        Bienvenid@ {{user.nombre|title }}
+                    {%endifequal%}
+                    </strong></span></div>
+
+                    <hr class='divisor' style='margin-bottom: 60px;'>
+
+                    <div class="imagen_perfil align-items-center text-center mx-auto"></div>
+                   
+    
+                <div class="    ">
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        
+                    </div>
+                  
+                    <div class="row mt-3 py-4">
+                        <h4 class="infotitulo  float-left" style='text-align: left;'>Informacion Personal</h4>
+                        <div class="row py-3">
+                            <div class="col-12 col-md-6 profile_list"><label class="labels">Nombre</label><strong><div class='user_label'>{{user.nombre|title }} </div></strong></div>
+                            <div class="col-12 col-md-6 profile_list"><label class="labels">Apellidos</label><strong><div class='user_label'> {{user.apellido_paterno|title }} {{user.apellido_materno|title }}</div></strong></div>
+                            <div class="col-12 col-md-6 profile_list"><label class="labels">Rut</label><strong><div class='user_label'>{{user.rut|title }}-{{user.dv|title }} </div></strong></div>
+                            <div class="col-12 col-md-6 profile_list"><label class="labels">Correo Electronico</label><strong><div class='user_label'>{{user.email }}</div></strong></div>
+                            <div class="col-12 col-md-6 profile_list"><label class="labels">Telefono de Contacto</label><strong><div class='user_label'> {{user.telefono_contacto}}</div></strong></div>
+                            <div class="col-12 col-md-6 profile_list"><label class="labels">Telefono de Contacto Emergencia</label><strong><div class='user_label'> {{user.telefono_contacto_2}}</div></strong></div>
+                            <div class="col-12 col-md-6 profile_list"><label class="labels">Fecha de Nacimiento</label><strong><div class='user_label'> {{user.fecha_nacimiento}}</div></strong></div>
+                            <div class="col-12 col-md-12 profile_list"><label class="labels">Domicilio</label><strong><div class='user_label'> {{user.domicilio}}</div></strong></div>
+                        </div>
+                        {%ifequal user.type 'Paciente'%}
+                            <h4 class="infotitulo  float-left" style='text-align: left;'>Informacion Medica</h4>
+                            <div class="row py-3">
+                                <div class="col-12 col-md-12 profile_list"><label class="labels">Diagnostico</label><strong><div class='user_label'>{{user.informacionmedica.diagnostico|title}} </div></strong></div>
+                                <div class="col-12 col-md-6 profile_list"><label class="labels">Prevision</label><strong><div class='user_label'>{{user.prevision|title }} </div></strong></div>
+                                <div class="col-12 col-md-6 profile_list"><label class="labels">Medico INRAD</label><strong><div class='user_label'>{{user.informacionmedica.medico_INRAD|title}} </div></strong></div>
+                                <div class="col-12 col-md-6 profile_list"><label class="labels">Medico Derivante</label><strong><div class='user_label'>{{user.informacionmedica.medico_derivante|title}} </div></strong></div>
+                                <div class="col-12 col-md-6 profile_list"><label class="labels">Institucion Derivante</label><strong><div class='user_label'>{{user.informacionmedica.institucion_derivante|title}} </div></strong></div>
+                                
+                                
+                            </div>
+                        {%endifequal%}
+                    </div>
+
+                    
+                  
+                </div>
+            </div>
+   
+            <div class="row">
+                <div class="col-12 col-md-4 mx-auto ">
+                    <div class="mt-5 text-center"><button class="btn button  justify-content-center boton_formulario mx-auto" type="button">Editar Perfil</button></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    </div>
+
+
+    {% endblock %}

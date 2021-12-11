@@ -1,0 +1,365 @@
+
+{% extends 'base.html' %}
+{%load static%}
+{% block contenido%}
+
+<style>
+  
+.greenbar{
+    background:var(--green);
+    padding:3px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    text-align: center;
+    font-size: 25px;
+    color: white;
+    font-family: 'Roboto';
+    font-weight: 700;
+
+}
+.boxcontent
+{
+    margin-left: 150px;
+    margin-right: 150px;
+}
+@media only screen and (max-width: 768px){
+    .boxcontent
+    {
+        margin-left: 80px;
+        margin-right: 80px;
+    }
+    .infoimg{
+    background-image: url("{% static 'img/background2.jpg' %}");
+    background-position: center center;
+    background-size: cover;
+    margin: 0px;
+ 
+    text-align: center;  
+}
+}
+@media only screen and (max-width: 550px){
+    .boxcontent
+    {
+        margin-left: 0px;
+        margin-right:0px;
+    }
+    .infocontent{
+        margin-left: 0px;
+        margin-right: 0px;
+    }
+}
+@media only screen and (max-width: 550px){
+    .boxcontent
+    {
+        margin-left: 0px;
+        margin-right:0px;
+    }
+    .infocontent{
+        margin-left: 0px;
+        margin-right: 0px;
+    }
+    .infotexto{
+        padding-left: 0px;
+        padding-right: 0px;
+    }
+}
+.infoimg{
+    
+    background-position: center center;
+    background-size: cover;
+    margin: 0px;
+    text-align: center;  
+}
+
+.infocontent{
+    border-color: var(--darkgreen);
+    border-top-width: 5px;
+    border-top-style: solid;
+    border-bottom-style: solid;
+    border-bottom-width: 5px; 
+    margin: 25px;
+}
+img{
+    margin-bottom:10px ;
+    margin-top:10px ;
+}
+ul{text-align: left;}
+.navbar-nav{text-align: center;}
+</style>
+
+<body>
+    <header class="inicio-header "style="background-image: url('{% static 'img/radiocirbig.jpg' %}');">
+        <div class="inicio-overlay">
+            <div class="row">
+                <div class="inicio-title col-12 align-items-center clearfix">Informacion a Pacientes</div>
+                <div class="inicio-titlebody">Preguntas frecuentes</div>
+               
+            </div>
+        </div>
+    </header>
+
+    <div class="greenbar"> PRINCIPALES PATOLOGÍAS ONCOLÓGICAS Y NO ONCOLÓGICAS TRATABLES CON RADIOTERAPIA </div>
+    <div class="mx-auto">
+        <div class="row clearfix content mx-auto">
+
+            <div class="col-12 col-md-6 col-lg-4">
+                <div class="infotitulo">Tumores de cabeza y cuello</div>
+                <div class="infotexto">
+                    <ul>
+                        <li class='lista'>Nasofaringe</li>
+                        <li class='lista'>Cáncer orofaríngeo</li>
+                        <li class='lista'>Cavidad oral</li>
+                        <li class='lista'>Hipofaringe</li>
+                        <li class='lista'>Laringe</li>
+                        <li class='lista'>Tumores de glándulas salivales</li>
+                        <li class='lista'>Cavidad nasal y senos paranasales</li>
+                        <li class='lista'>Queloides</li>
+                    </ul>
+                </div>
+                <div class="infotitulo">Tumores torácicos</div>
+                <div class="infotexto">
+                    <ul>
+                        <li class='lista'>Tumores de pulmón y mediastino</li>
+                        <li class='lista'>Mesoteliomas</li>
+                    </ul>
+                </div>
+                <div class="infotitulo">Tumores pediátricos</div>
+                <div class="infotexto">
+                    <ul>
+                        <li class='lista'>Tumores pediátricos del sistema nervioso central</li>
+                        <li class='lista'>Leucemias (profilaxis SNC) y linfomas pediátricos</li>
+                        <li class='lista'>Tumores de huesos y tejidos blandos</li>
+                    </ul>
+                </div>
+                <div class="infotitulo">Emergencias en Radioterapia</div>
+                <div class="infotexto">
+                    <ul>
+                        <li class='lista'>Síndrome de Vena Cava</li>
+                        <li class='lista'>Hemorragias</li>
+                        <li class='lista'>Compresión medular</li>
+                        <li class='lista'>Metástasis</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="col-12 col-md-6 col-lg-4">
+                <div class="infotitulo">Tumores del sistema nervioso central</div>
+                <div class="infotexto">
+                    <ul>
+                        <li class='lista'>Tumores cerebrales primarios y metastásicos en adultos</li>
+                        <li class='lista'>Meningiomas</li>
+                        <li class='lista'>Tumores de base de cráneo</li>
+                        <li class='lista'>Tumores de hipófisis</li>
+                    </ul>
+                </div>   
+                
+                <div class="infotitulo">Tumores en los ojos</div>
+                <div class="infotexto">
+                    <ul>
+                        <li class='lista'>Melanoma uveal</li>
+                        <li class='lista'>Retinoblastoma</li>
+                    </ul>
+                </div>        
+                <div class="infotitulo">Sarcomas de Adultos</div>
+                <div class="infotexto">
+                    <ul>
+                        <li class='lista'>Sarcoma de tejido blando</li>
+                        <li class='lista'>Sarcomas óseos</li>
+                    </ul>
+                </div>        
+                <div class="infotitulo">Linfomas del Adultos</div>
+                <div class="infotexto">
+                    <ul>
+                        <li class='lista'>Enfermedad de Hodgkin</li>
+                        <li class='lista'>Linfoma no Hodgkin</li>
+                        <li class='lista'>Mieloma</li>
+                        <li class='lista'>Plasmocitoma</li>
+                    </ul>
+                </div>        
+                <div class="infotitulo">Enfermedades Benignas</div>
+                <div class="infotexto">
+                    <ul>
+                        <li class='lista'>Queloides</li>
+                        <li class='lista'>Exoftalmos</li>
+                        <li class='lista'>Angiomas de piel y vertebrales</li>
+                        <li class='lista'>Radiocirugía Funcional</li>
+                    </ul>
+                </div>        
+            </div>
+
+            <div class="col-12 col-md-6 col-lg-4">
+                <div class="infotitulo">Tumores Gastrointestinales</div>
+                <div class="infotexto">
+                    <ul>
+                        <li class='lista'>Cáncer de esófago</li>
+                        <li class='lista'>Cáncer gástrico</li>
+                        <li class='lista'>Cáncer pancreático</li>
+                        <li class='lista'>Carcinomas hepatobiliares</li>
+                        <li class='lista'>Cáncer colorectal</li>
+                        <li class='lista'>Cáncer de canal anal</li>
+                    </ul>
+                </div>
+                <div class="infotitulo">Tumores ginecológicos</div>
+                <div class="infotexto">
+                    <ul>
+                        <li class='lista'>Carcinoma del cuello uterino</li>
+                        <li class='lista'>Carcinoma de endometrio</li>
+                        <li class='lista'>Cáncer vaginal</li>
+                        <li class='lista'>Cáncer de vulva</li>
+                    </ul>
+                </div>        
+                <div class="infotitulo">Tumores urológicos</div>
+                <div class="infotexto">
+                    <ul>
+                        <li class='lista'>Carcinoma de vejiga</li>
+                        <li class='lista'>Cáncer de próstata</li>
+                        <li class='lista'>Tumores testiculares</li>
+                    </ul>
+                </div>   
+                <div class="infotitulo">Cáncer de mama</div>     
+                <div class="infotitulo">Cáncer de piel</div>     
+            </div>
+
+        </div>
+    </div>
+
+    <hr class="divisor">
+    <div class="row align-items-center clearfix "><a href="/" class=' agendar button pulse justify-content-center mx-auto'><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-calendar-check-fill" viewBox="0 0 16 16">
+        <path d="M4 .5a.5.5 0 0 0-1 0V1H2a2 2 0 0 0-2 2v1h16V3a2 2 0 0 0-2-2h-1V.5a.5.5 0 0 0-1 0V1H4V.5zM16 14V5H0v9a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2zm-5.146-5.146-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 0 1 .708-.708L7.5 10.793l2.646-2.647a.5.5 0 0 1 .708.708z"/>
+      </svg> <strong>AGENDA TU HORA</strong></a></div>
+
+
+    <div class="greenbar"> ¿CÓMO ES EL PROCEDIMIENTO DE LA RADIOTERAPIA?</div>
+    <div class="boxcontent">
+        <div class="row clearfix">
+
+            <div class="col-12 col-lg-12 ">
+                <div class="row infocontent">
+                    <div class="col-12 col-md-12 col-lg-6 infotexto mx-auto">
+                        <div class="infotitulo">PRIMERA VISITA:</div>
+                        <ul>
+                            <li>Es el primer contacto que tiene el paciente con el oncólogo radioterapeuta. En esta visita el médico elaborará una ficha clínica, en la que incorporará las exploraciones que le hayan practicado al paciente, realizará una exploración física general y del área enferma. Es posible, además, que se solicite algún examen adicional, si se considerara necesario para completar el estudio.</li>
+                            <li>Se le explicará en líneas generales cuál va a ser el plan de tratamiento previsto, en cuanto a duración, días que tiene que acudir, posibles efectos, etc.</li>
+                            <li>El paciente debe aclarar las dudas que le surjan y firmar un consentimiento informado para autorizar la realización del estudio y tratamiento.</li>
+                        </ul>
+                    </div>
+                    <div class="col-12 col-md-12 col-lg-6 infoimg mx-auto" style="background-image: url('{% static 'img/background2.jpg' %}');">
+                    </div>
+                    <div class="col-12 d-lg-none mx-auto">
+                        <img  src=" {% static 'img/background2.jpg' %}" class="img-fluid" alt="Responsive image" width="">
+                    </div>
+                </div>
+            </div>
+
+            <hr class="divisor">
+
+            <div class="col-12  col-lg-12 "> 
+                <div class="row infocontent">
+                    <div class="col-12 col-md-12 col-lg-6 infoimg mx-auto" style="background-image: url('{% static 'img/pac1.jpg' %}');">
+                    </div>
+                    
+                    <div class="col-12 col-md-12 col-lg-6 infotexto mx-auto">
+                        <div class="infotitulo">PLANIFICACIÓN DEL TRATAMIENTO:</div>
+                        <ul>
+                            <li>El estándar de la planificación es realizarla en tres dimensiones con simulación virtual. Para ello, se le realiza al paciente una Tomografía Computarizada en una posición determinada, que será la misma durante todo el tratamiento, para la cual se utilizan dispositivos inmovilizadores, según el área a tratar.</li>
+                            <li>Con las imágenes de las Tomografías Computarizadas digitalizadas en el sistema Monaco SIM, se delimitan las áreas a tratar y los órganos críticos.</li>
+                            <li>Con el sistema de planificación XIO, se reconstruyen los volúmenes de las áreas delimitadas, y se añaden los haces de fotones para determinar la distribución de la radiación en el paciente. El mismo sistema nos produce unas radiografías digitales reconstruidas, que son virtuales, y que reproducen la imagen del campo de tratamiento que formaría el haz, como si realizásemos una radiografía real.</li>
+                            <li>Este estudio y planificación puede requerir desde un día a una semana, o más, de trabajo, según la complejidad del caso.</li>
+                            <li>Una vez decidido el mejor esquema de terapia se aprueban digitalmente el plan y la dosimetría y se transmite la información del caso por la Red Mosaiq al equipo controlador del acelerador lineal. Quedando todo registrado para asegurar la trazabilidad de todo el tratamiento (Sistema Record &amp; Verify).</li>
+                            <li>Todo este estudio previo al inicio de la terapia es altamente complejo y laborioso, y constituye el 50% del trabajo y del tratamiento, siendo el 50% restante la aplicación diaria de lo que se ha programado.</li>
+                        </ul>
+                    </div>
+                    <div class="col-12 d-lg-none mx-auto">
+                        <img  src=" {% static 'img/pac1.jpg' %}" class="img-fluid" alt="Responsive image" width="">
+                    </div>
+                </div>
+            </div>
+
+            <hr class="divisor">
+
+            <div class="col-12  col-lg-12 ">
+                <div class="row infocontent">
+                    <div class="col-12 col-md-12 col-lg-6 infotexto mx-auto">
+                        <div class="infotitulo">PRIMER DIA  DE TRATAMIENTO:</div>
+                        <ul>
+                            <li>Una vez definida la planificación del tratamiento, el paciente acudirá al acelerador lineal, y en la misma posición en la que se realizó la Tomografía Computarizada de planificación se realizan dos imágenes portales electrónicas (radiografías digitales) con el dispositivo iView, para localizar el centro planificado, una imagen AP (Anterior) y otra imagen LAT (Lateral). La imagen que reproduce esta radiografía digital debe ser lo más parecida posible a la Radiografía Digital Reconstruida (DRR) obtenida a partir de la simulación tomográfica, y si es así se comienza el tratamiento. En caso contrario se ajusta por movimientos de camilla hasta hacer coincidir lo planificado con lo simulado virtualmente.</li>
+                        </ul>
+                    </div>
+                    <div class="col-12 col-md-12 col-lg-6 infoimg mx-auto" style="background-image: url('{% static 'img/pac2.jpg' %}');">
+                    </div>
+                    <div class="col-12 d-lg-none mx-auto">
+                        <img  src=" {% static 'img/pac2.jpg' %}" class="img-fluid" alt="Responsive image" width="">
+                    </div>
+                </div>
+            </div>
+
+            <hr class="divisor">
+
+            <div class="col-12 c col-lg-12 "> 
+                <div class="row infocontent">
+                    <div class="col-12 col-md-12 col-lg-6 infoimg mx-auto" style="background-image: url('{% static 'img/background5.jpg' %}');">
+                    </div>
+                    
+                    <div class="col-12 col-md-12 col-lg-6 infotexto mx-auto">
+                        <div class="infotitulo">TRATAMIENTO:</div>
+                        <ul>
+                            <li>El Tecnólogo Médico junto con el TENS llevan al paciente a la sala de tratamiento y lo colocan en la camilla del acelerador lineal, con la ayuda de los dispositivos de inmovilización, en exactamente la misma posición usada para la simulación.</li>
+                            <li>El Tecnólogo Médico junto con el TENS colocan al paciente cuidadosamente, guiándose con rayos láser de alineación.</li>
+                            <li>Con la información transmitida del planificador XIO por la red Mosaiq se logra reproducir estrictamente las configuraciones de los haces planificados previamente, tomando en cuenta los tamaños de campo, y las distintas angulaciones del cabezal y del brazo del acelerador lineal (<em>gantry)</em>, del colimador y la camilla, para cada haz. También se colocan los diferentes dispositivos modificadores del haz, tales como cuñas, bolus, multiláminas (MLC), compensadores, según lo descrito en la planificación del tratamiento.</li>
+                            <li>Al salir de la sala de tratamiento coloca en la consola de tratamiento los parámetros dosimétricos y las Unidades Monitoras, de acuerdo a lo planificado. Los haces pueden durar desde unos pocos segundos hasta algunos minutos para cada campo.</li>
+                            <li>El proceso de tratamiento dura 10 a 15 minutos cada día, y la mayor parte del tiempo se ocupa colocando al paciente en la posición correcta.</li>
+                            <li>Los pacientes habitualmente reciben el tratamiento una vez al día, cinco días por semana, por un total de una a siete semanas, dependiendo del esquema de tratamiento planificado. Ocasionalmente los tratamientos se dan dos veces al día.</li>
+                        </ul>
+                    </div>
+                    <div class="col-12 d-lg-none mx-auto">
+                        <img  src=" {% static 'img/background5.jpg' %}" class="img-fluid" alt="Responsive image" width="">
+                    </div>
+                </div>
+            </div>
+
+            <hr class="divisor">
+
+            <div class="col-12  col-lg-12 ">
+                <div class="row infocontent">
+                    <div class="col-12 col-md-12 col-lg-6 infotexto mx-auto">
+                        <div class="infotitulo">CONTROL DURANTE EL TRATAMIENTO:</div>
+                        <ul>
+                            <li>Los pacientes suelen tener visita semanal con el oncólogo radioterapeuta en la que deben contar los posibles efectos agudos de la radiación y formular preguntas que aún no se habían hecho.</li>
+                            <li>Si el paciente tuviera cualquier problema durante el tratamiento debe solicitar cita el mismo día que acuda al tratamiento.</li>
+                            <li>Periódicamente se realizan radiografías de control en el propio equipo de tratamiento, que permiten chequear el área tratada. Estas imágenes son comparadas con las obtenidas el primer día de tratamiento. También permiten verificar si hubo alguna modificación considerable en la lesión o en el paciente. Si este último es el caso, se realiza una nueva simulación y planificación que tome en cuenta las modificaciones anteriores (terapia personalizada y adaptativa).</li>
+                        </ul>
+                    </div>
+                    <div class="col-12 col-md-12 col-lg-6 infoimg mx-auto" style="background-image: url('{% static 'img/pac3.jpg' %}');">
+                    </div>
+                    <div class="col-12 d-lg-none mx-auto">
+                        <img  src=" {% static 'img/pac3.jpg' %}" class="img-fluid" alt="Responsive image" width="">
+                    </div>
+                </div>
+            </div>
+
+            <hr class="divisor">
+
+            <div class="col-12  col-lg-12 "> 
+                <div class="row infocontent">
+                    <div class="col-12 col-md-12 col-lg-6 infoimg mx-auto" style="background-image: url('{% static 'img/background4.jpg' %}');">
+                    </div>
+                    <div class="col-12 col-md-12 col-lg-6 infotexto mx-auto">
+                        <div class="infotitulo">SEGUIMIENTO UNA VEZ FINALIZADO EL TRATAMIENTO:</div>
+                        <ul>
+                            <li>El paciente deberá acudir a la consulta de Radioterapia Oncológica periódicamente. Durante la convalecencia trimestralmente y después como mínimo una vez al año, para valorar toxicidades tardías y conocer los resultados del tratamiento efectuado.</li>
+                            <li>El seguimiento de la enfermedad oncológica lo realiza el Oncólogo Radioterapeuta, éste solicitará las exploraciones y exámenes que estime convenientes, para detectar o descartar recidivas, tratarlas y/o remitir al paciente al especialista que corresponda.</li>
+                        </ul>
+                    </div>
+                    <div class="col-12 d-lg-none mx-auto">
+                        <img  src=" {% static 'img/background4.jpg' %}" class="img-fluid" alt="Responsive image" width="">
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+  
+
+</body>
+{% endblock%}

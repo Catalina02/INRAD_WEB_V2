@@ -1,0 +1,195 @@
+
+{% extends 'base.html' %}
+{%load static%}
+
+{% block contenido%}
+<style>
+/*exclusivos de INICIO*/
+.TerapiasInicio{
+        margin: 20px;
+        text-align: center;
+    }
+.complemento-overlay{
+	width: 100%;
+	height: 100px;
+    background-color: var(--softwhite);
+	position: relative;
+	overflow: hidden;
+    z-index: 1;
+	border-radius: 0 0 90% 90% / 40%;
+}
+/*segundo Overlay*/
+.inicio-div {
+	background: url("{% static 'img/background2.jpg' %}");
+	text-align: center;
+    background-size: 100% ;
+	width: 100%;
+	height: 100%;
+    background-position:  center center;
+    background-repeat: no-repeat;
+    background-color: var(--green);
+	background-size: cover;
+	background-attachment: scroll;
+	position: relative;
+    z-index: -1;
+    text-align: center;
+    top: -40px;
+	overflow: hidden;
+	border-radius: 0 0 85% 85% / 30%;
+}
+.inicio-div .inicio-div-overlay{
+	width: 100%;
+	height: 100%;
+	padding: 50px;
+	color: var(--white);
+	text-shadow: 1px 1px 1px var(--shadow);
+    background-image: linear-gradient( 135deg, #0a524dd5 10%, #66d9dd88 100%);
+}
+.atenciones{
+    margin: 30px;
+}
+.inicio-img{
+    width: 500px;
+    height: 500px;
+    border-radius: 30px 30px 30px 30px;
+    text-align: center;
+    margin: 20px;
+    margin-bottom: 60px;
+}
+.icon{
+    text-align: center;
+    padding: 5px;
+}
+.numero{
+    text-align: center;
+    font-size: 80px;
+    font-weight: 600;
+    font-family:'Roboto';
+    color: var(--green);
+    padding: 5px;
+}
+</style>
+
+<body>
+    <header class="inicio-header" style="background-image: url('{% static 'img/backgroundimg.jpg' %}');">
+        <div class="inicio-overlay">
+            <div class="row">
+                <div class="inicio-title col-12 align-items-center clearfix" style="margin-bottom: 0px;">INSTITUTO RADIO ONCOLÓGICO</div>
+                <div class="inicio-title col-12 align-items-center clearfix">DE SANTIAGO</div>
+                <div class="inicio-titlebody">TERAPIAS CON TECNOLOGÍA DE PUNTA</div>
+                <div class="inicio-titlebody bajada">Desde nuestros inicios comprometidos con dar un servicio medico de alta calidad</div>
+            </div>
+        </div>
+    </header>
+
+    <div class="row align-items-center clearfix "><a href="/" class=' agendar button pulse justify-content-center mx-auto'><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-calendar-check-fill" viewBox="0 0 16 16">
+        <path d="M4 .5a.5.5 0 0 0-1 0V1H2a2 2 0 0 0-2 2v1h16V3a2 2 0 0 0-2-2h-1V.5a.5.5 0 0 0-1 0V1H4V.5zM16 14V5H0v9a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2zm-5.146-5.146-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 0 1 .708-.708L7.5 10.793l2.646-2.647a.5.5 0 0 1 .708.708z"/>
+      </svg> <strong>AGENDA TU HORA</strong></a>
+    </div>
+    
+    <hr class="divisor">
+    <div class="content">
+        <div class=" row mx-auto">
+            <div class="col-12 inicio-title" style="color:var(--darkgrey);">Nuestros tratamientos</div>
+            <div class="col-12 texto">Más cerca que nunca, te apoyamos con tratamientos que implican tecnología de punta y profesionales realmente comprometidos con la vida.</div>
+        </div>
+
+        <div class="content row mx-auto">
+            <div class="col-12"></div>
+        </div>
+
+        <div class="row align-items-center clearfix TerapiasInicio">
+            <div class="col-12 col-sm-12 col-md-6 col-lg-3">
+                <div class="inicio-item">
+                    <a class="radioterapia-icon" href="{% url 'Web:tratamientos' %}" >
+                        <img src=" {% static 'img/examination.png' %}" >
+                    </a>
+                    <div class="item-inicio-texto">Radioterapia</div>
+                    <div class="texto">Radioterapia Conformada (RT3D) e IMRT</div>
+                    <a class="button pulse inicio-button" href="{% url 'Web:tratamientos' %}" ><strong>Más Información</strong> </a>
+                </div>
+            </div>
+            <div class="col-12 col-sm-12 col-md-6 col-lg-3">
+                <div class="inicio-item">
+                    <a class="radioterapia-icon" href="{% url 'Web:tratamientos' %}" >
+                        <img src=" {% static 'img/x-ray-1.png' %}" >
+                    </a>
+                    <div class="item-inicio-texto">Radiocirugía</div>
+                    <div class="texto">Radioterapia Estereotáxica (SRS)</div>
+                    <a class="button pulse inicio-button" href="{% url 'Web:tratamientos' %}" ><strong>Más Información</strong> </a>
+                </div>
+            </div>
+            <div class="col-12 col-sm-12 col-md-6 col-lg-3">
+                <div class="inicio-item">
+                    <a class="radioterapia-icon" href="{% url 'Web:tratamientos' %}" >
+                        <img src=" {% static 'img/drugs.png' %}" >
+                    </a>
+                    <div class="item-inicio-texto">Braquiterapia</div>
+                    <div class="texto">De Alta Tasa (HDR) y de Baja Tasa (LDR)</div>
+                    <a class="button pulse inicio-button" href="{% url 'Web:tratamientos' %}" ><strong>Más Información</strong> </a>
+                </div>
+            </div>
+            <div class="col-12 col-sm-12 col-md-6 col-lg-3">
+                <div class="inicio-item">
+                    <a class="radioterapia-icon" href="{% url 'Web:tratamientos' %}" >
+                        <img src=" {% static 'img/glasses.png' %}" >
+                    </a>
+                    <div class="item-inicio-texto">Fotodinamia</div>
+                    <div class="texto">Terapia superficial ultraselectiva</div>
+                    <a class="button pulse inicio-button" href="{% url 'Web:tratamientos' %}" ><strong>Más Información</strong> </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+        <div class="complemento-overlay"></div>
+
+        <div class="inicio-div ">
+            <div class="inicio-div-overlay">
+                <div class="row align-items-center mx-auto clearfix">
+                    <div class="col-12 col-sm-12 col-md-8 col-lg-6  mx-auto ">
+                        <div class="col-12 inicio-title" style="color:var(--white);">
+                            Radioterapias no invasivas contra el cáncer
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-4 col-lg-6 mx-auto inicio-img ">
+                        <img class='inicio-img img-thumbnail'src="{% static 'img/contraelcancer.png' %} " sizes="(max-width: 825px) 100vw, 825px" width="825" height="825">
+                    </div>
+                </div>
+            </div>
+        </div>
+    <div class="content">
+        <div class="row align-items-center clearfix ">
+            <div class="col-12 col-sm-12 col-md-6 col-lg-4 mx-auto atenciones">
+                <div class="icon mx-auto"><svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" fill="var(--green)" class="bi bi-person-check-fill" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd" d="M15.854 5.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 0 1 .708-.708L12.5 7.793l2.646-2.647a.5.5 0 0 1 .708 0z"/>
+                    <path d="M1 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+                </svg>
+                </div>
+                <div class="numero">3000</div>
+                <div class="texto">Pacientes Atendidos</div>
+
+            </div>
+
+            <div class="col-12 col-sm-12 col-md-6 col-lg-4 mx-auto atenciones">
+                <div class="icon mx-auto"><img src=" {% static 'img/aid.png' %}" style="height: 100px;width: 100px;"></div>
+                <div class="numero"> +380</div>
+                <div class="texto">Tratamientos Realizados</div>
+            </div>
+
+            
+
+            <div class="col-12 col-sm-12 col-md-6 col-lg-4 mx-auto atenciones">
+                <div class="icon mx-auto"><img src=" {% static 'img/doctor.png' %}" style="height: 150px;width: 150px;"></div>
+                <div class="numero"> +1,240 </div>
+                <div class="texto">Consultas Realizadas</div>
+            </div>
+
+        </div>
+    </div>
+    
+    
+    
+</body>
+
+{% endblock%}

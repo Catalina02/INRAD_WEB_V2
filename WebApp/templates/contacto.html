@@ -1,0 +1,44 @@
+
+{% extends 'base.html' %}
+{%load static%}
+
+
+{% block contenido%}
+{% load crispy_forms_tags %}
+
+<body>
+<div class="contenedor">
+    <div class="row clearfix ">
+        <div class='col-md-1 col-lg-1 ' ></div>
+
+        <div class='col-12 col-sm-12 col-md-4 col-lg-4 GMaps justify-content-center' >
+            <iframe scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?width=100%25&amp;height=600&amp;hl=es&amp;q=Dubl%C3%A9%20Almeyda%203840,%20%C3%91u%C3%B1oa,%20Regi%C3%B3n%20Metropolitana+(MDubl%C3%A9%20Almeyda%203840,%20%C3%91u%C3%B1oa,%20Regi%C3%B3n%20Metropolitanai%20nombre%20de%20egocios)&amp;t=&amp;z=15&amp;ie=UTF8&amp;iwloc=B&amp;output=embed" width="100%" height="735" frameborder="0"><a href="https://www.mapsdirections.info/marcar-radio-circulo-mapa/">Dibujar radio en el mapa</a></iframe>
+        </div>
+        
+        <div class='col-md-1 col-lg-1 ' ></div>
+        
+        <div class="class='col-12 col-sm-12 col-md-4 col-lg-4 form ">
+          
+                <h1 class='titlebody ' style='margin:0;'>CONTACTANOS!</h1>
+            
+           
+            <form action='' class='formulario_contacto' style="margin-bottom: 50px;" method="post">
+                {% csrf_token %}
+                {{ form | crispy}}
+
+
+                <div class="row d-flex botones_contacto " >
+                    <div class="col-12 col-sm-12 col-lg-12 col-xl-12 justify-content-center ">
+                        <button type="submit" id="btnEnviar" class="btn button  justify-content-center boton_formulario ">Enviar</button>
+                    </div>
+                    <div class="col-12 col-sm-12 col-lg-12 col-xl-12">
+                        <input type="reset" value='Cancelar'class='btn button cancel_button boton_formulario'>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class='col-md-1 col-lg-1 ' ></div>
+
+</div>
+</body>
+{% endblock%}

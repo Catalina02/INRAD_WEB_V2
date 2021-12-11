@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        {% load static %}
+        <title>INRAD – Perfil</title>
+        <link rel="shortcut icon" type="image/png" href="{% static 'Web/img\logotipo.png' %}"/>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1,shrink-to-fit=no">
+        <meta http-equiv="X-UA-Compatible" content="ie-edge">
+        <link rel="stylesheet" type='text/css' href="{% static 'css/bootstrap.css' %}">
+        <link rel="stylesheet" href="{% static 'Web/css/HojaEstilos.css' %}">
+        <title>Ingresar</title>
+    </head> 
+    <style>
+        body {
+            /* fallback for old browsers */
+             background: var(--darkgreen);
+            /* Chrome 10-25, Safari 5.1-6 */
+            background: -webkit-linear-gradient(to right, var(--primary), var(--green));
+            /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+            background: linear-gradient(to right, var(--primary),var(--green))
+        }
+
+        .form-control:focus {
+            box-shadow: none;
+            border-color: var(--green)
+        }
+        .labels{
+            font-family: 'Roboto', sans-serif;
+        }
+      
+        @media only screen and (min-width: 769px)
+        {
+            .paciente{
+            text-align: right;}
+            
+        }
+        @media only screen and (max-width: 380px)
+        {
+            .paciente{
+            text-align: center;}
+        }
+        
+        .labels{
+            font-family: 'Roboto', sans-serif;
+        }
+        
+        .infotitulo{
+           
+            text-align: center ;
+            font-size:30px;
+            
+        }
+        .user_label{
+            font-family: 'Roboto', sans-serif;
+            font-size: 20px;
+            height: 35px;
+            border: 1px solid var(--darkgreen);
+            border-radius: 8px;
+            padding-left: 5px;
+            padding-top: 2px;
+            padding-bottom: 2px;
+            padding-right: 5px;
+        }
+        .row{
+            padding: 30px;
+            padding-top:0px;
+        }
+        .imagen_perfil{
+            background-image: url('{{user.foto_perfil.url}}');
+            width: 250px;
+            height:250px;
+            border-radius: 50%;
+            background-position:  center center;
+            background-repeat: no-repeat;
+            background-size: 100% 100%;
+            text-align: center  ;
+            border: 4px solid var(--grey);
+        }
+        .profile_list{
+            margin-bottom: 15px;
+        }
+        
+    </style>
+     
+    <header>
+        <div class="greenHeader container-fluid">
+            <div class="row">
+                
+            <div class="col-12  col-md-4">
+                <a href="tel:+56222264771" class="button pulse headerbutton inicio-button mx-auto justify-content-center" style="width:250px;padding: 0px;margin: 5px; ">
+                    <img src=" {% static 'img/fono2.png' %}" style="height: 30px;width: 30px;">
+                    <strong style='padding-left: 5px;'>2 2226 4771</strong>
+                </a>
+            </div>
+            {% if user.is_authenticated %}
+                <div class="col-2 col-sm-12 col-md-1 ">
+                </div>
+                <div class="col-12 col-sm-12 col-md-4 paciente" >    
+                    <a class="inicio-button button pulse headerbutton mx-auto justify-content-center " style="width:250px;padding: 0px;margin: 5px;" href="{% url 'AppUsers:profile' %}" >
+                        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
+                            <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"></path>
+                                <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468                               2.37A7 7 0 0 0 8 1z"></path>
+                        </svg>
+                        <strong style='padding-left: 5px;'>Portal Paciente</strong>
+                    </a>
+                </div>
+                <div class="col-12 col-sm-12 col-md-2">    
+                    <a class="inicio-button headerbutton button cancel_button  mx-auto justify-content-center" style="width:250px;padding: 0px;margin: 5px;" href="{% url 'AppUsers:logout' %}" >
+                        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-door-open-fill" viewBox="0 0 16 16">
+                            <path d="M1.5 15a.5.5 0 0 0 0 1h13a.5.5 0 0 0 0-1H13V2.5A1.5 1.5 0 0 0 11.5 1H11V.5a.5.5 0 0 0-.57-.495l-7 1A.5.5 0 0 0 3 1.5V15H1.5zM11 2h.5a.5.5 0 0 1 .5.5V15h-1V2zm-2.5 8c-.276 0-.5-.448-.5-1s.224-1 .5-1 .5.448.5 1-.224 1-.5 1z"/>
+                        </svg>
+                        <strong style='padding-left: 5px;'>Cerrar Sesion</strong>
+                    </a>
+                </div>
+            {%else%}
+                <div class="col-2 col-md-1">
+                </div>
+                <div class="col-12 col-md-7 paciente">    
+                    <a class="button pulse" style="margin-right: 70px;" href="{% url 'AppUsers:login' %}" >
+                        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
+                            <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"></path>
+                                <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468                               2.37A7 7 0 0 0 8 1z"></path>
+                        </svg>
+                        <strong style='padding-left: 5px;'>Portal Paciente</strong>
+                    </a>
+                </div>
+            {%endif%}
+            </div>
+        </div>
+    
+        <div class="LogoHeader container-fluid">
+            <div class="MenuBar row  align-items-center clearfix">
+            
+                <div class="col-12   col-sm-12 col-md-12 col-lg-4 "><a href="{% url 'Web:home' %}"><img src="{% static 'img/logotipo.png' %}" class="LogoImgFile" ></a></div>
+                <div class="col-md-3 col-lg-2 d-none d-md-block mx-auto list-item"><a href="{% url 'Web:nosotros' %}" class='item'>Nosotros</a></div>
+                <div class="col-md-3 col-lg-2 d-none d-md-block mx-auto list-item"><a href="{% url 'Web:tratamientos' %}" class='item'>Tratamientos</a></div>
+                <div class="col-md-3 col-lg-2 d-none d-md-block mx-auto list-item"><a href="{% url 'Web:pacientes' %}" class='item'>Pacientes</a></div>
+                <div class="col-md-3 col-lg-2 d-none d-md-block mx-auto list-item"><a href="{% url 'Web:contacto' %}" class='item'>Contacto</a></div>
+            </div>
+            
+            <div class="DivBar d-none d-md-block" style="background:var(--green);padding: 10px;"> </div>
+    
+            
+            <div class="MovilBar row d-md-none " >
+                <nav class="navbar navbar-expand-lg" style="background:var(--green);">
+                    <div class="container-fluid mx-auto" style="padding-left: 0px;padding-right: 0px;">
+                    <button class="navbar-toggler mx-auto" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDarkDropdown" aria-controls="navbarNavDarkDropdown" aria-expanded="false" aria-label="Toggle navigation" style='padding-bottom: 20px;'>
+                        <span class="navbar-toggler-icon " style='color:white;'><svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-list" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
+                        </svg></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarNavDarkDropdown">
+                        <ul class="navbar-nav">
+                                <li class="list-item-mobile"><a href="{% url 'Web:nosotros' %}" class='item-mobile'>Nosotros</a></li>
+                                <li class="list-item-mobile"><a href="{% url 'Web:tratamientos' %}" class='item-mobile'>Tratamientos</a></li>
+                                <li class="list-item-mobile"><a href="{% url 'Web:pacientes' %}" class='item-mobile'>Pacientes</a></li>
+                                <li class="list-item-mobile"><a href="{% url 'Web:contacto' %}" class='item-mobile'>Contacto</a></li>
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </header>
+    <body>
+        {% block contenido %}
+        {% endblock %}
+    </body>
+
+    <div class="dudas align-items-center mx-auto">
+        <div class="item-inicio-texto" style="color: var(--white);">¿Tienes dudas?</div>
+        <div class="item-inicio-texto" style='color:var(--white)'>Llámanos Al</div>
+        <a href="tel:+56222264771" class="button pulse">
+            <img src=" {% static 'img/fono2.png' %}" style="height: 30px;width: 30px;">
+            <strong style='padding-left: 5px; text-align: center; font-size: 30px;'>2 2226 4771</strong>
+        </a>
+    </div>
+    
+    <footer>
+        <div class="DivBar" style="background:var(--green);padding: 10px;"> </div>
+        <div class="Footer container-fluid">
+            <div class="row align-items-start">
+                <div class="col-12   col-sm-12 col-md-12 col-lg-4 ">
+                    <a href="{% url 'Web:home' %}"><img src="{% static 'img/logotipobw.png' %}" style='width: 242px; height: 168px;' class="LogoImgFile" ></a>
+                        <hr class="accessory mx-auto">
+                    <div style="margin: 30px;">
+                            <a href='https://www.facebook.com/inradsantiago' class="RRSS" style="text-decoration: none;
+                            color: inherit;"><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-facebook" viewBox="0 0 16 16">
+                                <path d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951z"/>
+                            </svg></a>
+                            <a href='https://www.instagram.com/inrad_radioterapia/' class="RRSS" style="text-decoration: none;
+                            color: inherit;"><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-instagram" viewBox="0 0 16 16">
+                                <path d="M8 0C5.829 0 5.556.01 4.703.048 3.85.088 3.269.222 2.76.42a3.917 3.917 0 0 0-1.417.923A3.927 3.927 0 0 0 .42 2.76C.222 3.268.087 3.85.048 4.7.01 5.555 0 5.827 0 8.001c0 2.172.01 2.444.048 3.297.04.852.174 1.433.372 1.942.205.526.478.972.923 1.417.444.445.89.719 1.416.923.51.198 1.09.333 1.942.372C5.555 15.99 5.827 16 8 16s2.444-.01 3.298-.048c.851-.04 1.434-.174 1.943-.372a3.916 3.916 0 0 0 1.416-.923c.445-.445.718-.891.923-1.417.197-.509.332-1.09.372-1.942C15.99 10.445 16 10.173 16 8s-.01-2.445-.048-3.299c-.04-.851-.175-1.433-.372-1.941a3.926 3.926 0 0 0-.923-1.417A3.911 3.911 0 0 0 13.24.42c-.51-.198-1.092-.333-1.943-.372C10.443.01 10.172 0 7.998 0h.003zm-.717 1.442h.718c2.136 0 2.389.007 3.232.046.78.035 1.204.166 1.486.275.373.145.64.319.92.599.28.28.453.546.598.92.11.281.24.705.275 1.485.039.843.047 1.096.047 3.231s-.008 2.389-.047 3.232c-.035.78-.166 1.203-.275 1.485a2.47 2.47 0 0 1-.599.919c-.28.28-.546.453-.92.598-.28.11-.704.24-1.485.276-.843.038-1.096.047-3.232.047s-2.39-.009-3.233-.047c-.78-.036-1.203-.166-1.485-.276a2.478 2.478 0 0 1-.92-.598 2.48 2.48 0 0 1-.6-.92c-.109-.281-.24-.705-.275-1.485-.038-.843-.046-1.096-.046-3.233 0-2.136.008-2.388.046-3.231.036-.78.166-1.204.276-1.486.145-.373.319-.64.599-.92.28-.28.546-.453.92-.598.282-.11.705-.24 1.485-.276.738-.034 1.024-.044 2.515-.045v.002zm4.988 1.328a.96.96 0 1 0 0 1.92.96.96 0 0 0 0-1.92zm-4.27 1.122a4.109 4.109 0 1 0 0 8.217 4.109 4.109 0 0 0 0-8.217zm0 1.441a2.667 2.667 0 1 1 0 5.334 2.667 2.667 0 0 1 0-5.334z"/>
+                            </svg></a>
+                            <a href='https://www.linkedin.com/company/inrad-instituto-radio-oncologico/' class="RRSS" style="text-decoration: none;
+                            color: inherit;"><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-linkedin" viewBox="0 0 16 16">
+                            <path d="M0 1.146C0 .513.526 0 1.175 0h13.65C15.474 0 16 .513 16 1.146v13.708c0 .633-.526 1.146-1.175 1.146H1.175C.526 16 0 15.487 0 14.854V1.146zm4.943 12.248V6.169H2.542v7.225h2.401zm-1.2-8.212c.837 0 1.358-.554 1.358-1.248-.015-.709-.52-1.248-1.342-1.248-.822 0-1.359.54-1.359 1.248 0 .694.521 1.248 1.327 1.248h.016zm4.908 8.212V9.359c0-.216.016-.432.08-.586.173-.431.568-.878 1.232-.878.869 0 1.216.662 1.216 1.634v3.865h2.401V9.25c0-2.22-1.184-3.252-2.764-3.252-1.274 0-1.845.7-2.165 1.193v.025h-.016a5.54 5.54 0 0 1 .016-.025V6.169h-2.4c.03.678 0 7.225 0 7.225h2.4z"/>
+                            </svg></a>
+                    </div>
+                    <a class="button pulse" href="{% url 'admin:index' %}" >
+                        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-bandaid-fill" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd" d="m2.68 7.676 6.49-6.504a4 4 0 0 1 5.66 5.653l-1.477 1.529-5.006 5.006-1.523 1.472a4 4 0 0 1-5.653-5.66l.001-.002 1.505-1.492.001-.002Zm5.71-2.858a.5.5 0 1 1-.708.707.5.5 0 0 1 .707-.707ZM6.974 6.939a.5.5 0 1 0-.707-.707.5.5 0 0 0 .707.707ZM5.56 8.354a.5.5 0 1 0-.707-.708.5.5 0 0 0 .707.708Zm2.828 2.828a.5.5 0 1 0-.707-.707.5.5 0 0 0 .707.707Zm1.414-2.121a.5.5 0 1 1-.707.707.5.5 0 0 1 .707-.707Zm1.414-.707a.5.5 0 1 0-.706-.708.5.5 0 0 0 .707.708Zm-4.242.707a.5.5 0 1 1-.707.707.5.5 0 0 1 .707-.707Zm1.414-.707a.5.5 0 1 0-.707-.708.5.5 0 0 0 .707.708Zm1.414-2.122a.5.5 0 1 1-.707.707.5.5 0 0 1 .707-.707ZM8.646 3.354l4 4 .708-.708-4-4-.708.708Zm-1.292 9.292-4-4-.708.708 4 4 .708-.708Z"/>
+                          </svg>
+                        <strong style='padding-left: 20px;'>Portal Medico</strong>
+                    </a>
+                </div>
+    
+                <div class="col-12 col-sm-12 col-md-12 col-lg-2 mx-auto ColumnaFooter"><strong>Contáctenos</strong>
+                    <hr class="accessory mx-auto">
+                <div class="contacto">
+                        <a href="https://www.google.com/maps/place/Dubl%C3%A9+Almeyda+3840,+%C3%91u%C3%B1oa,+Regi%C3%B3n+Metropolitana/@-33.4569497,-70.5914286,17z/data=!3m1!4b1!4m5!3m4!1s0x9662cfb886420003:0x68c8db89a3c7a6c5!8m2!3d-33.4569497!4d-70.5892399?shorturl=1" class='contacto-item float-right'>Dublé Almeyda 3840, Ñuñoa, Santiago</a>
+                    <hr>
+                        <a href="tel:+56222264771" class='contacto-item float-right'>(+56) 2 2226 4771</a>
+                    <hr>
+                        <a href="tel:+56222264771" class='contacto-item loat-right'>(+56) 2 2274 0847</a>
+                    <hr>
+                        <a href="https://inrad.cl/" class='contacto-item float-right'>https://inrad.cl/</a>
+                    </div>
+                </div>
+    
+                <div class="col-12 col-sm-12 col-md-12 col-lg-2 mx-auto ColumnaFooter"><strong>Tratamientos</strong>
+                    <hr class="accessory mx-auto">
+                    <div class="contacto">
+                        <a href="{% url 'Web:terapias' %}" class='contacto-item float-right'>Radioterapia conformada 3D</a>
+                        <hr>
+                        <a href="{% url 'Web:terapias' %}" class='contacto-item float-right'>IMRT</a>
+                        <hr>
+                        <a href="{% url 'Web:terapias' %}" class='contacto-item loat-right'>Radiocirujia gama KNIFE</a>
+                        <hr>
+                        <a href="{% url 'Web:terapias' %}" class='contacto-item float-right'>Braquiterapia de alta tasa</a>
+                        <hr>
+                        <a href="{% url 'Web:terapias' %}" class='contacto-item float-right'>Braquiterapia de baja tasa</a>
+                        <hr>
+                        <a href="{% url 'Web:terapias' %}" class='contacto-item float-right'>Fotodinamia</a>
+                    </div>
+                </div>
+                
+                <div class="col-12 col-sm-12 col-md-12 col-lg-2 mx-auto ColumnaFooter"><strong>Convenios</strong>
+                    <hr class="accessory mx-auto">
+                    <div class="contacto">
+                        <a href="https://www.fonasa.cl/" class='contacto-item float-right'>Fonasa</a>
+                        <hr>
+                        <a href="https://gammaknife.cl/" class='contacto-item float-right'>Gamma KNIFE Chile</a>
+                        <hr>
+                        <a href="https://www.recell.cl/Oncovida"class='contacto-item loat-right'>ReCell</a>
+                        <hr>
+                        <a href="https://www.oncovida.cl/" class='contacto-item float-right'>Oncovida</a>
+                        <hr>
+                        <a href="https://www.capredena.gob.cl/" class='contacto-item float-right'>Capradena</a>
+                        <hr>
+                        <a href="https://www.uss.cl/" class='contacto-item float-right'>Universidad San Sebastian</a>
+                    </div>
+                </div>
+    
+            </div>
+        </div>
+        <div class="webinfo">
+            INRAD 2021 	&copy; www.inrad.cl 
+        </div>
+    </footer>
+    
+    
+    
+    
+    
+    <!--*************TERMINA EL CONTENIDO*************-->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" ></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.min.js" integrity="sha384-Atwg2Pkwv9vp0ygtn1JAojH0nYbwNJLPhwyoVbhoPwBhjQPR5VtM2+xf0Uwh9KtT" crossorigin="anonymous"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    {% load sweetify %}
+    {% sweetify %}
+    </body>
+    </html>
+    
+    

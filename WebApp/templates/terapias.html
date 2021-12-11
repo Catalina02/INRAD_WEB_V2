@@ -1,0 +1,196 @@
+
+{% extends 'base.html' %}
+{%load static%}
+{% block contenido%}
+
+<style>
+/*exclusivo terpaias*/
+.boxcontent
+{
+    margin-left: 150px;
+    margin-right: 150px;
+}
+@media only screen and (max-width: 768px){
+    .boxcontent
+    {
+        margin-left: 80px;
+        margin-right: 80px;
+    }
+    .infoimg{
+        background-image: url("{% static 'img/background2.jpg' %}");
+        background-position: center center;
+        background-size: cover;
+        margin: 0px;
+        text-align: center;  
+    }
+}
+@media only screen and (max-width: 550px){
+    .boxcontent
+    {
+        margin-left: 0px;
+        margin-right:0px;
+    }
+    .infocontent{
+        margin-left: 0px;
+        margin-right: 0px;
+    }
+}
+
+
+@media only screen and (max-width: 550px){
+    .boxcontent
+    {
+        margin-left: 0px;
+        margin-right:0px;
+    }
+    .infocontent{
+        margin-left: 0px;
+        margin-right: 0px;
+    }
+    .infotexto{
+        padding-left: 0px;
+        padding-right: 0px;
+    }
+}
+.infoimg{
+    
+    background-position: center center;
+    background-size: cover;
+    margin: 0px;
+    text-align: center;  
+}
+
+.infocontent{
+    border-color: var(--darkgreen);
+    border-top-width: 5px;
+    border-top-style: solid;
+    border-bottom-style: solid;
+    border-bottom-width: 5px; 
+    margin: 25px;
+}
+img{
+    margin-bottom:10px ;
+    margin-top:10px ;
+    text-align:center
+}
+.imagen{
+    text-align:center;
+}
+</style>
+
+<body>
+    <header class="inicio-header "style="background-image: url('{% static 'img/background5.jpg' %}');">
+        <div class="inicio-overlay">
+            <div class="row">
+                <div class="inicio-title col-12 align-items-center clearfix">INFORMACIÓN DE NUESTROS </div>             
+                <div class="inicio-title col-12 align-items-center clearfix">TRATAMIENTOS</div>             
+            </div>
+        </div>
+    </header>
+
+    <div class="boxcontent">
+        <div class="row clearfix">
+
+            <div class="col-12 col-lg-12 ">
+                <div class="row infocontent">
+                    <div class="col-12 col-md-12 col-lg-6 infotexto mx-auto">
+                        <div class="infotitulo">RADIOTERAPIA CONFORMADA CON PLANIFICACIÓN 3D</div>
+                        <p><br />La Radioterapia Conformada Tridimensional <strong>(RT3D)</strong> aprovecha la capacidad de visualización anatómica de la CT <strong>(Tomografía Computada)</strong> o MR (Resonancia Magnética) para tratar el tumor dependiendo de su forma volumétrica o tridimensional. Estas imágenes tridimensionales facilitan la identificación de los órganos normales que no deseamos irradiar y el tumor que deseamos irradiar en su totalidad. Al ver todas estas estructuras en forma tridimensional, el médico radioterapeuta, trabajando en conjunto con el Tecnólogo Médico y el Físico Médico, determinan cuidadosamente la configuración óptima de la radiación.</p><p>El término conformación, se aplica cuando ayudados con la imagen tridimensional, las láminas del colimador multiláminas se amoldan y adaptan de acuerdo a la forma proyectada del tumor en esa posición particular, tomando en cuenta la angulación del gantry<strong> (o brazo del Acelerador Lineal)</strong> y posición de la camilla de tratamiento. La conformación tridimensional de la dosis se logra a partir de la combinación de haces que entran por diferentes planos y convergen todos en el isocentro permitiendo que la distribución de la dosis se adecue a la forma del tumor. De allí el nombre de radioterapia conformada en <strong>3D (RT3D)</strong>. Otra de las ventajas que aparece con el uso de imágenes tridimensionales y los sistemas de planificación de Radioterapia, es que estos reportan gráficos conocidos como histogramas dosis-volumen. Estos gráficos permiten la evaluación cuantitativa de la dosis que llega y a cuál volumen, ya sea del tumor o del órgano a riesgo involucrado. De esta manera, nuestros especialistas pueden estar seguros que la dosis administrada al tumor no producirá complicaciones posteriores.</p>
+                    </div>
+                    <div class="col-12 col-md-12 col-lg-6 infoimg mx-auto" style="background-image: url('{% static 'img/radioterapbig.jpg' %}');">
+                    </div>
+                    <div class="col-12 d-lg-none imagen mx-auto">
+                        <img  src=" {% static 'img/radioterapbig.jpg' %}" class="img-fluid" alt="Responsive image" width="">
+                    </div>
+                </div>
+            </div>
+
+            <hr class="divisor">
+
+            <div class="col-12  col-lg-12 "> 
+                <div class="row infocontent">
+                    <div class="col-12 col-md-12 col-lg-6 infoimg mx-auto" style="background-image: url('{% static 'img/imrtbig.png' %}');">
+                    </div>
+                    
+                    <div class="col-12 col-md-12 col-lg-6 infotexto mx-auto">
+                        <div class="infotitulo">RADIOTERAPIA DE INTENSIDAD MODULADA IMRT</div>
+                        <p>La Radioterapia de Intensidad Modulada<strong> (o IMRT, del inglés “Intensity Modulated Radiation Therapy”)</strong> constituye la técnica estándar de tratamiento en los países del primer mundo. Desde el advenimiento de los aceleradores lineales, esta técnica de tratamiento representa uno de los mayores avances en el área. La ventaja primordial es que logra distribuciones de dosis cóncavas que permiten la exclusión de estructuras a proteger. Tal como su nombre lo indica, la Radioterapia de Intensidad Modulada permite obtener distribuciones de la intensidad del haz que pueden ser configuradas para amoldarse a los volúmenes tumorales. Tales características son imposibles de alcanzar con las técnicas convencionales.</p><p><strong>La IMRT</strong> está basada en el uso de los colimadores multiláminas. Inicialmente, el uso de los colimadores multiláminas fue destinado a mejorar la conformación de los tumores, y a la protección de los órganos a riesgo, con la idea de reemplazar la elaboración de los antiguos bloques de conformación. Sin embargo, el movimiento independiente de cada una de estas láminas durante la irradiación trae como resultado que cada pequeña lámina modifique la intensidad con la que pasa el haz de radiación, y como consecuencia por cada lámina, se obtengan distintos patrones de intensidad en un mismo plano. Al hacer un análisis de los histogramas dosis-volumen obtenidos con la técnica de <strong>IMRT</strong>, se puede notar que se logra una mejor cobertura de la dosis prescrita al tumor con una efectiva protección a los órganos a riesgo.</p><p>Nuestro colimador multiláminas viene integrado al acelerador y posee 80 láminas <strong>(40 de cada lado, y de 1 cm de espesor cada una)</strong>. Para administrar el tratamiento por <strong>IMRT</strong>, es vital que cada una de estas láminas se ubique y tenga la velocidad asignada al momento del diseño del plan de tratamiento. Para ello, nuestro grupo de Física Médica está encargado de calcular y tratar el mismo plan de tratamiento hecho para un paciente en particular sobre un maniquí que posee un arreglo de detectores. El resultado de la distribución de dosis calculada sobre el maniquí, es comparada con la distribución de dosis medida con el arreglo de detectores el cual es irradiado en el acelerador lineal bajo los mismos parámetros y condiciones del paciente. Si los resultados de esta evaluación cumplen con los criterios establecidos, entonces se aprueba el plan de tratamiento final a administrar al paciente. Este procedimiento, es el que realmente garantiza que lo que se muestra en el computador de planificación, es lo que realmente va a ser administrado al paciente.</p>
+                    </div>
+                    <div class="col-12 d-lg-none imagen mx-auto">
+                        <img  src=" {% static 'img/imrtbig.png' %}" class="img-fluid" alt="Responsive image" width="">
+                    </div>
+                </div>
+            </div>
+
+            <hr class="divisor">
+
+            <div class="col-12  col-lg-12 ">
+                <div class="row infocontent">
+                    <div class="col-12 col-md-12 col-lg-6 infotexto mx-auto">
+                        <div class="infotitulo">RADIOCIRUGÍA ESTEREOTÁXICA GAMMA KNIFE (SRS GK)</div>
+                        <p>Disponible a través de convenio directo con el Centro Gamma Knife de Santiago ubicado en el Hospital Militar, permite tratamientos de cirugía no invasiva con altas dosis de radiaciones de alta precisión, de patologías funcionales, tumores primarios y metástasis cerebrales, todas en una sola sesión, con muy alta efectividad y una hospitalización de menos de un día.</p><p>Se tratan con esta técnica: metástasis cerebrales, meningiomas, neurinomas, malformaciones arterio-venosas, gliomas, cordomas, tumores del plexo coroideo, neuralgias al trigémino, algunos tipos de Enfermedad de parkinson y ciertas epilepsias, entre otras indicaciones.</p>
+                    </div>
+                    <div class="col-12 col-md-12 col-lg-6 infoimg mx-auto" style="background-image: url('{% static 'img/radiocirbig.jpg' %}');">
+                    </div>
+                    <div class="col-12 d-lg-none imagen mx-auto">
+                        <img  src=" {% static 'img/radiocirbig.jpg' %}" class="img-fluid" alt="Responsive image" width="">
+                    </div>
+                </div>
+            </div>
+
+            <hr class="divisor">
+
+            <div class="col-12 c col-lg-12 "> 
+                <div class="row infocontent">
+                    <div class="col-12 col-md-12 col-lg-6 infoimg mx-auto" style="background-image: url('{% static 'img/braquialtabig.jpg' %}');">
+                    </div>
+                    
+                    <div class="col-12 col-md-12 col-lg-6 infotexto mx-auto">
+                        <div class="infotitulo">BRAQUITERAPIA DE ALTA TASA (HDR) </div>
+                        <p>La Braquiterapia es la aplicación de radiación con material radiactivo a corta distancia, dentro o muy cerca del área a tratar.</p><p>La braquiterapia de alta tasa <strong>(HDR)</strong> consiste en utilizar fuentes radiactivas de muy alta actividad, aproximadamente 1000 veces superior a la actividad utilizada para los implantes permanentes y removibles de baja tasa. La actividad de esta fuente radiactiva de alta tasa es verificada de forma independiente por nuestro grupo de especialistas en Física Médica para garantizar que se administra la dosis prescrita por el médico Radioncólogo.</p><p>En nuestro centro contamos con un equipo de Braquiterapia de Alta Tasa de la casa comercial Elekta Nucletron modelo Flexitron, el cual posee una fuente de iridio-192 de 10 curios. Con el sistema de planificación 3D Oncentra® de Elekta, se programa el tratamiento coordinando (con tecnología robótica) los tiempos de parada y las distintas paradas de la fuente por cada uno de los catéteres o aplicadores colocados en las áreas a irradiar. Esta tecnología evita los errores dependientes del operador, que son los causantes de áreas sobre tratadas o sub adosadas, disminuyendo los efectos secundarios y asegurando efectividad.</p><p>Otra de las ventajas es que la gran mayoría de los casos son ambulatorios, disminuyendo los costos y con mayor confort para el paciente ya que los tratamientos son muy cortos.</p><p>El equipo adquirido posee gran versatilidad y permite la realización de implantes intracavitarios, intersticiales y con moldes, con la posibilidad de braquiterapia intraoperatoria. Se puede utilizar esta tecnología en <strong>tratamiento de tumores ginecológicos, próstata, mama, esófago, bronquios, cabeza y cuello, partes blandas, etc</strong>.</p>
+                    </div>
+                    <div class="col-12 d-lg-none imagen mx-auto">
+                        <img  src=" {% static 'img/braquialtabig.jpg' %}" class="img-fluid" alt="Responsive image" width="">
+                    </div>
+                </div>
+            </div>
+
+            <hr class="divisor">
+
+            <div class="col-12  col-lg-12 ">
+                <div class="row infocontent">
+                    <div class="col-12 col-md-12 col-lg-6 infotexto mx-auto">
+                        <div class="infotitulo">BRAQUITERAPIA DE BAJA TASA (LDR)</div>
+                        <p>Consiste en la colocación de pequeñas semillas radiactivas (de 5x1mm) directamente en el interior del tumor, bajo un procedimiento mínimamente invasivo, las semillas quedan permanentemente<strong> (por Ej. En cáncer de la próstata, tumores cerebrales)</strong> o transitoriamente <strong>(por Ej. En tumores de la retina)</strong>, entregando la dosis en varios días o meses. Se implantan a través de agujas bajo imágenes y según un plan predeterminado y con dosimetría interactiva para obtener la distribución de dosis deseada. Así por ejemplo un cáncer localizado de próstata puede ser tratado en un par de horas, sin cirugía mayor y con resultados equivalentes en cuanto a un elevado control tumoral y mucho menos efectos secundarios, y el paciente puede retomar sus actividades habituales en un par de días, sin requerir sonda vesical.</p>
+                    </div>
+                    <div class="col-12 col-md-12 col-lg-6 infoimg mx-auto" style="background-image: url('{% static 'img/braquibaja.png' %}');">
+                    </div>
+                    <div class="col-12 d-lg-none imagen mx-auto">
+                        <img  src=" {% static 'img/braquibaja.png' %}" class="img-fluid" alt="Responsive image" width="">
+                    </div>
+                </div>
+            </div>
+
+            <hr class="divisor">
+
+            <div class="col-12  col-lg-12 "> 
+                <div class="row infocontent">
+                    <div class="col-12 col-md-12 col-lg-6 infoimg mx-auto" style="background-image: url('{% static 'img/fotodinbig.jpg' %}');">
+                    </div>
+                    <div class="col-12 col-md-12 col-lg-6 infotexto mx-auto">
+                        <div class="infotitulo">TERAPIA FOTODINAMICA (PDT)</div>
+                        <p>La terapia fotodinámica es un método ablativo para erradicar lesiones superficiales que consiste en aplicar un medicamento fotosensibilizante tópico o sistémico<strong> (habitualmente un derivado de hématoporfirinas o colorantes)</strong> el cual se activa con la aplicación de un haz de irradiación de la longitud de onda apropiada con lo que destruye células dañadas, tumorales, gérmenes, hongos y virus. Permite erradicar lesiones premalignas de piel, algunos cánceres incipientes, papilomas cutáneos y de mucosas, infecciones como acné, micosis, molusco contagioso, verrugas, y además permite regenerar el colágeno en la piel con fotodaño, reduciendo las líneas de expresión.</p>
+                    </div>
+                    <div class="col-12 d-lg-none imagen mx-auto">
+                        <img  src=" {% static 'img/fotodinbig.jpg' %}" class="img-fluid" alt="Responsive image" width="">
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+  
+
+</body>
+{% endblock%}
