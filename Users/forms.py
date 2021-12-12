@@ -1,5 +1,5 @@
 from django import forms
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.forms import UserCreationForm, UserChangeForm,PasswordChangeForm
 from .models import Usuario
 from .validators import MaxSizeImgValidator
 from django.forms import TextInput, EmailInput
@@ -36,3 +36,29 @@ class CustomUserCreationForm(UserCreationForm):
         model=Usuario
         fields=['rut','dv','nombre','apellido_paterno','apellido_materno','sexo','email','telefono_contacto','password1','password2']
         
+
+class CustomUserEditionForm(UserChangeForm):
+    template_name='/something/else'
+    class Meta:
+        model=Usuario
+        fields=['foto_perfil','nombre','apellido_paterno','apellido_materno','sexo','email','telefono_contacto','telefono_contacto_2','domicilio','prevision']
+        exclude=['rut','dv','password','password1','password2']
+   
+    '''
+    def save(self,commit=True):
+        user=super(CustomUserEditionForm,self).save(commit=False)
+        user.foto_perfil=self.cleaned_data['foto_perfil']
+        user.nombre=self.cleaned_data['nombre']
+        user.apellido_paterno=self.cleaned_data['apellido_paterno']
+        user.apellido_materno=self.cleaned_data['apellido_materno']
+        user.sexo=self.cleaned_data['sexo']
+        user.email=self.cleaned_data['email']
+        user.telefono_contacto=self.cleaned_data['telefono_contacto']
+        user.telefono_contacto_2=self.cleaned_data['telefono_contacto_2']
+        user.domicilio=self.cleaned_data['domicilio']
+        user.prevision=self.cleaned_data['prevision']
+
+        if commit:
+            user.save()
+        return user
+    '''

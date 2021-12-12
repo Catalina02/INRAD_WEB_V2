@@ -42,7 +42,7 @@ class CustomPacientAdmin(ImportExportModelAdmin,UserAdmin):
             'fields': ('rut','dv', 'password')
         }),
         ('Informacion Personal', {
-            'fields': (('nombre', 'apellido_paterno','apellido_materno'),
+            'fields': ('nombre', 'apellido_paterno','apellido_materno',
                        'email', 'telefono_contacto', 'telefono_contacto_2','sexo', 'fecha_nacimiento', 'foto_perfil', )
         }),
         )
