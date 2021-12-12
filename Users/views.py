@@ -1,10 +1,9 @@
+from django.contrib.auth.models import User
 from .forms import CustomUserCreationForm, CustomUserEditionForm,PasswordChangeForm
 from django.shortcuts import redirect, render
-from django.urls import reverse
-from django.contrib.auth import authenticate, login
-from django.contrib.auth import logout
-from django.contrib.auth import update_session_auth_hash
-from WebApp.views import home
+from django.urls import reverse, reverse_lazy
+from django.contrib.auth import authenticate, login,logout,update_session_auth_hash
+from django.http import HttpResponseRedirect
 import sweetify
 from datetime import datetime
 
@@ -37,24 +36,13 @@ def logoutView(request):
     sweetify.success(request, 'Sesión Cerrada Correctamente',icon='success')
     return redirect('Web:home')
 
-def edit_profile(request):
-    if request.method=='POST':
-        formulario=CustomUserEditionForm(request.POST,instance=request.user)
-        if formulario.is_valid():
-            formulario.save()
-            sweetify.success(request, 'Datos Modificados Correctamente',icon='success')
-            return redirect(to="AppUsers:profile")
-    else:
-        formulario=CustomUserEditionForm(instance=request.user)
-        data={'form':formulario}
-        return render(request, 'edit_profile.html',data)
-
 def change_password(request):
     if request.method == 'POST':
         form = PasswordChangeForm(data=request.POST, user=request.user)
 
         if form.is_valid():
             form.save()
+            form.user.foto_perfil = form.cleaned_data['foto_perfil']
             sweetify.success(request, 'Contraseña Modificada Correctamente',icon='success')
             update_session_auth_hash(request, form.user)
             return redirect(reverse('AppUsers:profile'))
@@ -66,3 +54,20 @@ def change_password(request):
 
         args = {'form': form}
         return render(request, 'change_password.html', args)
+
+
+
+
+
+def edit_profile(request    ):
+    if request.method=='POST':
+        formulario=CustomUserEditionForm(request.POST,request.FILES,instance=request.user)
+        if formulario.is_valid():
+            formulario.save()
+            sweetify.success(request, 'Datos Modificados Correctamente',icon='success')
+            return HttpResponseRedirect(reverse_lazy('AppUsers:profile'))
+    else:
+        formulario=CustomUserEditionForm(instance=request.user)
+        data={'form':formulario}
+        return render(request, 'edit_profile.html',data)
+    

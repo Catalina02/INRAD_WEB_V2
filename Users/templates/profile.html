@@ -36,14 +36,14 @@
                   
                     <div class="row mt-3 py-4">
                         <h4 class="infotitulo  float-left" style='text-align: left;'>Informacion Personal</h4>
-                        <div class="row py-3">
-                            <div class="col-12 col-md-6 profile_list"><label class="labels">Nombre</label><strong><div class='user_label'>{{user.nombre|title }} </div></strong></div>
-                            <div class="col-12 col-md-6 profile_list"><label class="labels">Apellidos</label><strong><div class='user_label'> {{user.apellido_paterno|title }} {{user.apellido_materno|title }}</div></strong></div>
-                            <div class="col-12 col-md-6 profile_list"><label class="labels">Rut</label><strong><div class='user_label'>{{user.rut|title }}-{{user.dv|title }} </div></strong></div>
-                            <div class="col-12 col-md-6 profile_list"><label class="labels">Correo Electronico</label><strong><div class='user_label'>{{user.email }}</div></strong></div>
-                            <div class="col-12 col-md-6 profile_list"><label class="labels">Telefono de Contacto</label><strong><div class='user_label'> {{user.telefono_contacto}}</div></strong></div>
-                            <div class="col-12 col-md-6 profile_list"><label class="labels">Telefono de Contacto Emergencia</label><strong><div class='user_label'> {{user.telefono_contacto_2}}</div></strong></div>
-                            <div class="col-12 col-md-6 profile_list"><label class="labels">Fecha de Nacimiento</label><strong><div class='user_label'> {{user.fecha_nacimiento}}</div></strong></div>
+                        <div class="row py-3" style='text-align: center;'>
+                            <div class="col-12 col-md-12 profile_list"><label class="labels" >Rut</label><strong><div class='user_label'>{{user.rut|title }}-{{user.dv|title }} </div></strong></div>
+                            <div class="col-12 col-md-6 profile_list"><label class="labels" >Nombre</label><strong><div class='user_label'>{{user.nombre|title }} </div></strong></div>
+                            <div class="col-12 col-md-6 profile_list"><label class="labels" >Apellidos</label><strong><div class='user_label'> {{user.apellido_paterno|title }} {{user.apellido_materno|title }}</div></strong></div>
+                            <div class="col-12 col-md-6 profile_list"><label class="labels" >Correo Electronico</label><strong><div class='user_label'>{{user.email }}</div></strong></div>
+                            <div class="col-12 col-md-6 profile_list"><label class="labels" >Telefono de Contacto</label><strong><div class='user_label'> {{user.telefono_contacto}}</div></strong></div>
+                            <div class="col-12 col-md-6 profile_list"><label class="labels" >Telefono de Contacto Emergencia</label><strong><div class='user_label'> {{user.telefono_contacto_2}}</div></strong></div>
+                            <div class="col-12 col-md-6 profile_list"><label class="labels" >Fecha de Nacimiento</label><strong><div class='user_label'> {{user.fecha_nacimiento}}</div></strong></div>
                             <div class="col-12 col-md-12 profile_list"><label class="labels">Domicilio</label><strong><div class='user_label'> {{user.domicilio}}</div></strong></div>
                         </div>
                         {%ifequal user.type 'Paciente'%}
@@ -66,9 +66,11 @@
             </div>
    
             <div class="row">
-                <div class="col-12 col-md-6 mx-auto ">
-                    
-                    <a class="btn button  justify-content-center boton_formulario mx-auto"  href="{% url 'AppUsers:edit_profile' %}" >Editar Perfil </a>
+                <div class="col-12 col-md-4 mx-auto ">
+                    <div class="mt-5 text-center"><a href="{% url 'AppUsers:edit_profile' %}"><button class="btn button  justify-content-center boton_formulario mx-auto" type="button">Editar Perfil</button></a></div>
+                </div>
+                <div class="col-12 col-md-4 mx-auto ">
+                    <div class="mt-5 text-center"><a href="{% url 'AppUsers:change_password' %}"><button class="btn button  justify-content-center boton_formulario mx-auto" type="button">Cambiar Contraseña</button></a></div>
                 </div>
             </div>
         </div>
