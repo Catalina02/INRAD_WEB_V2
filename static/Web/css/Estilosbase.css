@@ -1,0 +1,244 @@
+    /*PALETTE COLORS
+    *Logo Colors
+        fluorecent-green: #38d82c
+        pale-rose:        #de65ab
+        pale-blue:        #66dadd
+        pale-yellow:      #fff27b
+    *OtherColors
+        button-green:     #16a89f
+        fluorecent-rose:  #d922da
+        dark-grey:        #54595f
+        grey:             #5c6167
+    */
+
+    :root {
+        --darkgreen: #137871;
+        --green: ##16a89f;
+      }
+    
+    .greenHeader
+    {
+    
+        background:#137871;
+        font-family: 'Roboto', sans-serif;
+        color: #fff;
+        font-weight: 400; 
+        font-size: 25px;
+        text-align: center;
+        padding:10px;
+        
+    }
+
+    .Footer{
+        background:#5c6167;
+        box-shadow: 0 4px 4px 0 rgba(0,0,0,0.1) inset;
+        font-family: 'Roboto', sans-serif;
+        color: #fff;
+        font-weight: 400; 
+        font-size: 25px;
+        text-align: center;
+        padding:30px;
+    }
+
+    h1{
+        font-family: 'Roboto', sans-serif;
+        color: #5c6167;
+        font-weight: 900; 
+        font-size: 25px;
+        text-align: center;
+        padding:30px;
+    }
+
+    .RRSS{
+        margin: 5px;
+    }
+
+    hr.accessory {
+    border: 0;
+    padding: 2px;
+    margin: 5px;
+    height: 2px;
+    width: 100%;
+    background-image: linear-gradient(to right, #5c6167, #0cf3e4, #5c6167);
+    }
+    hr{
+        margin: 5px;
+        color:#16a89f ;
+    }
+
+   .contacto-item{
+        text-decoration: none;
+        color: inherit;
+        font-size: 15px;
+        text-align: right;
+    
+    }
+   .webinfo{
+        text-decoration: none;
+        background: #363636;
+        color: white;
+        font-size: 15px;
+        text-align: center;
+    
+    }
+
+    .ColumnaFooter{
+        margin: 30px;
+    }
+/*MAIN BUTTONS SETTINGS*/
+    .button {
+        display: inline-flex;
+        align-items: center;
+        background: #16a89f;
+        box-shadow: 0 2px 2px 0 rgba(0,0,0,0.1);
+        border-radius: 5px;
+        height: 45px;
+        width: 275px;
+        padding: 0 30px;
+        color: #fff;
+        font-family: 'Roboto', sans-serif;
+        text-decoration: none;
+        transition: 200ms;
+        will-change: transform;
+        outline: none;
+        margin: 5px;
+        
+    }
+    
+    .button:hover{
+        color: #fff;
+        background:#66dadd;
+        transform: translate3d(0, -2px, 0);
+        outline: none;
+        border: none;
+        
+    }
+    .button:hover:active {
+    box-shadow: 0 1px 1px 0 rgba(0,0,0,0.1);
+    transform: translate3d(0, 1px, 0);
+    outline: none;
+    border: none;
+    border: 0;
+  }
+
+  .cancel_button{
+    background:#b10e26;
+  }
+  .cancel_button:hover{
+    background:#580612;    
+}
+    
+  .LogoHeader{
+    background:#efefef;
+    color: #8f8f8f;
+    box-shadow: 0 4px 4px 0 rgba(0,0,0,0.1) inset;
+    text-decoration: none;
+    color: currentColor;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+  }
+
+
+  .item{
+    text-decoration: none;
+        color: #5c6167;
+        font-size: 24px;
+        font-weight: 900;
+        font-family: 'Roboto', sans-serif;
+        transition: 300ms;
+  }
+  .item:hover{
+      color:#16a89f;      
+  }
+  @media only screen and (max-width: 768px) {
+  /* For mobile phones: */
+    .list-item-mobile{
+        color: #fff;
+        text-decoration:none;
+        font-family: 'Roboto', sans-serif;
+        font-size: 25px;
+        padding: 5px;
+        width:100%;
+        background: #137871;
+    }
+    a{
+        text-decoration: none;
+        color:inherit;
+    }
+    a:hover, a:focus, a:active {
+        text-decoration: none;
+        color: inherit;
+    }
+    
+    .btn:focus {
+    outline: none;
+    box-shadow: none;
+    }
+    .navbar-toggler:focus {
+        text-decoration: none;
+        outline: 0;
+        box-shadow: 0 0 0 0;
+    }
+    .boton_formulario{
+        width: 100%;
+    }
+}
+
+a:hover, a:focus, a:active {
+    text-decoration: none;
+    color: inherit;
+
+    
+}
+
+
+/*General Body*/
+body{
+  background:#efefef;
+}
+
+.contenedor
+{
+    margin: 10px;
+}
+
+
+/*Contactanos*/
+iframe{
+    padding: 0px;
+    outline: 5px;
+    border-color: #137871;
+    border-top-width: 5px;
+    border-top-style: solid;
+    border-bottom-width: 5px;
+    border-bottom-style: solid;
+    margin-top: 45px;
+}
+
+.boton_formulario{
+    width: 100%;
+}
+
+.item-texto{
+    font-size: 35px;
+    font-weight: 600;
+    font-family:'Roboto';
+    color: #5c6167;
+    padding: 5px;
+}
+
+.texto{
+    font-family: "Arial", Sans-serif;
+    font-size: 30px;
+    text-align: center;
+
+    color: #5c6167;
+}
+
+.titlebody {
+	font-family: 'Roboto';
+	margin-bottom: 30px;
+    font-size: 40px;}
+
+ 
