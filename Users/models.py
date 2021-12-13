@@ -41,7 +41,7 @@ class Usuario(AbstractUser):
     email = models.EmailField('Correo Electronico',unique=True)
     telefono_contacto=PhoneNumberField(null=False, blank=False)
     telefono_contacto_2=PhoneNumberField(null=True,default='',blank=True)
-    fecha_nacimiento=models.DateField(null=True,blank=True,defla)
+    fecha_nacimiento=models.DateField(null=True,blank=True)
     
     prevision=models.CharField('Prevision',max_length=50,null=False,blank=True)
     domicilio=models.CharField('Domicilio',max_length=255,null=False,blank=True)
