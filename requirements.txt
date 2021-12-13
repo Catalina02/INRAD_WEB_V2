@@ -24,3 +24,9 @@ sqlparse==0.4.2
 sweetify==2.1.0
 tablib==3.1.0
 xlrd==2.0.1
+django-environ==0.8.1
+django-admin-interface==0.18.3
+django-crispy-forms==1.13.0
+django-phonenumber-field==6.0.0
+sweetify=2.2.0
+ 
