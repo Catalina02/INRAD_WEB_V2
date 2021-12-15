@@ -1,5 +1,7 @@
 *.pyc
 *~
 __pycache__
-
+WebApp/migrations
+Users/migrations
+.sqlite3
 .DS_Store
