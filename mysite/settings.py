@@ -51,6 +51,9 @@ INSTALLED_APPS = [
     'phonenumber_field',
     'sweetify',
     'import_export',
+    'django_agenda',
+    'recurrence',
+    'Agenda',
 
 ]
 

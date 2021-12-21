@@ -25,6 +25,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include(('WebApp.urls'),namespace='Web')),
     path('', include(('Users.urls'), namespace='AppUsers')),
+    path('', include(('Agenda.urls'), namespace='AppAgenda')),
     
 
 ]

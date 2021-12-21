@@ -179,21 +179,5 @@ admin.site.register(Medico, CustomMedicoAdmin)
 admin.site.register(Administrativo, CustomAdministrativoAdmin)
 
 
-
-class ContactoAdmin(ImportExportModelAdmin,admin.ModelAdmin):
-    list_display=['start_date','start_time','end_time','recurrence']
-    add_fieldsets=['start_date','start_time','end_time','recurrence']
-    fieldsets=['start_date','start_time','end_time','recurrence']
-
-
-
-
-admin.site.register(Availability,ContactoAdmin)
-admin.site.register(MedicoReservation)
-admin.site.register(AvailabilityOccurrence)
-admin.site.register(TimeSlot)
-
-
-
 #admin.site.register(Usuario,UsuarioAdmin)
 
