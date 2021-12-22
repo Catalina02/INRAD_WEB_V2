@@ -279,13 +279,13 @@ class AbstractAvailability(models.Model, metaclass=Meta):
 
     objects = models.Manager()
 
-    start_date = models.DateField()  # type: date
+    start_date = models.DateField('Día de Inicio')  # type: date
     start_time = models.TimeField()  # type: datetime.time
     end_time = models.TimeField()  # type: datetime.time
     recurrence = RecurrenceField()
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-    timezone = TimeZoneField()
+    timezone = TimeZoneField(default='America/Santiago')
 
     # regular properties
     @property

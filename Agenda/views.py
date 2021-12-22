@@ -1,8 +1,14 @@
 from django.shortcuts import render
 from Agenda.forms import AvailabilityForm
+from Agenda.models import Availability
 import sweetify
+from datetime import datetime
+import pytz
+
+#manejo de fechas y tiempo
+from dateutil.relativedelta import relativedelta
 # Create your views here.
-def agendar(request):
+def abrir_agenda(request):
     data={
         'form':AvailabilityForm()
     }
@@ -14,13 +20,21 @@ def agendar(request):
         else:'''
         if formulario.is_valid():
             formulario.instance.Medico = request.user
-            formulario.instance.tzinfo = 'America/Santiago'
+            formulario.instance.timezone = 'America/Santiago'
             formulario.save()
-            start_date = request.POST['start_date']
-            start_date = request.POST['start_date']
-            recurrence= request.POST['recurrence']
-            sweetify.success(request, 'Agenda3'+recurrence,icon='success')
+            id_form=formulario.instance.id 
+            disponible=Availability.objects.filter(id=id_form)[0]
+            start_date=disponible.start_date
+            start_str=start_date.strftime('%Y%m%d')
+            start_date=datetime.strptime(start_str,'%Y%m%d')
+            delta=relativedelta(months=+1)
+            end_date=start_date+delta
+            local_tz = pytz.timezone('America/Santiago')
+            start_date = local_tz.localize(start_date)
+            end_date = local_tz.localize(end_date)
+            disponible.recreate_occurrences(start_date,end_date)
+            sweetify.success(request, 'Agenda3',icon='success')
             data['form']=formulario
         else:
             data['form']=formulario
-    return render(request,'agendar.html',data)
+    return render(request,'abrir_agenda.html',data)
