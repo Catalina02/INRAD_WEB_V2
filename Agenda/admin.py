@@ -4,6 +4,7 @@ from django.db.models import fields
 from . import models
 class Disaponibilidad(admin.ModelAdmin):
     list_display=['Medico',]
+    verbose_name='Disponibilidad'
 
 admin.site.register(models.Booking)
 admin.site.register(models.Availability)
