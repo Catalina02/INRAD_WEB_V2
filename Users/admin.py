@@ -1,6 +1,7 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
-from .models import  Administrativo, Paciente, Usuario,Medico,Administrativo,InformacionMedica
+from .models import  Administrativo, UsuarioPaciente, Usuario,Medico,Administrativo,InformacionMedica
+from Fichas.models import *
 from django import forms
 from import_export import resources
 from import_export.admin import ImportExportModelAdmin
@@ -20,13 +21,13 @@ class UserCreationForm(forms.ModelForm):
         return user
 
 #Habilita el Uso de Campos Extras al Modelo Usuario
-class PacienteInformacionMedicaInline(admin.StackedInline):
+class UsuarioPacienteInformacionMedicaInline(admin.StackedInline):
     model = InformacionMedica
 
-class PacienteAdmin(admin.ModelAdmin):
+class UsuarioPacienteAdmin(admin.ModelAdmin):
     add_form = UserCreationForm
     inlines = (
-        PacienteInformacionMedicaInline,
+        UsuarioPacienteInformacionMedicaInline,
     )
 #DESPLIEGA LA INFO TOTAL DEL PACIETNE
 class CustomPacientAdmin(ImportExportModelAdmin,UserAdmin):
@@ -35,7 +36,7 @@ class CustomPacientAdmin(ImportExportModelAdmin,UserAdmin):
     list_display = ('rut','dv','nombre','apellido_paterno','apellido_materno','sexo','email','telefono_contacto','prevision')
     ordering = ("rut",)
     inlines = (
-        PacienteInformacionMedicaInline,
+        UsuarioPacienteInformacionMedicaInline,
     )
     fieldsets = (
         ('Informacion de Perfil', {
@@ -78,7 +79,7 @@ class CustomUserAdmin(ImportExportModelAdmin,UserAdmin):
             'fields': ('is_active', 'is_staff', 'is_superuser', )
         }),
         ('Grupos', {
-            'fields': ('groups',  )
+            'fields': ('groups', 'type' )
         }),
         ('Fechas Importantes', {
             'fields': (('date_joined',), )
@@ -99,7 +100,7 @@ class CustomUserAdmin(ImportExportModelAdmin,UserAdmin):
             'fields': ('is_active', 'is_staff', 'is_superuser', )
         }),
         ('Grupos', {
-            'fields': ('groups',  )
+            'fields': ('groups', 'type' )
         }),
         ('Fechas Importantes', {
             'fields': (('date_joined',), )
@@ -110,7 +111,7 @@ class CustomUserAdmin(ImportExportModelAdmin,UserAdmin):
     filter_horizontal = (('groups',  ))
    
 
-admin.site.register(Paciente, CustomPacientAdmin)
+admin.site.register(UsuarioPaciente, CustomPacientAdmin)
 admin.site.register(Medico, CustomUserAdmin)
 admin.site.register(Administrativo, CustomUserAdmin)
   

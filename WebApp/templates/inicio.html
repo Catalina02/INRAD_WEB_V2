@@ -68,8 +68,23 @@
     color: var(--green);
     padding: 5px;
 }
-</style>
 
+@media only screen and (min-width: 769px)
+{
+    .content{
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+    
+}
+@media only screen and (max-width: 768px)
+{
+    .content{
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+}
+</style>
 <body>
     <header class="inicio-header" style="background-image: url('{% static 'img/backgroundimg.jpg' %}');">
         <div class="inicio-overlay">
@@ -152,8 +167,8 @@
                             Radioterapias no invasivas contra el cáncer
                         </div>
                     </div>
-                    <div class="col-12 col-sm-12 col-md-4 col-lg-6 mx-auto inicio-img ">
-                        <img class='inicio-img img-thumbnail'src="{% static 'img/contraelcancer.png' %} " sizes="(max-width: 825px) 100vw, 825px" width="825" height="825">
+                    <div class="col-12 col-sm-12 col-md-4 col-lg-6 mx-auto  ">
+                        <img class='img-fluid img-thumbnail'src="{% static 'img/contraelcancer.png' %} " >
                     </div>
                 </div>
             </div>
