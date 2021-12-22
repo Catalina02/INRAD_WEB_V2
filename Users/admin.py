@@ -1,6 +1,7 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
-from .models import  *
+from .models import  Administrativo, UsuarioPaciente, Usuario,Medico,Administrativo,InformacionMedica
+from Fichas.models import *
 from django import forms
 from import_export import resources
 from import_export.admin import ImportExportModelAdmin
@@ -80,7 +81,7 @@ class CustomAdministrativoAdmin(UserAdmin):
             'fields': ('is_active', 'is_staff', 'is_superuser', )
         }),
         ('Grupos', {
-            'fields': ('groups',  'type')
+            'fields': ('groups', 'type' )
         }),
         ('Fechas Importantes', {
             'fields': (('date_joined',), )
