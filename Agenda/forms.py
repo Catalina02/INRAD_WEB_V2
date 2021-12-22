@@ -9,6 +9,4 @@ class AvailabilityForm(forms.ModelForm):
         exclude = 'Medico',
         widgets = {
             'start_date': forms.DateInput(format=('%d/%m/%Y'), attrs={'class':'form-control', 'placeholder':'Seleccione una Fecha', 'type':'date','lang': 'es',}),
-
         }
-        

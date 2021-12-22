@@ -1,12 +1,12 @@
 
-{% extends 'Users/base_2.html' %}
-{% block contenido%}
-{% load crispy_forms_tags %}
-{%load static%}
-{%block js%}
+
+
+{% block scripts %}
 <script type='text/javascript' src="/admin/jsi18n/"></script>
 <script type='text/javascript' src="/static/admin/js/core.js"></script>
-{%endblock%}
+{% endblock %}
+{% load crispy_forms_tags %}
+
 <body>
 <div class="contenedor">
     <div class="row clearfix ">         
@@ -35,4 +35,3 @@
 
 </div>
 </body>
-{% endblock%}
