@@ -196,6 +196,23 @@ a:hover, a:focus, a:active {
     padding-right: 150px;
     padding-bottom: 50px;
 }
+
+@media only screen and (min-width: 769px)
+{
+    .content{
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+    
+}
+@media only screen and (max-width: 380px)
+{
+    .content{
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+}
+
 .content2{
     margin:60px;
     margin-right:250px;

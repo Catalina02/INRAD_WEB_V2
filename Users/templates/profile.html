@@ -46,7 +46,7 @@
                             <div class="col-12 col-md-6 profile_list"><label class="labels" >Fecha de Nacimiento</label><strong><div class='user_label'> {{user.fecha_nacimiento}}</div></strong></div>
                             <div class="col-12 col-md-12 profile_list"><label class="labels">Domicilio</label><strong><div class='user_label'> {{user.domicilio}}</div></strong></div>
                         </div>
-                        {%ifequal user.type 'Paciente'%}
+                        {%ifequal user.type 'UsuarioPaciente'%}
                             <h4 class="infotitulo  float-left" style='text-align: left;'>Informacion Medica</h4>
                             <div class="row py-3">
                                 <div class="col-12 col-md-12 profile_list"><label class="labels">Diagnostico</label><strong><div class='user_label'>{{user.informacionmedica.diagnostico|title}} </div></strong></div>

@@ -65,11 +65,11 @@ class Usuario(AbstractUser):
 
     #definir tipos
     class Types(models.TextChoices):
-        Paciente='Paciente','PACIENTE'
+        UsuarioPaciente='UsuarioPaciente','UsuarioPaciente'
         Medico='Medico','MEDICO'
         Administrativo='Administrativo','ADMINISTRATIVO'
         
-    type=models.CharField(_('Tipo de Usuario'),choices=Types.choices, default=Types.Paciente,max_length=100)
+    type=models.CharField(_('Tipo de Usuario'),choices=Types.choices, default=Types.UsuarioPaciente,max_length=100)
     
     #definir pk
     objects=UsuarioManager()
@@ -79,7 +79,7 @@ class Usuario(AbstractUser):
         return str(self.rut)
 
 
-#CLASE DE PACIENTE
+#CLASE DE UsuarioPaciente
 class InformacionMedica(models.Model):
     user = models.OneToOneField(Usuario, on_delete = models.CASCADE)
     alergias= anamnesis=models.TextField('Alergias',max_length=255,null=True,blank=True)
@@ -88,13 +88,13 @@ class InformacionMedica(models.Model):
     institucion_derivante=models.CharField('Intitucion Derivante',max_length=255,null=True,blank=True)
     medico_INRAD=models.CharField('Medico INRAD',max_length=255,null=True,blank=True)
     anamnesis=models.TextField('Anamnesis',null=True,blank=True)
-    paciente_paliativo=models.BooleanField('Paciente Paliativo',null=True,blank=True)
-class PacienteManager(BaseUserManager):
+    UsuarioPaciente_paliativo=models.BooleanField('UsuarioPaciente Paliativo',null=True,blank=True)
+class UsuarioPacienteManager(BaseUserManager):
     def get_queryset(self,*args,**kwargs): 
-        return super().get_queryset(*args,*kwargs).filter(type=Usuario.Types.Paciente)
-class Paciente(Usuario):
-    base_type = Usuario.Types.Paciente
-    objects=PacienteManager()
+        return super().get_queryset(*args,*kwargs).filter(type=Usuario.Types.UsuarioPaciente)
+class UsuarioPaciente(Usuario):
+    base_type = Usuario.Types.UsuarioPaciente
+    objects=UsuarioPacienteManager()
     class Meta:
         proxy=True
     @property

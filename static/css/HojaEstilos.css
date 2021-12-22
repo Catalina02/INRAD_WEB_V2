@@ -192,14 +192,30 @@ a:hover, a:focus, a:active {
 }
 
 .content{
-    padding-left: 150px;
-    padding-right: 150px;
+    padding-left: 15px;
+    padding-right: 15px;
     padding-bottom: 50px;
 }
 .content2{
     margin:60px;
     margin-right:250px;
     margin-left:250px;
+}
+
+@media only screen and (min-width: 769px)
+{
+    .content{
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+    
+}
+@media only screen and (max-width: 400px)
+{
+    .content{
+        padding-left: 10px;
+        padding-right: 10px;
+    }
 }
 hr.divisor {
     border: 0;

@@ -22,13 +22,13 @@ class UserCreationForm(forms.ModelForm):
 
 '''****************** manejo PACIENTES panel administracion*******************************************************'''
 #Habilita el Uso de Campos Extras al Modelo Usuario
-class PacienteInformacionMedicaInline(admin.StackedInline):
+class UsuarioPacienteInformacionMedicaInline(admin.StackedInline):
     model = InformacionMedica
 
-class PacienteAdmin(admin.ModelAdmin):
+class UsuarioPacienteAdmin(admin.ModelAdmin):
     add_form = UserCreationForm
     inlines = (
-        PacienteInformacionMedicaInline,
+        UsuarioPacienteInformacionMedicaInline,
     )
 #DESPLIEGA LA INFO TOTAL DEL PACIETNE
 class CustomPacienteAdmin(ImportExportModelAdmin,UserAdmin):
@@ -37,7 +37,7 @@ class CustomPacienteAdmin(ImportExportModelAdmin,UserAdmin):
     list_display = ('rut','dv','nombre','apellido_paterno','apellido_materno','sexo','email','telefono_contacto','prevision')
     ordering = ("rut",)
     inlines = (
-        PacienteInformacionMedicaInline,
+        UsuarioPacienteInformacionMedicaInline,
     )
     fieldsets = (
         ('Informacion de Perfil', {
@@ -175,9 +175,13 @@ class CustomMedicoAdmin(ImportExportModelAdmin,UserAdmin):
     filter_horizontal = (('groups',  ))
 
 
-admin.site.register(Paciente, CustomPacienteAdmin)
-admin.site.register(Medico, CustomMedicoAdmin)
-admin.site.register(Administrativo, CustomAdministrativoAdmin)
+
+
+admin.site.register(UsuarioPaciente, CustomPacientAdmin)
+admin.site.register(Medico, CustomUserAdmin)
+admin.site.register(Administrativo, CustomUserAdmin)
+
+  
 
 
 #admin.site.register(Usuario,UsuarioAdmin)

@@ -29,6 +29,13 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
+import environ
+import os
+env = environ.Env(
+    # set casting, default value
+    DEBUG=(bool, False)
+)
+environ.Env.read_env()
 
 ALLOWED_HOSTS = ['*']
 
@@ -51,10 +58,10 @@ INSTALLED_APPS = [
     'phonenumber_field',
     'sweetify',
     'import_export',
+    'Fichas',
     'django_agenda',
     'recurrence',
     'Agenda',
-
 ]
 
 CRISPY_TEMPLATE_PACK='bootstrap4'
@@ -100,9 +107,17 @@ AUTH_USER_MODEL = 'Users.Usuario'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
 DATABASES = {
+
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': env('rd_NAME'),
+        'USER': env('rd_USER'),
+        'PASSWORD': env('rd_PASS'),
+        'HOST': env('rd_HOST'),
+        'PORT': env('rd_PORT'),
+        'OPTIONS': {
+            'sql_mode': 'traditional',
+        }
     }
 }
 

@@ -16,6 +16,14 @@
 }
 .center{text-align: center;}
 .persona{margin-bottom: 100px;}
+
+@media only screen and (max-width: 768px)
+{
+    .content{
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+}
 </style>
 <body>
     <header class="inicio-header "style="background-image: url('{% static 'img/background4.jpg' %}');">
@@ -35,7 +43,7 @@
 
       <hr class="divisor">
 
-    <div class="content row clearfix mx-auto" style="padding-left: 150px;padding-right: 150px;">
+    <div class="content row clearfix mx-auto" >
         <div class="col-12 titlebody mx-auto">Nuestros tratamientos</div>
         <div class="col-12 texto mx-auto boxtexto">Más cerca que nunca, te apoyamos con tratamientos que implican tecnología de punta y profesionales realmente comprometidos con la vida.</div>
     </div>
