@@ -6,7 +6,7 @@ from django import forms
 from import_export import resources
 from import_export.admin import ImportExportModelAdmin
 
-#Autenticacion dentro de la Consola Administrador
+'''****************** Admnistracion basica ususarios*******************************************************'''
 class UserCreationForm(forms.ModelForm):
     class Meta:
         model = Usuario
@@ -20,6 +20,7 @@ class UserCreationForm(forms.ModelForm):
             user.save()
         return user
 
+'''****************** manejo PACIENTES panel administracion*******************************************************'''
 #Habilita el Uso de Campos Extras al Modelo Usuario
 class UsuarioPacienteInformacionMedicaInline(admin.StackedInline):
     model = InformacionMedica
@@ -30,7 +31,7 @@ class UsuarioPacienteAdmin(admin.ModelAdmin):
         UsuarioPacienteInformacionMedicaInline,
     )
 #DESPLIEGA LA INFO TOTAL DEL PACIETNE
-class CustomPacientAdmin(ImportExportModelAdmin,UserAdmin):
+class CustomPacienteAdmin(ImportExportModelAdmin,UserAdmin):
     # The forms to add and change user instances
     add_form = UserCreationForm
     list_display = ('rut','dv','nombre','apellido_paterno','apellido_materno','sexo','email','telefono_contacto','prevision')
@@ -44,7 +45,7 @@ class CustomPacientAdmin(ImportExportModelAdmin,UserAdmin):
         }),
         ('Informacion Personal', {
             'fields': ('nombre', 'apellido_paterno','apellido_materno',
-                       'email', 'telefono_contacto', 'telefono_contacto_2','sexo', 'fecha_nacimiento', 'foto_perfil', )
+                       'email', 'telefono_contacto', 'telefono_contacto_2','sexo', 'fecha_nacimiento', 'foto_perfil', 'type')
         }),
         )
     add_fieldsets = (
@@ -52,16 +53,17 @@ class CustomPacientAdmin(ImportExportModelAdmin,UserAdmin):
             'fields': ('rut','dv', 'password')
         }),
         ('Informacion Personal', {
-            'fields': (('nombre', 'apellido_paterno','apellido_materno'),
+            'fields': ('nombre', 'apellido_paterno','apellido_materno',
                        'email', 'telefono_contacto', 'telefono_contacto_2','sexo', 'fecha_nacimiento', 'foto_perfil', )
         }),
         )
     list_filter=['prevision','date_joined']
     filter_horizontal = ()
 
+'''****************** manejo ADMINISTRATIVOS panel administracion*******************************************************'''
 
 #Desplagar Informacion solo de Usuarios
-class CustomUserAdmin(ImportExportModelAdmin,UserAdmin):
+class CustomAdministrativoAdmin(UserAdmin):
     # The forms to add and change user instances
     add_form = UserCreationForm
     list_display = ('rut','dv','nombre','apellido_paterno','apellido_materno','sexo','email','telefono_contacto','prevision')
@@ -110,11 +112,77 @@ class CustomUserAdmin(ImportExportModelAdmin,UserAdmin):
     list_filter=['prevision','date_joined']
     filter_horizontal = (('groups',  ))
    
+'''****************** manejo MEDICOS panel administracion*******************************************************'''
+#Habilita el Uso de Campos Extras al Modelo Usuario
+class PacienteInformacionMedicaInline(admin.StackedInline):
+    model = InformacionMedica
+
+class MedicoAdmin(admin.ModelAdmin):
+    add_form = UserCreationForm
+    inlines = (
+        PacienteInformacionMedicaInline,
+    )
+#DESPLIEGA LA INFO TOTAL DEL PACIETNE
+class CustomMedicoAdmin(ImportExportModelAdmin,UserAdmin):
+    # The forms to add and change user instances
+    add_form = UserCreationForm
+    list_display = ('rut','dv','nombre','apellido_paterno','apellido_materno','sexo','email','telefono_contacto','prevision')
+    ordering = ("rut",)
+    inlines = (
+        PacienteInformacionMedicaInline,
+    )
+    fieldsets = (
+        ('Informacion de Perfil', {
+            'fields': (('rut','dv'), 'password')
+        }),
+        ('Informacion Personal', {
+            'fields': ('nombre', 'apellido_paterno','apellido_materno',
+                       'email', 'telefono_contacto', 'telefono_contacto_2','sexo', 'fecha_nacimiento', 'foto_perfil', )
+        }),
+        ('Permisos', {
+            'fields': ('is_active', 'is_staff', 'is_superuser', )
+        }),
+        ('Grupos', {
+            'fields': ('groups',  'type')
+        }),
+        ('Fechas Importantes', {
+            'fields': (('date_joined',), )
+        }),
+    
+    )
+    add_fieldsets =(
+        (None, {
+            # 'classes': ('collapse',),
+            'fields':(('rut','dv'), 'password')
+        }),
+        ('Informacion Personal', {
+            'fields': ('nombre', 
+                        'apellido_paterno','apellido_materno',
+                       'email', 'sexo', 'fecha_nacimiento', 'foto_perfil', )
+        }),
+        ('Permisos', {
+            'fields': ('is_active', 'is_staff', 'is_superuser', )
+        }),
+        ('Grupos', {
+            'fields': ('groups', 'type' )
+        }),
+        ('Fechas Importantes', {
+            'fields': (('date_joined',), )
+        }),
+    
+    )
+    list_filter=['prevision','date_joined']
+    filter_horizontal = (('groups',  ))
+
+
+
 
 admin.site.register(UsuarioPaciente, CustomPacientAdmin)
 admin.site.register(Medico, CustomUserAdmin)
 admin.site.register(Administrativo, CustomUserAdmin)
+
   
+
 
 #admin.site.register(Usuario,UsuarioAdmin)
 

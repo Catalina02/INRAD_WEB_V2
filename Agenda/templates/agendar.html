@@ -1,0 +1,35 @@
+{% block contenido%}
+{% load crispy_forms_tags %}
+{%load static%}
+{%block js%}
+<script type='text/javascript' src="/admin/jsi18n/"></script>
+<script type='text/javascript' src="/static/admin/js/core.js"></script>
+{%endblock%}
+<body>
+<div class="contenedor">
+    <div class="row clearfix ">         
+        <div class="class='col-12 col-sm-12 col-md-4 col-lg-4 form ">
+          
+                <h1 class='titlebody ' style='margin:0;'>Agenda!</h1>
+            
+           
+            <form action='' class='formulario_contacto' style="margin-bottom: 50px;" method="post">
+                {% csrf_token %}
+                {{ form | crispy}}
+                {{form.media}}
+                
+                <div class="row d-flex botones_contacto " >
+                    <div class="col-12 col-sm-12 col-lg-12 col-xl-12 justify-content-center ">
+                        <button type="submit" id="btnEnviar" class="btn button  justify-content-center boton_formulario ">Enviar</button>
+                    </div>
+                    <div class="col-12 col-sm-12 col-lg-12 col-xl-12">
+                        <input type="reset" value='Cancelar'class='btn button cancel_button boton_formulario'>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class='col-md-1 col-lg-1 ' ></div>
+
+</div>
+</body>
+{% endblock%}

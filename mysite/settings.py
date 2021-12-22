@@ -58,8 +58,10 @@ INSTALLED_APPS = [
     'phonenumber_field',
     'sweetify',
     'import_export',
-    'Fichas'
-
+    'Fichas',
+    'django_agenda',
+    'recurrence',
+    'Agenda',
 ]
 
 CRISPY_TEMPLATE_PACK='bootstrap4'
