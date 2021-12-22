@@ -41,7 +41,7 @@ class CustomPacienteAdmin(ImportExportModelAdmin,UserAdmin):
     )
     fieldsets = (
         ('Informacion de Perfil', {
-            'fields': ('rut','dv', 'password')
+            'fields': ('rut','dv', 'password','type')
         }),
         ('Informacion Personal', {
             'fields': ('nombre', 'apellido_paterno','apellido_materno',
@@ -50,7 +50,7 @@ class CustomPacienteAdmin(ImportExportModelAdmin,UserAdmin):
         )
     add_fieldsets = (
         ('Informacion de Perfil', {
-            'fields': ('rut','dv', 'password')
+            'fields': ('rut','dv', 'password', 'type')
         }),
         ('Informacion Personal', {
             'fields': ('nombre', 'apellido_paterno','apellido_materno',
@@ -177,9 +177,9 @@ class CustomMedicoAdmin(ImportExportModelAdmin,UserAdmin):
 
 
 
-admin.site.register(UsuarioPaciente, CustomPacientAdmin)
-admin.site.register(Medico, CustomUserAdmin)
-admin.site.register(Administrativo, CustomUserAdmin)
+admin.site.register(UsuarioPaciente, CustomPacienteAdmin)
+admin.site.register(Medico, CustomMedicoAdmin)
+admin.site.register(Administrativo, CustomAdministrativoAdmin)
 
   
 

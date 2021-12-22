@@ -10,7 +10,7 @@ from django.db import models
 from django.utils.translation import gettext_lazy as _
 
 from django_agenda.time_span import TimeSpan
-from Users.models import Medico, Paciente, Administrativo
+from Users.models import *
 from django_agenda.models import (
     AbstractAvailability,
     AbstractAvailabilityOccurrence,
@@ -46,9 +46,9 @@ class Booking(AbstractBooking):
 
     DURATION = timedelta(minutes=60)
 
-    Paciente = models.ForeignKey(
+    UsuarioPaciente = models.ForeignKey(
         verbose_name=_("guest"),
-        to=Paciente,
+        to=UsuarioPaciente,
         on_delete=models.PROTECT,
         related_name="+",
     )

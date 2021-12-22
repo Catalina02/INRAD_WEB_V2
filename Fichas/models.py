@@ -32,7 +32,7 @@ class Historia(models.Model):
 class Imagenologia(models.Model):
     id_imagen = models.AutoField(primary_key=True)
     id_paciente = models.ForeignKey('Paciente', models.DO_NOTHING, db_column='id_paciente')
-    ruta = models.CharField(max_length=350, blank=True, null=True)
+    ruta = models.URLField(null=True,blank=True,verbose_name="Enlace a Imagen")
 
     class Meta:
         managed = False
