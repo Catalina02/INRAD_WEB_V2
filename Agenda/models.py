@@ -1,7 +1,8 @@
 import contextlib
 from datetime import datetime, timedelta
 from typing import List
-
+import pytz
+from datetime import date, time, datetime
 import django.utils.timezone
 from django.conf import settings
 from django.core.exceptions import ValidationError
@@ -21,6 +22,7 @@ class Availability(AbstractAvailability):
     class AgendaMeta:
         schedule_model = Medico
         schedule_field = "Medico"
+        timezone=pytz.timezone("America/Santiago")
 
 
 class AvailabilityOccurrence(AbstractAvailabilityOccurrence):

@@ -19,7 +19,7 @@ from django.urls import path, include
 from django.views.generic import RedirectView
 from django.conf import settings
 from django.conf.urls.static import static
-
+from django.views.i18n import JavaScriptCatalog
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -27,9 +27,16 @@ urlpatterns = [
     path('', include(('Users.urls'), namespace='AppUsers')),
     path('', include(('Agenda.urls'), namespace='AppAgenda')),
     
-
 ]
 
 
 if settings.DEBUG:
     urlpatterns+=static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+js_info_dict = {
+'packages': ('recurrence', ),
+}
+# jsi18n can be anything you like here
+urlpatterns += [
+url(r'^jsi18n/$', JavaScriptCatalog.as_view(), js_info_dict),
+]

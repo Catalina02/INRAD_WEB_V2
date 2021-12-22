@@ -44,7 +44,7 @@ class CustomPacienteAdmin(ImportExportModelAdmin,UserAdmin):
         }),
         ('Informacion Personal', {
             'fields': ('nombre', 'apellido_paterno','apellido_materno',
-                       'email', 'telefono_contacto', 'telefono_contacto_2','sexo', 'fecha_nacimiento', 'foto_perfil', )
+                       'email', 'telefono_contacto', 'telefono_contacto_2','sexo', 'fecha_nacimiento', 'foto_perfil', 'type')
         }),
         )
     add_fieldsets = (
