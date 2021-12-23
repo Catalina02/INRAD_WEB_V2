@@ -6,7 +6,11 @@ class Disaponibilidad(admin.ModelAdmin):
     list_display=['Medico',]
     verbose_name='Disponibilidad'
 
-admin.site.register(models.Booking)
+class Agendamientos(admin.ModelAdmin):
+    list_display = ['owner','start_time',"end_time",'approved']
+
+
+admin.site.register(models.Agendamiento)
 admin.site.register(models.Availability)
 admin.site.register(models.AvailabilityOccurrence,Disaponibilidad)
 admin.site.register(models.Slot)

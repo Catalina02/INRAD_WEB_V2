@@ -30,7 +30,7 @@ class AvailabilityOccurrence(AbstractAvailabilityOccurrence):
         availability_model = Availability
         schedule_model = Medico
         schedule_field = "Medico"
-
+    
 
 class Slot(AbstractTimeSlot):
     class AgendaMeta:
@@ -57,3 +57,6 @@ class Agendamiento(AbstractBooking):
         # we only reserve the time if the reservation has been approved
         if self.approved:
             yield TimeSpan(self.start_time, self.end_time)
+    
+    def __str__(self):
+        return str(self.owner)

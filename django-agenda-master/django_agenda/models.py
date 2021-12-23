@@ -426,7 +426,7 @@ class AbstractBooking(models.Model, metaclass=Meta):
         abstract = True
 
     busy_message = _("Requested time {start}–{end} is busy")
-    un_free_message = _("Requested time {start}–{end} is not available")
+    un_free_message = _("EL Bloque {start}–{end} ya se encvuentra agendado")
 
     def get_reserved_spans(self) -> List[TimeSpan]:
         """
