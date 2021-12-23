@@ -1,6 +1,6 @@
 from django.shortcuts import redirect, render
 from Agenda.forms import AvailabilityForm
-from Agenda.models import Availability
+from Agenda.models import Disponibilidad
 import sweetify
 from datetime import datetime
 import pytz
@@ -23,7 +23,7 @@ def abrir_agenda(request):
             formulario.instance.timezone = 'America/Santiago'
             formulario.save()
             id_form=formulario.instance.id 
-            disponible=Availability.objects.filter(id=id_form)[0]
+            disponible=Disponibilidad.objects.filter(id=id_form)[0]
             start_date=disponible.start_date
             start_str=start_date.strftime('%Y%m%d')
             start_date=datetime.strptime(start_str,'%Y%m%d')

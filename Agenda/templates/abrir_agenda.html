@@ -36,6 +36,10 @@
          font-family:'Roboto', sans-serif;
          padding-bottom: 20px;
      }
+     .img-fluid {
+    max-width: 30%;
+    height: auto;
+}
  </style>
 
     <section class="gradient-custom py-5 h-100">
@@ -49,9 +53,9 @@
     
                     <div class="mb-md-3 mt-md-4 pb-3">
                         <a href="{% url 'Web:home' %}"><img src="{% static 'img/logotipo.png' %}" class="img-fluid" ></a>
+                        {%ifequal user.type 'Medico'%}
                         <h2 class="infotitulo fw-bold  text-uppercase" style="font-size: 30px;">Medico</h2>
                         <h1 class=" fw-bold text-uppercase" style="font-size: 30px;padding-bottom: 20px;padding-top: 0px;">Abrir Agenda Mensual</h1>
-           
                         <form action='' class='formulario_contacto' style="margin-bottom: 50px;" method="post">
                             {% csrf_token %}
                             {{ form | crispy}}
@@ -61,6 +65,13 @@
                             <a class="btn button cancel_button boton_formulario mx-auto justify-content-center"  href="{% url 'Web:home' %}" >Volver </a>
                             
                         </form>
+
+                        {%else%}
+                        
+                        <h2 class="infotitulo fw-bold  text-uppercase" style="font-size: 30px;">Acceso Denegado</h2>
+                        <img src="{% static 'img/denegado.png' %}" class="img-fluid" style="padding-bottom: 35px;padding-top: 30px;" >
+                        <h1 class=" fw-bold text-uppercase" style="font-size: 30px;padding-bottom: 20px;padding-top: 0px;">Funcionalidad Exclusiva de Medicos</h1>
+                       {%endifequal%}
                     </div>
                 </div>
                 </div>

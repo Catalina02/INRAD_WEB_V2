@@ -387,8 +387,8 @@ class AbstractAvailabilityOccurrence(models.Model, metaclass=OccurrenceMeta):
     """
 
     class Meta:
-        verbose_name = _("availability occurrence")
-        verbose_name_plural = _("availability occurrences")
+        verbose_name = _("Dia Disponible")
+        verbose_name_plural = _("Dias Disponibles")
         abstract = True
 
     objects = models.Manager()
@@ -426,7 +426,7 @@ class AbstractBooking(models.Model, metaclass=Meta):
         abstract = True
 
     busy_message = _("Requested time {start}–{end} is busy")
-    un_free_message = _("EL Bloque {start}–{end} ya se encvuentra agendado")
+    un_free_message = _("EL Bloque {start}–{end} ya se encuentra agendado")
 
     def get_reserved_spans(self) -> List[TimeSpan]:
         """

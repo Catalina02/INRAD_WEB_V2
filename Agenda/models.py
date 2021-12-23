@@ -18,26 +18,27 @@ from django_agenda.models import (
     AbstractBooking,
 )
 
-class Availability(AbstractAvailability):
+class Disponibilidad(AbstractAvailability):
+    verbose_name='Agenda'
     class AgendaMeta:
         schedule_model = Medico
         schedule_field = "Medico"
         timezone=pytz.timezone("America/Santiago")
 
 
-class AvailabilityOccurrence(AbstractAvailabilityOccurrence):
+class DiasDisponibles(AbstractAvailabilityOccurrence):
     class AgendaMeta:
-        availability_model = Availability
+        availability_model = Disponibilidad
         schedule_model = Medico
         schedule_field = "Medico"
     
 
-class Slot(AbstractTimeSlot):
+class AgendaOcupada(AbstractTimeSlot):
     class AgendaMeta:
         schedule_model = Medico
         schedule_field = "Medico"
         booking_model = "agendamiento"
-        availability_model = Availability
+        availability_model = Disponibilidad
 
 from pytz import timezone
 class Agendamiento(AbstractBooking):

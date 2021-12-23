@@ -1,10 +1,10 @@
 from django import forms
-from .models import Availability
+from .models import Disponibilidad
 from django.forms import TextInput,TimeInput
 class AvailabilityForm(forms.ModelForm):
     class Meta:
         #obtiene tipos de datos desde el modelo definido
-        model=Availability
+        model=Disponibilidad
         fields='start_date','start_time','end_time','recurrence'
         exclude = 'Medico',
         widgets = {
