@@ -69,15 +69,15 @@ class DiasDisponibles(AbstractAvailabilityOccurrence):
         return self.Medico.nombre+' '+self.Medico.apellido_paterno+' '+self.Medico.apellido_materno
 
     def hora_inicio(self):
-        hora_inicio=self.start.strftime('%H:%M:%S')
+        hora_inicio=self.start.astimezone(timezone('America/Santiago')).strftime('%H:%M:%S')
         return hora_inicio
 
     def hora_termino(self):
-        hora_termino=self.end.strftime('%H:%M:%S')
+        hora_termino=self.end.astimezone(timezone('America/Santiago')).strftime('%H:%M:%S')
         return hora_termino 
 
     def dia(self):
-        dia=self.start.strftime('%d-%m-%Y')
+        dia=self.start.astimezone(timezone('America/Santiago')).strftime('%d-%m-%Y')
         return dia
 
     def numero_telefono(self):
@@ -97,7 +97,7 @@ class AgendaOcupada(AbstractTimeSlot):
         booking_model = "agendamiento"
         availability_model = Disponibilidad
     def nombre_paciente(self):
-        return self.booking.owner.nombre+' '+self.booking.owner.apellido_paterno+' '+self.booking.owner.apellido_materno
+        return self.booking.paciente.nombre+' '+self.booking.paciente.apellido_paterno+' '+self.booking.paciente.apellido_materno
 
     def hora_inicio(self):
         hora_inicio=self.start.astimezone(timezone('America/Santiago')).strftime('%H:%M:%S')
@@ -112,14 +112,16 @@ class AgendaOcupada(AbstractTimeSlot):
         return dia_de_cita
  
     def paciente(self):
-        rut=self.booking.owner
+        rut=self.booking.paciente
         return rut
     def numero_telefono(self):
-        numero=str(self.booking.owner.telefono_contacto)
+        numero=str(self.booking.paciente.telefono_contacto)
         return numero
     def correo_electronico(self):
-        correo_electronico=self.booking.owner.email
+        correo_electronico=self.booking.paciente.email
         return correo_electronico
+    def medico_a_cargo(self):
+        return self.Medico.nombre+' '+self.Medico.apellido_paterno+' '+self.Medico.apellido_materno
     class Meta:
         verbose_name = "Horario Bloqueado"
         verbose_name_plural = "Horarios Bloqueados"
@@ -128,13 +130,16 @@ class Agendamiento(AbstractBooking):
     class AgendaMeta:
         schedule_model = Medico
 
-    owner = models.ForeignKey(
+    paciente = models.ForeignKey(
         to=UsuarioPaciente,
         on_delete=models.PROTECT,
         related_name="reservations",
     )
-    start_time = models.DateTimeField('Hora de Inicio',db_index=True)
-    end_time = models.DateTimeField('Hora de Termino',db_index=True)
+    dia=  models.DateField('Dia de Consulta',blank=False,db_index=True,null=False)
+    hora_de_inicio=  models.TimeField('Hora de Inicio',blank=False,db_index=True,null=False)
+    hora_de_termino=  models.TimeField('Hora de Termino',blank=False,db_index=True,null=False)
+    start_time = models.DateTimeField(db_index=True)
+    end_time = models.DateTimeField(db_index=True)
     approved = models.BooleanField('Confirmada',default=False)
 
     def get_reserved_spans(self):
@@ -143,7 +148,7 @@ class Agendamiento(AbstractBooking):
             yield TimeSpan(self.start_time, self.end_time)
     
     def nombre_paciente(self):
-        return self.owner.nombre+' '+self.owner.apellido_paterno+' '+self.owner.apellido_materno
+        return self.paciente.nombre+' '+self.paciente.apellido_paterno+' '+self.paciente.apellido_materno
 
     def hora_inicio(self):
         hora_inicio=self.start_time.astimezone(timezone('America/Santiago')).strftime('%H:%M:%S')
@@ -157,15 +162,17 @@ class Agendamiento(AbstractBooking):
         dia_de_cita=self.start_time.astimezone(timezone('America/Santiago')).strftime('%d-%m-%Y')
         return dia_de_cita
  
-    def paciente(self):
-        rut=self.owner
+    def rut_paciente(self):
+        rut=self.paciente
         return rut
     def numero_telefono(self):
-        numero=str(self.owner.telefono_contacto)
+        numero=str(self.paciente.telefono_contacto)
         return numero
     def correo_electronico(self):
-        correo_electronico=self.owner.email
+        correo_electronico=self.paciente.email
         return correo_electronico
+    def medico_a_cargo(self):
+        return self.schedule.nombre+' '+self.schedule.apellido_paterno+' '+self.schedule.apellido_materno
     class Meta:
         verbose_name = "Cita Agendada"
         verbose_name_plural = "Citas Agedadas"

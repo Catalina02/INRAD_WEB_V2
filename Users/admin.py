@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
-from .models import  Administrativo, UsuarioPaciente, Usuario,Medico,Administrativo,InformacionMedica
+from .models import  Administrativo, UsuarioPaciente, Usuario,Medico,Administrativo#,InformacionMedica
 from Fichas.models import *
 from django import forms
 from import_export import resources
@@ -22,6 +22,7 @@ class UserCreationForm(forms.ModelForm):
 
 '''****************** manejo PACIENTES panel administracion*******************************************************'''
 #Habilita el Uso de Campos Extras al Modelo Usuario
+'''
 class UsuarioPacienteInformacionMedicaInline(admin.StackedInline):
     model = InformacionMedica
 
@@ -30,15 +31,16 @@ class UsuarioPacienteAdmin(admin.ModelAdmin):
     inlines = (
         UsuarioPacienteInformacionMedicaInline,
     )
+'''
 #DESPLIEGA LA INFO TOTAL DEL PACIETNE
 class CustomPacienteAdmin(ImportExportModelAdmin,UserAdmin):
     # The forms to add and change user instances
     add_form = UserCreationForm
     list_display = ('rut','dv','nombre','apellido_paterno','apellido_materno','sexo','email','telefono_contacto','prevision')
     ordering = ("rut",)
-    inlines = (
-        UsuarioPacienteInformacionMedicaInline,
-    )
+    #inlines = (
+    #    UsuarioPacienteInformacionMedicaInline,
+    #)
     fieldsets = (
         ('Informacion de Perfil', {
             'fields': ('rut','dv', 'password')
@@ -114,23 +116,14 @@ class CustomAdministrativoAdmin(UserAdmin):
    
 '''****************** manejo MEDICOS panel administracion*******************************************************'''
 #Habilita el Uso de Campos Extras al Modelo Usuario
-class PacienteInformacionMedicaInline(admin.StackedInline):
-    model = InformacionMedica
 
-class MedicoAdmin(admin.ModelAdmin):
-    add_form = UserCreationForm
-    inlines = (
-        PacienteInformacionMedicaInline,
-    )
 #DESPLIEGA LA INFO TOTAL DEL PACIETNE
 class CustomMedicoAdmin(ImportExportModelAdmin,UserAdmin):
     # The forms to add and change user instances
     add_form = UserCreationForm
     list_display = ('rut','dv','nombre','apellido_paterno','apellido_materno','sexo','email','telefono_contacto','prevision')
     ordering = ("rut",)
-    inlines = (
-        PacienteInformacionMedicaInline,
-    )
+
     fieldsets = (
         ('Informacion de Perfil', {
             'fields': (('rut','dv'), 'password')

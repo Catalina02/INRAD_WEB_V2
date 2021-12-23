@@ -80,6 +80,7 @@ class Usuario(AbstractUser):
 
 
 #CLASE DE UsuarioPaciente
+'''
 class InformacionMedica(models.Model):
     user = models.ForeignKey(Usuario, on_delete = models.CASCADE)
     alergias= anamnesis=models.TextField('Alergias',max_length=255,null=True,blank=True)
@@ -89,6 +90,7 @@ class InformacionMedica(models.Model):
     medico_INRAD=models.CharField('Medico INRAD',max_length=255,null=True,blank=True)
     anamnesis=models.TextField('Anamnesis',null=True,blank=True)
     UsuarioPaciente_paliativo=models.BooleanField('UsuarioPaciente Paliativo',null=True,blank=True)
+    '''
 class UsuarioPacienteManager(BaseUserManager):
     def get_queryset(self,*args,**kwargs): 
         return super().get_queryset(*args,*kwargs).filter(type=Usuario.Types.UsuarioPaciente)

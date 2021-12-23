@@ -17,15 +17,17 @@ class DiasDisponiblesAdmin(admin.ModelAdmin):
     list_per_page=50
 
 class AgendamientoAdmin(admin.ModelAdmin):
-    list_display = ['paciente','nombre_paciente','dia_de_cita','hora_inicio','hora_termino','approved','numero_telefono','correo_electronico']
+    list_display = ['rut_paciente','nombre_paciente','dia_de_cita','hora_inicio','hora_termino','approved','numero_telefono','correo_electronico','medico_a_cargo']
     list_editable=['approved']
-    list_filter=['approved','owner']
-    search_fields=['paciente','nombre_paciente']
+    list_filter=['approved','schedule']
+    search_fields=['rut_paciente','paciente']
     list_per_page=50
   
 class AgendaOcupadaAdmin(admin.ModelAdmin):
-    list_display = ['paciente','nombre_paciente','dia_de_cita','hora_inicio','hora_termino','numero_telefono','correo_electronico']
-    search_fields=['paciente','nombre_paciente']
+    list_display = ['paciente','nombre_paciente','dia_de_cita','hora_inicio','hora_termino','numero_telefono','correo_electronico','medico_a_cargo','busy']
+    list_editable=['busy']
+    list_filter=['busy',]
+    search_fields=['paciente',]
     list_per_page=50
 
 admin.site.register(models.Agendamiento,AgendamientoAdmin)

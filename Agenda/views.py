@@ -1,5 +1,5 @@
 from django.shortcuts import redirect, render
-from Agenda.forms import AvailabilityForm
+from Agenda.forms import AvailabilityForm,AgendamientoForm
 from Agenda.models import Disponibilidad
 import sweetify
 from datetime import datetime
@@ -33,13 +33,27 @@ def abrir_agenda(request):
             start_date = local_tz.localize(start_date)
             end_date = local_tz.localize(end_date)
             disponible.recreate_occurrences(start_date,end_date)
-            sweetify.success(request, 'Agenda3',icon='success')
+            sweetify.success(request, 'Agenda Abierta',icon='success')
             return redirect('Web:home')
             data['form']=formulario
         else:
             data['form']=formulario
+
     return render(request,'abrir_agenda.html',data)
 
 
 def agendar(request):
-    return render(request,'agendar.html')
+    data={
+        'form':AgendamientoForm()
+    }
+    if request.method=='POST':# si se reciben datos del formulario
+        formulario=AgendamientoForm(data=request.POST)
+        if formulario.is_valid():
+            formulario.instance.paciente = request.user
+            formulario.save() 
+            data['form']=formulario
+            sweetify.success(request,request.user ,icon='success')
+        else:
+            data['form']=formulario
+
+    return render(request,'agendar.html',data)
