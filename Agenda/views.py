@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import redirect, render
 from Agenda.forms import AvailabilityForm
 from Agenda.models import Availability
 import sweetify
@@ -34,6 +34,7 @@ def abrir_agenda(request):
             end_date = local_tz.localize(end_date)
             disponible.recreate_occurrences(start_date,end_date)
             sweetify.success(request, 'Agenda3',icon='success')
+            return redirect('Web:home')
             data['form']=formulario
         else:
             data['form']=formulario

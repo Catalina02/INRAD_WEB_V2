@@ -1,6 +1,6 @@
 from django import forms
 from .models import Availability
-from django.forms import TextInput
+from django.forms import TextInput,TimeInput
 class AvailabilityForm(forms.ModelForm):
     class Meta:
         #obtiene tipos de datos desde el modelo definido
@@ -9,4 +9,12 @@ class AvailabilityForm(forms.ModelForm):
         exclude = 'Medico',
         widgets = {
             'start_date': forms.DateInput(format=('%d/%m/%Y'), attrs={'class':'form-control', 'placeholder':'Seleccione una Fecha', 'type':'date','lang': 'es',}),
+            'start_time': forms.TimeInput(attrs={'type': 'time'}),
+            'end_time': forms.TimeInput(attrs={'type': 'time'}),
+        }
+        labels = {
+        "start_date": "Dia de Inicio",
+        'start_time':'Hora Inicio Jornada',
+        'end_time':'Hora Termino Jornada',
+        'recurrence':'Otorgar Recurrencia'
         }
