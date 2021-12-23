@@ -23,13 +23,15 @@
          text-decoration: none;
          color:var(--darkgreen);
      }
+     
      .gradient-custom {
          /* fallback for old browsers */
          background: var(--darkgreen);
          /* Chrome 10-25, Safari 5.1-6 */
          background: -webkit-linear-gradient(to right, var(--primary), var(--light));
          /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-         background: linear-gradient(to right, var(--primary),var(--light))
+         background: linear-gradient(to right, var(--primary),var(--light));
+         height:100%;
      }
      .form{
          text-align: left;
@@ -70,7 +72,7 @@
                         
                         <h2 class="infotitulo fw-bold  text-uppercase" style="font-size: 30px;">Acceso Denegado</h2>
                         <img src="{% static 'img/denegado.png' %}" class="img-fluid" style="padding-bottom: 35px;padding-top: 30px;" >
-                        <h1 class=" fw-bold text-uppercase" style="font-size: 30px;padding-bottom: 20px;padding-top: 0px;">Funcionalidad Exclusiva de Medicos</h1>
+                        <h1 class=" fw-bold text-uppercase" style="font-size: 30px;padding-bottom: 20px;padding-top: 0px;">Acceso Exclusivo A Medicos</h1>
                        {%endifequal%}
                     </div>
                 </div>

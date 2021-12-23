@@ -7,10 +7,12 @@ availability1 = Availability.objects.create(
             timezone=pytz.timezone("America/Santiago"),
         )
 from dateutil.relativedelta import relativedelta
+
 start_str=start_date.strftime('%Y%m%d')
 start_date=datetime.strptime(start_str,'%Y%m%d')
 delta=relativedelta(months=+1)
-end_date=start+delta
+end_date=start_date+delta
+end_date.strftime('%d-%m-%Y')
 
 from datetime import datetime, timezone
 import pytz
@@ -20,3 +22,7 @@ import pytz
 local_tz = pytz.timezone('America/Santiago')
 start_date = local_tz.localize(start)
 end_date = local_tz.localize(end_date)
+
+#imprimir atributos
+from pprint import pprint
+pprint(dir(a))
