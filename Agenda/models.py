@@ -21,6 +21,7 @@ from django_agenda.models import (
 
 class Disponibilidad(AbstractAvailability):
     verbose_name='Agenda'
+    duracion_cita = models.IntegerField('Duracion de Hora en Minutos',default=60,null=True,blank=True)
     class AgendaMeta:
         schedule_model = Medico
         schedule_field = "Medico"
@@ -55,7 +56,9 @@ class Disponibilidad(AbstractAvailability):
     def correo_electronico(self):
         correo_electronico=self.Medico.email
         return correo_electronico
- 
+    class Meta:
+        verbose_name = "Horario de Atención"
+        verbose_name_plural = "Horarios de Atención"
 
 class DiasDisponibles(AbstractAvailabilityOccurrence):
     class AgendaMeta:
@@ -83,7 +86,9 @@ class DiasDisponibles(AbstractAvailabilityOccurrence):
     def correo_electronico(self):
         correo_electronico=self.Medico.email
         return correo_electronico
- 
+    class Meta:
+        verbose_name = "Dia de Atención"
+        verbose_name_plural = "Dias de Atención"
 
 class AgendaOcupada(AbstractTimeSlot):
     class AgendaMeta:
@@ -115,6 +120,9 @@ class AgendaOcupada(AbstractTimeSlot):
     def correo_electronico(self):
         correo_electronico=self.booking.owner.email
         return correo_electronico
+    class Meta:
+        verbose_name = "Horario Bloqueado"
+        verbose_name_plural = "Horarios Bloqueados"
 
 class Agendamiento(AbstractBooking):
     class AgendaMeta:
@@ -158,3 +166,6 @@ class Agendamiento(AbstractBooking):
     def correo_electronico(self):
         correo_electronico=self.owner.email
         return correo_electronico
+    class Meta:
+        verbose_name = "Cita Agendada"
+        verbose_name_plural = "Citas Agedadas"
