@@ -36,67 +36,24 @@ class Slot(AbstractTimeSlot):
     class AgendaMeta:
         schedule_model = Medico
         schedule_field = "Medico"
-        booking_model = "booking"
+        booking_model = "agendamiento"
         availability_model = Availability
 
-class Booking(AbstractBooking):
+
+class Agendamiento(AbstractBooking):
     class AgendaMeta:
         schedule_model = Medico
-        schedule_field = "schedule"
 
-    DURATION = timedelta(minutes=60)
-
-    UsuarioPaciente = models.ForeignKey(
-        verbose_name=_("guest"),
+    owner = models.ForeignKey(
         to=UsuarioPaciente,
         on_delete=models.PROTECT,
-        related_name="+",
+        related_name="reservations",
     )
-    def __init__(self, *args, **kwargs):
-        self.loading = True
-        super().__init__(*args, **kwargs)
-        self.loading = False
-        self.__editor = None
-        self.allow_multiple_bookings = False
-
-    def clean(self):
-        super().clean()
-        # check for duplicates
-        dup_q = models.Q(schedule=self.schedule, guest=self.guest, state=self.state)
-        if self.id is not None:
-            dup_q &= ~models.Q(id=self.id)
-
-        sub_q = models.Q()
-        if self.requested_time_1 is not None:
-            sub_q |= models.Q(requested_time_1=self.requested_time_1) | models.Q(
-                requested_time_2=self.requested_time_1
-            )
-        if self.requested_time_2 is not None:
-            sub_q |= models.Q(requested_time_1=self.requested_time_2) | models.Q(
-                requested_time_2=self.requested_time_2
-            )
-        dup_q &= sub_q
-
-        if Booking.objects.filter(dup_q).exists():
-            raise ValidationError(_("Duplicate booking"))
-
-    def get_padding(self):
-        return self.padding
-
-    def is_booked_slot_busy(self):
-        return not self.allow_multiple_bookings
-
-    def get_requested_times(self):
-        for time in (self.requested_time_1, self.requested_time_2):
-            if time is not None:
-                yield time
+    start_time = models.DateTimeField(db_index=True)
+    end_time = models.DateTimeField(db_index=True)
+    approved = models.BooleanField(default=False)
 
     def get_reserved_spans(self):
-        """
-        Return a list of times that should be reserved
-        """
-        if self.state in self.RESERVED_STATES:
-            for time in self.get_requested_times():
-                yield TimeSpan(time, time + self.DURATION)
-
-
+        # we only reserve the time if the reservation has been approved
+        if self.approved:
+            yield TimeSpan(self.start_time, self.end_time)
