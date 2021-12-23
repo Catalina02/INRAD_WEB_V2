@@ -23,11 +23,15 @@
     {
         .paciente{
         text-align: right;}
+        .abagenda{
+        text-align: left;}
         
     }
     @media only screen and (max-width: 380px)
     {
         .paciente{
+        text-align: center;}
+        .abagenda{
         text-align: center;}
     
     }
@@ -61,15 +65,27 @@
     <div class="greenHeader ">
         <div class="row">
             
-        <div class="col-12  col-md-4">
+        <div class="col-12 col-sm-12 col-md-2">
             <a href="tel:+56222264771" class="button pulse headerbutton inicio-button mx-auto justify-content-center" style="width:250px;padding: 0px;margin: 5px; ">
                 <img src=" {% static 'img/fono2.png' %}" style="height: 30px;width: 30px;">
                 <strong style='padding-left: 5px;'>2 2226 4771</strong>
             </a>
         </div>
         {% if user.is_authenticated %}
-            <div class="col-2 col-sm-12 col-md-1 ">
+            {%ifequal user.type 'Medico'%}
+            <div class="col-12 col-sm-12 col-md-4 abagenda">
+                <a class="inicio-button button pulse headerbutton mx-auto justify-content-center  " style="width:250px;padding: 0px;margin: 5px;" href="{% url 'Agenda:abrir_agenda' %}" >
+                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-calendar3" viewBox="0 0 16 16">
+                        <path d="M14 0H2a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zM1 3.857C1 3.384 1.448 3 2 3h12c.552 0 1 .384 1 .857v10.286c0 .473-.448.857-1 .857H2c-.552 0-1-.384-1-.857V3.857z"/>
+                        <path d="M6.5 7a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm-9 3a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm-9 3a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2z"/>
+                      </svg>
+                    <strong style='padding-left: 5px;'>Abrir Agenda</strong>
+                </a>
             </div>
+            {%else%}
+            <div class="col-12 col-sm-12 col-md-4 abagenda"></div>
+            {%endifequal%}
+            
             <div class="col-12 col-sm-12 col-md-4 paciente" >    
                 <a class="inicio-button button pulse headerbutton mx-auto justify-content-center " style="width:250px;padding: 0px;margin: 5px;" href="{% url 'AppUsers:profile' %}" >
                     <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
@@ -88,7 +104,7 @@
                 </a>
             </div>
             {%else%}
-            <div class="col-2 col-md-1">
+            <div class="col-2 col-md-3">
             </div>
             <div class="col-12 col-md-7 paciente">    
                 <a class="button pulse"  href="{% url 'AppUsers:login' %}" >
