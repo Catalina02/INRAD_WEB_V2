@@ -17,7 +17,7 @@ class DiasDisponiblesAdmin(admin.ModelAdmin):
     list_per_page=50
 
 class AgendamientoAdmin(admin.ModelAdmin):
-    list_display = ['rut_paciente','nombre_paciente','dia_de_cita','hora_inicio','hora_termino','approved','numero_telefono','correo_electronico','medico_a_cargo']
+    list_display = ['rut_paciente','paciente','dia_de_cita','hora_inicio','hora_termino','approved','numero_telefono','correo_electronico','medico_a_cargo']
     list_editable=['approved']
     list_filter=['approved','schedule']
     search_fields=['rut_paciente','paciente']
