@@ -22,7 +22,7 @@ class AgendamientoAdmin(admin.ModelAdmin):
     list_filter=['approved','owner']
     search_fields=['paciente','nombre_paciente']
     list_per_page=50
-
+  
 class AgendaOcupadaAdmin(admin.ModelAdmin):
     list_display = ['paciente','nombre_paciente','dia_de_cita','hora_inicio','hora_termino','numero_telefono','correo_electronico']
     search_fields=['paciente','nombre_paciente']

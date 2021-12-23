@@ -39,3 +39,7 @@ def abrir_agenda(request):
         else:
             data['form']=formulario
     return render(request,'abrir_agenda.html',data)
+
+
+def agendar(request):
+    return render(request,'agendar.html')

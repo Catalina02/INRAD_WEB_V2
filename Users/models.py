@@ -81,7 +81,7 @@ class Usuario(AbstractUser):
 
 #CLASE DE UsuarioPaciente
 class InformacionMedica(models.Model):
-    user = models.OneToOneField(Usuario, on_delete = models.CASCADE)
+    user = models.ForeignKey(Usuario, on_delete = models.CASCADE)
     alergias= anamnesis=models.TextField('Alergias',max_length=255,null=True,blank=True)
     diagnostico=models.CharField('Diagnostico',max_length=255,null=True,blank=True)
     medico_derivante=models.CharField('Medico Derivante',max_length=255,null=True,blank=True)

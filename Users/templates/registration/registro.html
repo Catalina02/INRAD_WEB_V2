@@ -21,14 +21,16 @@
             text-decoration: none;
             color:var(--darkgreen);
         }
-        .gradient-custom {
-            /* fallback for old browsers */
-            background: var(--darkgreen);
-            /* Chrome 10-25, Safari 5.1-6 */
-            background: -webkit-linear-gradient(to right, var(--primary), var(--light));
-            /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-            background: linear-gradient(to right, var(--primary),var(--light))
-        }
+        body {
+         /* fallback for old browsers */
+         background: rgb(24,200,190);
+         /* Chrome 10-25, Safari 5.1-6 */
+         background: rgb(24,200,190);
+         background: -webkit-radial-gradient(circle, rgba(24,200,190,1) 42%, rgba(19,120,113,1) 100%);
+         /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+         background: rgb(24,200,190);
+        background: radial-gradient(circle, rgba(24,200,190,1) 42%, rgba(19,120,113,1) 100%);
+     }
         .form{
             text-align: left;
             font-family:'Roboto', sans-serif;

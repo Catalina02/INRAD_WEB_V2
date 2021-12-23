@@ -133,9 +133,9 @@ class Agendamiento(AbstractBooking):
         on_delete=models.PROTECT,
         related_name="reservations",
     )
-    start_time = models.DateTimeField(db_index=True)
-    end_time = models.DateTimeField(db_index=True)
-    approved = models.BooleanField(default=False)
+    start_time = models.DateTimeField('Hora de Inicio',db_index=True)
+    end_time = models.DateTimeField('Hora de Termino',db_index=True)
+    approved = models.BooleanField('Confirmada',default=False)
 
     def get_reserved_spans(self):
         # we only reserve the time if the reservation has been approved
