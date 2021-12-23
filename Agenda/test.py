@@ -31,8 +31,33 @@ pprint(dir(a))
 a=Agendamiento.objects.all()[0]
 #Obtener disponibilidad asociada a CitaAgendada
 Disponibilidad.objects.filter(id=a.schedule_id)
+Disponibilidad.objects.all()
 #obtener rango horario de disponibilidad
 Disponibilidad.objects.filter(id=a.schedule_id)[0].start_time
 Disponibilidad.objects.filter(id=a.schedule_id)[0].end_time
 #Obtener dias disponibles asociada a CitaAgendada
 DiasDisponibles.objects.filter(availability_id=a.schedule_id)
+
+'''Pasos para agendar cita'''
+#identificar dia y medico
+a.dia #Dia->datetime.date(2021, 12, 23)
+a.schedule_id #agenda asociada
+#buscar dia
+DiasDisponibles.objects.filter(availability_id=a.schedule_id)[0].start #->datetime.datetime(2021, 12, 1, 9, 0, tzinfo=<UTC>)
+#compatibilizar formatos
+a_new=a.dia.strftime('%Y%m%d') #->'20211223'
+a_2=datetime.strptime(a_new,'%Y%m%d')#-> datetime.datetime(2021, 12, 23, 0, 0)
+a_dia=a_2.astimezone(timezone('UTC'))#->datetime.datetime(2021, 12, 23, 3, 0, tzinfo=<UTC>)
+
+for i in DiasDisponibles.objects.filter(availability_id=a.schedule_id):
+    i_day=i.start.strftime('%Y%m%d')
+    i_day=datetime.strptime(i_day,'%Y%m%d').astimezone(timezone('UTC'))
+    if (i_day==a_dia):
+        start_time=i.start.strftime('%H:%M:%S')
+        start_time=datetime.strptime(start_time,'%H:%M:%S')
+        end_time=i.end.strftime('%H:%M:%S')
+        end_time=datetime.strptime(end_time,'%H:%M:%S')
+        print(start_time)
+        print(end_time)
+
+   

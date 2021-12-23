@@ -52,7 +52,7 @@ def agendar(request):
             formulario.instance.paciente = request.user
             formulario.save() 
             data['form']=formulario
-            sweetify.success(request,request.user ,icon='success')
+            #sweetify.success(request,request.user ,icon='success')
         else:
             data['form']=formulario
 

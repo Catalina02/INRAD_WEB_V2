@@ -136,11 +136,13 @@ class Agendamiento(AbstractBooking):
         related_name="reservations",
     )
     dia=  models.DateField('Dia de Consulta',blank=False,db_index=True,null=False)
-    hora_de_inicio=  models.TimeField('Hora de Inicio',blank=False,db_index=True,null=False)
-    hora_de_termino=  models.TimeField('Hora de Termino',blank=False,db_index=True,null=False)
-    start_time = models.DateTimeField(db_index=True)
-    end_time = models.DateTimeField(db_index=True)
+    hora_de_inicio=  models.TimeField('Hora de Inicio',blank=True,db_index=True,null=True)
+    hora_de_termino=  models.TimeField('Hora de Termino',blank=True,db_index=True,null=True)
+    start_time = models.DateTimeField(db_index=True,blank=True,null=True,default=datetime.now())
+    end_time = models.DateTimeField(db_index=True,blank=True,null=True,default=datetime.now())
     approved = models.BooleanField('Confirmada',default=False)
+    disponibilidad =models.ForeignKey(Disponibilidad, on_delete = models.CASCADE,blank=True,null=True)
+    medico=models.ForeignKey(Medico, on_delete = models.CASCADE,blank=False,null=True)
 
     def get_reserved_spans(self):
         # we only reserve the time if the reservation has been approved
