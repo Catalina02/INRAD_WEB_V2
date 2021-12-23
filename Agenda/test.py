@@ -20,9 +20,19 @@ import pytz
 from datetime import datetime
 import pytz
 local_tz = pytz.timezone('America/Santiago')
-start_date = local_tz.localize(start)
+start_date = local_tz.localize(start_date)
 end_date = local_tz.localize(end_date)
 
 #imprimir atributos
 from pprint import pprint
 pprint(dir(a))
+
+#obtener primer agendamiento
+a=Agendamiento.objects.all()[0]
+#Obtener disponibilidad asociada a CitaAgendada
+Disponibilidad.objects.filter(id=a.schedule_id)
+#obtener rango horario de disponibilidad
+Disponibilidad.objects.filter(id=a.schedule_id)[0].start_time
+Disponibilidad.objects.filter(id=a.schedule_id)[0].end_time
+#Obtener dias disponibles asociada a CitaAgendada
+DiasDisponibles.objects.filter(availability_id=a.schedule_id)

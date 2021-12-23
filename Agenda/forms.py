@@ -1,6 +1,6 @@
 from django import forms
 from .models import Disponibilidad,Agendamiento
-from django.forms import TextInput,TimeInput
+from django.forms import TextInput,TimeInput,ChoiceField
 class AvailabilityForm(forms.ModelForm):
     class Meta:
         #obtiene tipos de datos desde el modelo definido
