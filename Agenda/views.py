@@ -42,7 +42,7 @@ def abrir_agenda(request):
     return render(request,'abrir_agenda.html',data)
 
 
-def agendar(request):
+def agendar_paso1(request):
     data={
         'form':AgendamientoForm()
     }
@@ -56,4 +56,4 @@ def agendar(request):
         else:
             data['form']=formulario
 
-    return render(request,'agendar.html',data)
+    return render(request,'agendar_paso1.html',data)

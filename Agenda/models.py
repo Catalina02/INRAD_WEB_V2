@@ -165,7 +165,7 @@ class Agendamiento(AbstractBooking):
         return dia_de_cita
  
     def rut_paciente(self):
-        rut=self.paciente
+        rut=self.paciente.rut_usuario
         return rut
     def numero_telefono(self):
         numero=str(self.paciente.telefono_contacto)

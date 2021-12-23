@@ -23,10 +23,10 @@ class AgendamientoForm(forms.ModelForm):
     class Meta:
         #obtiene tipos de datos desde el modelo definido
         model=Agendamiento
-        fields='dia','medico'
+        fields='dia','schedule'
         widgets = {
             'dia': forms.DateInput(format=('%d/%m/%Y'), attrs={'class':'form-control', 'placeholder':'Seleccione una Fecha', 'type':'date','lang': 'es',}),
         }
         labels = {
-         "medico": "Seleccione Medico",
+         "schedule": "Seleccione Medico",
         }

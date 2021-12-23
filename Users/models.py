@@ -75,8 +75,9 @@ class Usuario(AbstractUser):
     objects=UsuarioManager()
     USERNAME_FIELD='rut'
     REQUIRED_FIELDS=['dv','email']
+    @property
     def rut_usuario(self):
-        return str(self.rut)
+        return str(self.rut)+'-'+self.dv
     def __str__(self):
         return self.nombre+' '+self.apellido_paterno+' '+self.apellido_materno
 

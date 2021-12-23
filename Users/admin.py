@@ -36,7 +36,7 @@ class UsuarioPacienteAdmin(admin.ModelAdmin):
 class CustomPacienteAdmin(ImportExportModelAdmin,UserAdmin):
     # The forms to add and change user instances
     add_form = UserCreationForm
-    list_display = ('rut','dv','nombre','apellido_paterno','apellido_materno','sexo','email','telefono_contacto','prevision')
+    list_display = ('rut_usuario','dv','nombre','apellido_paterno','apellido_materno','sexo','email','telefono_contacto','prevision')
     ordering = ("rut",)
     #inlines = (
     #    UsuarioPacienteInformacionMedicaInline,
@@ -68,7 +68,7 @@ class CustomPacienteAdmin(ImportExportModelAdmin,UserAdmin):
 class CustomAdministrativoAdmin(UserAdmin):
     # The forms to add and change user instances
     add_form = UserCreationForm
-    list_display = ('rut','dv','nombre','apellido_paterno','apellido_materno','sexo','email','telefono_contacto','prevision')
+    list_display = ('rut_usuario','dv','nombre','apellido_paterno','apellido_materno','sexo','email','telefono_contacto','prevision')
     ordering = ("rut",)
 
     fieldsets = (
@@ -121,7 +121,7 @@ class CustomAdministrativoAdmin(UserAdmin):
 class CustomMedicoAdmin(ImportExportModelAdmin,UserAdmin):
     # The forms to add and change user instances
     add_form = UserCreationForm
-    list_display = ('rut','dv','nombre','apellido_paterno','apellido_materno','sexo','email','telefono_contacto','prevision')
+    list_display = ('rut_usuario','dv','nombre','apellido_paterno','apellido_materno','sexo','email','telefono_contacto','prevision')
     ordering = ("rut",)
 
     fieldsets = (

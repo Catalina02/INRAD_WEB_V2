@@ -72,8 +72,8 @@
                         <a href="{% url 'Web:home' %}"><img src="{% static 'img/logotipo.png' %}" class="img-fluid" ></a>
                         
                         {%ifequal user.type 'UsuarioPaciente'%}
-                        <h2 class="infotitulo fw-bold  text-uppercase" style="font-size: 30px;">Solicitar</h2>
-                        <h1 class=" fw-bold text-uppercase" style="font-size: 30px;padding-bottom: 20px;padding-top: 0px;">Hora Medica</h1>
+                        <h2 class="infotitulo fw-bold  text-uppercase" style="font-size: 30px;">Solicitar Hora Medica</h2>
+                        <h1 class=" fw-bold text-uppercase" style="font-size: 30px;padding-top: 0px;">Paso 1</h1>
                         <form action='' class='formulario_contacto' style="margin-bottom: 50px;" method="post">
                             {% csrf_token %}
                             {{ form | crispy}}
