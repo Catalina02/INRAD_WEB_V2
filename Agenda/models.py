@@ -39,7 +39,7 @@ class Slot(AbstractTimeSlot):
         booking_model = "agendamiento"
         availability_model = Availability
 
-
+from pytz import timezone
 class Agendamiento(AbstractBooking):
     class AgendaMeta:
         schedule_model = Medico
@@ -58,5 +58,21 @@ class Agendamiento(AbstractBooking):
         if self.approved:
             yield TimeSpan(self.start_time, self.end_time)
     
-    def __str__(self):
-        return str(self.owner)
+    def paciente(self):
+        return self.owner.nombre+' '+self.owner.apellido_paterno+' '+self.owner.apellido_materno
+
+ 
+    def hora_inicio(self):
+        hora_inicio=self.start_time.astimezone(timezone('America/Santiago')).strftime('%H:%M:%S')
+        return hora_inicio
+
+ 
+    def hora_termino(self):
+        hora_termino=self.end_time.astimezone(timezone('America/Santiago')).strftime('%H:%M:%S')
+        return hora_termino 
+
+ 
+    def dia_de_cita(self):
+        dia_de_cita=self.start_time.astimezone(timezone('America/Santiago')).strftime('%d-%m-%Y')
+        return dia_de_cita
+ 

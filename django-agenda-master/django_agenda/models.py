@@ -504,8 +504,8 @@ class AbstractBooking(models.Model, metaclass=Meta):
                 slot_times[(slot.start, slot.end)] = slot
         # make a diff out of slot_times
         for start, end in self.get_reserved_spans():
-            start_utc = start.astimezone(pytz.utc)
-            end_utc = end.astimezone(pytz.utc)
+            start_utc = start.astimezone(timezone('America/Santiago'))
+            end_utc = end.astimezone(timezone('America/Santiago'))
             if (start_utc, end_utc) in slot_times.keys():
                 del slot_times[(start_utc, end_utc)]
             else:
