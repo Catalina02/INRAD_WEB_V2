@@ -48,7 +48,7 @@ class Disponibilidad(AbstractAvailability):
         delta=relativedelta(months=+1)
         dia_de_termino=start_date+delta
         dia_de_termino.strftime('%d-%m-%Y')
-        dia_de_termino=self.start_date.strftime('%d-%m-%Y')
+        dia_de_termino=dia_de_termino.strftime('%d-%m-%Y')
         return dia_de_termino
     def numero_telefono(self):
         numero=str(self.Medico.telefono_contacto)
