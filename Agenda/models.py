@@ -129,6 +129,7 @@ class AgendaOcupada(AbstractTimeSlot):
 class Agendamiento(AbstractBooking):
     class AgendaMeta:
         schedule_model = Medico
+        schedule_field = "Medico"
 
     paciente = models.ForeignKey(
         to=UsuarioPaciente,
@@ -142,7 +143,8 @@ class Agendamiento(AbstractBooking):
     end_time = models.DateTimeField(db_index=True,blank=True,null=True,default=datetime.now())
     approved = models.BooleanField('Confirmada',default=False)
     disponibilidad =models.ForeignKey(Disponibilidad, on_delete = models.CASCADE,blank=True,null=True)
-    medico=models.ForeignKey(Medico, on_delete = models.CASCADE,blank=False,null=True)
+    
+    #medico=models.ForeignKey(Medico, on_delete = models.CASCADE,blank=False,null=True)
 
     def get_reserved_spans(self):
         # we only reserve the time if the reservation has been approved
