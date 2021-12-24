@@ -60,4 +60,25 @@ for i in DiasDisponibles.objects.filter(availability_id=a.schedule_id):
         print(start_time)
         print(end_time)
 
-   
+'''
+Nuevas Pruebas
+Bansadnose en el modelo basico, el cual esta bueno, dividir la Disponibilidad en horas, modificando el Modelo Dias Discponibles
+'''
+from django_agenda.time_span import TimeSpan
+from datetime import datetime, timedelta
+from Agenda.models import *
+from Users.models import *
+
+DUR = timedelta(minutes=60)
+dd=DiasDisponibles.objects.all()[0]
+start=dd.start
+end=dd.end
+
+def daterange(start, end,delta):
+    while start < end:
+        yield start
+        start = start+delta
+
+
+for single_date in daterange(start, end,DUR):
+    print(single_date.strftime("%H:%M")+'-'+(single_date+DUR).strftime("%H:%M"))
