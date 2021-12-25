@@ -10,7 +10,7 @@ class DisponibilidadAdmin(admin.ModelAdmin):
     list_per_page=50
 
 class DiasDisponiblesAdmin(admin.ModelAdmin):
-    list_display= ['Medico','nombre_medico','hora_inicio','hora_termino','dia','numero_telefono','correo_electronico']
+    list_display= ['Medico','nombre_medico','hora_inicio','hora_termino','numero_telefono','correo_electronico']
     verbose_name='Disponibilidad'
     list_filter=['Medico',]
     search_fields=['Medico','nombre_medico']

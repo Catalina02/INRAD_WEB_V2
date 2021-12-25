@@ -82,6 +82,9 @@ dd=DiasDisponibles.objects.filter(start=testday)
 start=dd.start
 end=dd.end
 
+start=a.dia.strftime('%Y%m%d ')+a.horarios[:5] 
+start_date=datetime.strptime(a.dia.strftime('%Y%m%d ')+a.horarios[:5] ,'%Y%m%d %H:%M').astimezone(timezone('UTC')) 
+start_date
 
 def daterange(start, end,delta,padding):
     while start < end:

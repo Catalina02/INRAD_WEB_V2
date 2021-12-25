@@ -1,10 +1,11 @@
 from django.shortcuts import redirect, render
 from Agenda.forms import AvailabilityForm,AgendamientoForm
-from Agenda.models import Disponibilidad
-import sweetify
-from datetime import datetime
+from Agenda.models import DiasDisponibles, Disponibilidad
 import pytz
-
+import sweetify
+from datetime import datetime, timezone
+import pytz
+from django_agenda.time_span import TimeSpan
 #manejo de fechas y tiempo
 from dateutil.relativedelta import relativedelta
 # Create your views here.
@@ -50,10 +51,17 @@ def agendar_paso1(request):
         formulario=AgendamientoForm(data=request.POST)
         if formulario.is_valid():
             formulario.instance.paciente = request.user
+            formulario.instance.start_time=datetime.strptime(formulario.instance.dia.strftime('%Y%m%d ')+formulario.instance.horarios[:5] ,'%Y%m%d %H:%M').astimezone( pytz.timezone('UTC'))
+            formulario.instance.end_time=datetime.strptime(formulario.instance.dia.strftime('%Y%m%d ')+formulario.instance.horarios[-5:] ,'%Y%m%d %H:%M').astimezone( pytz.timezone('UTC'))
+            formulario.instance.approved=True
             formulario.save() 
+   
+            id_medico=formulario.instance.Medico.id
+
+           # dia_select=DiasDisponibles.objects.filter(Medico_id=id_medico)
             data['form']=formulario
-            return redirect('Web:agendar_paso2')
-            #sweetify.success(request,request.user ,icon='success')
+            sweetify.success(request, 'Agendado con Exito',icon='success')
+            return redirect('Web:home')
         else:
             data['form']=formulario
 
@@ -61,10 +69,10 @@ def agendar_paso1(request):
 
 def agendar_paso2(request):
     data={
-        'form':AgendamientoForm()
+        'form':AvailabilityForm()
     }
     if request.method=='POST':# si se reciben datos del formulario
-        formulario=AgendamientoForm(data=request.POST)
+        formulario=AvailabilityForm(data=request.POST)
         if formulario.is_valid():
             formulario.instance.paciente = request.user
             formulario.save() 

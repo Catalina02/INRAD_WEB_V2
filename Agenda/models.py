@@ -154,11 +154,9 @@ class Agendamiento(AbstractBooking):
         on_delete=models.PROTECT,
         related_name="reservations",
     )
-    dia=  models.DateField('Dia de Consulta',blank=False,db_index=True,null=False)
-    hora_de_inicio=  models.TimeField('Hora de Inicio',blank=True,db_index=True,null=True)
-    hora_de_termino=  models.TimeField('Hora de Termino',blank=True,db_index=True,null=True)
-    start_time = models.DateTimeField(db_index=True,blank=True,null=True,default=datetime.now())
-    end_time = models.DateTimeField(db_index=True,blank=True,null=True,default=datetime.now())
+    dia=  models.DateField('Dia de Consulta',blank=True,null=True)
+    start_time = models.DateTimeField(db_index=True,blank=True,null=True)
+    end_time = models.DateTimeField(db_index=True,blank=True,null=True)
     approved = models.BooleanField('Confirmada',default=False)
     disponibilidad =models.ForeignKey(Disponibilidad, on_delete = models.CASCADE,blank=True,null=True)
     
@@ -194,7 +192,7 @@ class Agendamiento(AbstractBooking):
         correo_electronico=self.paciente.email
         return correo_electronico
     def medico_a_cargo(self):
-        return self.schedule.nombre+' '+self.schedule.apellido_paterno+' '+self.schedule.apellido_materno
+        return self.Medico.nombre+' '+self.Medico.apellido_paterno+' '+self.Medico.apellido_materno
     class Meta:
         verbose_name = "Cita Agendada"
         verbose_name_plural = "Citas Agedadas"
