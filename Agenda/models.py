@@ -8,6 +8,8 @@ import django.utils.timezone
 from django.conf import settings
 from django.core.exceptions import ValidationError
 from django.db import models
+from django.db.models import CharField, Model
+from django_mysql.models import ListTextField
 from django.utils.translation import gettext_lazy as _
 from dateutil.relativedelta import relativedelta
 from django_agenda.time_span import TimeSpan
@@ -21,11 +23,12 @@ from django_agenda.models import (
 
 class Disponibilidad(AbstractAvailability):
     verbose_name='Agenda'
-    duracion_cita = models.IntegerField('Duracion de Hora en Minutos',default=60,null=True,blank=True)
+    tiempo_descanso = models.IntegerField('Tiempo de Descanso entre citas',default=50,null=True,blank=True)
+    duracion_cita = models.IntegerField('Duracion de Hora en Minutos',default=10,null=True,blank=True)
+    horarios=ListTextField(base_field=CharField(max_length=100))
     class AgendaMeta:
         schedule_model = Medico
         schedule_field = "Medico"
-        timezone=pytz.timezone("America/Santiago")
     
     def nombre_medico(self):
         return self.Medico.nombre+' '+self.Medico.apellido_paterno+' '+self.Medico.apellido_materno

@@ -68,12 +68,18 @@ from django_agenda.time_span import TimeSpan
 from datetime import datetime, timedelta
 from Agenda.models import *
 from Users.models import *
-
+#Obtener de clase Disponibilidad
 DUR = timedelta(minutes=60)
-dd=DiasDisponibles.objects.all()[0]
+padding=timedelta(minutes=15)
+
+#Ingresa el Usuario en el FORMS Agendamiento
+dia=
+
+dd=DiasDisponibles.objects.filter(start=start)[0]
+
 start=dd.start
 end=dd.end
-padding=timedelta(minutes=15)
+
 
 def daterange(start, end,delta,padding):
     while start < end:
@@ -83,9 +89,11 @@ def daterange(start, end,delta,padding):
         else:
             break
 
+list_time=[]
+for single_date in daterange(start, end,DUR,padding):
+    list_time.append(single_date.astimezone(timezone('America/Santiago')).strftime("%H:%M")+'-'+(single_date+DUR).astimezone(timezone('America/Santiago')).strftime("%H:%M"))
+
+
+#only for test
 for single_date in daterange(start, end,DUR,padding):
     print(TimeSpan(single_date, (single_date+DUR)))
-
-
-for single_date in daterange(start, end,DUR,padding):
-    print(single_date.strftime("%H:%M")+'-'+(single_date+DUR).strftime("%H:%M"))
