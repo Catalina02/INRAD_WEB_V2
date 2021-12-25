@@ -10,7 +10,7 @@ from django.conf import settings
 from django.core.exceptions import ValidationError
 from django.db import models
 from django.db.models import CharField, Model
-from django_mysql.models import ListTextField
+
 from django.utils.translation import gettext_lazy as _
 from dateutil.relativedelta import relativedelta
 from django_agenda.time_span import TimeSpan
