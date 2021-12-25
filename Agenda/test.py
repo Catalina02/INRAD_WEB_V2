@@ -73,12 +73,19 @@ DUR = timedelta(minutes=60)
 dd=DiasDisponibles.objects.all()[0]
 start=dd.start
 end=dd.end
+padding=timedelta(minutes=15)
 
-def daterange(start, end,delta):
+def daterange(start, end,delta,padding):
     while start < end:
-        yield start
-        start = start+delta
+        if (start+delta)<end:
+            yield start
+            start = start+delta+padding
+        else:
+            break
+
+for single_date in daterange(start, end,DUR,padding):
+    print(TimeSpan(single_date, (single_date+DUR)))
 
 
-for single_date in daterange(start, end,DUR):
+for single_date in daterange(start, end,DUR,padding):
     print(single_date.strftime("%H:%M")+'-'+(single_date+DUR).strftime("%H:%M"))
