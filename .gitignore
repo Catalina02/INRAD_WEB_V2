@@ -3,5 +3,6 @@
 __pycache__
 WebApp/migrations
 Users/migrations
+Agenda/migrations
 .sqlite3
 .DS_Store
