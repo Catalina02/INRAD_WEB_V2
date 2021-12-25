@@ -52,6 +52,23 @@ def agendar_paso1(request):
             formulario.instance.paciente = request.user
             formulario.save() 
             data['form']=formulario
+            return redirect('Web:agendar_paso2')
+            #sweetify.success(request,request.user ,icon='success')
+        else:
+            data['form']=formulario
+
+    return render(request,'agendar_paso1.html',data)
+
+def agendar_paso2(request):
+    data={
+        'form':AgendamientoForm()
+    }
+    if request.method=='POST':# si se reciben datos del formulario
+        formulario=AgendamientoForm(data=request.POST)
+        if formulario.is_valid():
+            formulario.instance.paciente = request.user
+            formulario.save() 
+            data['form']=formulario
             #sweetify.success(request,request.user ,icon='success')
         else:
             data['form']=formulario

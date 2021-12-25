@@ -73,10 +73,12 @@ DUR = timedelta(minutes=60)
 padding=timedelta(minutes=15)
 
 #Ingresa el Usuario en el FORMS Agendamiento
-dia=
-
-dd=DiasDisponibles.objects.filter(start=start)[0]
-
+dia=date.today()
+testday=datetime.strptime('2021-12-01 12:00:00','%Y-%m-%d %H:%M:%S').localize('UTC')
+medico=Medico.objects.all()[0]
+d=Disponibilidad.objects.filter(Medico_id=medico)[0]
+dd=DiasDisponibles.objects.filter(Medico_id=medico)
+dd=DiasDisponibles.objects.filter(start=testday)
 start=dd.start
 end=dd.end
 

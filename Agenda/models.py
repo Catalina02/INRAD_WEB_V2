@@ -1,6 +1,7 @@
 import contextlib
 from datetime import datetime, timedelta
 from typing import List
+from django.db.models.deletion import CASCADE
 import pytz
 from pytz import timezone
 from datetime import date, time, datetime
@@ -23,9 +24,6 @@ from django_agenda.models import (
 
 class Disponibilidad(AbstractAvailability):
     verbose_name='Agenda'
-    tiempo_descanso = models.IntegerField('Tiempo de Descanso entre citas',default=50,null=True,blank=True)
-    duracion_cita = models.IntegerField('Duracion de Hora en Minutos',default=10,null=True,blank=True)
-    horarios=ListTextField(base_field=CharField(max_length=100))
     class AgendaMeta:
         schedule_model = Medico
         schedule_field = "Medico"
@@ -50,7 +48,6 @@ class Disponibilidad(AbstractAvailability):
         start_date=datetime.strptime(start_str,'%Y%m%d')
         delta=relativedelta(months=+1)
         dia_de_termino=start_date+delta
-        dia_de_termino.strftime('%d-%m-%Y')
         dia_de_termino=dia_de_termino.strftime('%d-%m-%Y')
         return dia_de_termino
     def numero_telefono(self):
@@ -59,15 +56,18 @@ class Disponibilidad(AbstractAvailability):
     def correo_electronico(self):
         correo_electronico=self.Medico.email
         return correo_electronico
+    
     class Meta:
         verbose_name = "Horario de Atención"
         verbose_name_plural = "Horarios de Atención"
+
 
 class DiasDisponibles(AbstractAvailabilityOccurrence):
     class AgendaMeta:
         availability_model = Disponibilidad
         schedule_model = Medico
         schedule_field = "Medico"
+
     def nombre_medico(self):
         return self.Medico.nombre+' '+self.Medico.apellido_paterno+' '+self.Medico.apellido_materno
 
@@ -79,7 +79,7 @@ class DiasDisponibles(AbstractAvailabilityOccurrence):
         hora_termino=self.end.astimezone(timezone('America/Santiago')).strftime('%H:%M:%S')
         return hora_termino 
 
-    def dia(self):
+    def __str__(self):
         dia=self.start.astimezone(timezone('America/Santiago')).strftime('%d-%m-%Y')
         return dia
 
@@ -89,6 +89,7 @@ class DiasDisponibles(AbstractAvailabilityOccurrence):
     def correo_electronico(self):
         correo_electronico=self.Medico.email
         return correo_electronico
+    
     class Meta:
         verbose_name = "Dia de Atención"
         verbose_name_plural = "Dias de Atención"
@@ -133,7 +134,21 @@ class Agendamiento(AbstractBooking):
     class AgendaMeta:
         schedule_model = Medico
         schedule_field = "Medico"
-
+    HORARIOS=[
+    ('8:00-8:45','8:00-8:45'),
+    ('9:00-9:45','9:00-9:45'),
+    ('10:00-10:45','10:00-10:45'),
+    ('11:00-11:45','11:00-11:45'),
+    ('12:00-12:45','12:00-12:45'),
+    ('13:00-13:45','13:00-13:45'),
+    ('14:00-14:45','14:00-14:45'),
+    ('15:00-15:45','15:00-15:45'),
+    ('16:00-16:45','16:00-16:45'),
+    ('17:00-17:45','17:00-17:45'),
+    ('18:00-18:45','18:00-18:45'),
+    ('19:00-19:45','19:00-19:45'),
+    ]
+    horarios = models.CharField(max_length=16, choices=HORARIOS)
     paciente = models.ForeignKey(
         to=UsuarioPaciente,
         on_delete=models.PROTECT,
