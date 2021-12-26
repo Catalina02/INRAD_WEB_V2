@@ -76,7 +76,8 @@ def agendar_paso1(request):
 def modificar_hora(request,id):
     agenda=get_object_or_404(Agendamiento,id=id)
     data={
-        'form':AgendamientoEditForm(instance=agenda)
+        'form':AgendamientoEditForm(instance=agenda),
+        'paciente_id':agenda.paciente_id
     }
     if request.method=='POST':# si se reciben datos del formulario
         formulario=AgendamientoEditForm(data=request.POST,instance=agenda)
@@ -106,12 +107,13 @@ def eliminar_hora(request,id):
     Se elimina la Hora agendadad de base de agendamiento y de horariosOcupados 
     la informacion correspondiente se alamacena en base de datos de Cancelaciones
     '''
+    agenda=get_object_or_404(Agendamiento,id=id)
     data={
-        'form':Eliminar_con_Motivo()
+        'form':Eliminar_con_Motivo(),
+        'paciente_id':agenda.paciente_id
     }
     if request.method=='POST':# si se reciben datos del formulario
         formulario=Eliminar_con_Motivo(data=request.POST)
-        agenda=get_object_or_404(Agendamiento,id=id)
         if formulario.is_valid():
             formulario.instance.paciente_id=agenda.paciente_id
             formulario.instance.dia_cita=agenda.dia

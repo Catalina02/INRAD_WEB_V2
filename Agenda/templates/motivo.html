@@ -13,7 +13,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie-edge">
     <link rel="stylesheet" type='text/css' href="{% static 'css/bootstrap.css' %}">
     <link rel="stylesheet" href="{% static 'css/HojaEstilos.css' %}">
-    <title>Abrir Agenda</title>
+    <title>INRAD | Eliminar Hora</title>
 </head>
 <style>
 
@@ -69,12 +69,12 @@
 {%endblock%}
 {%ifequal user.type 'Medico'%}
 <script type="text/javascript">
-    window.location.href = "{% url 'admin:Agenda_agendamiento_add' %}"
+    window.location.href = "{% url 'Web:home' %}"
 </script>
 {%endifequal%}
-{%ifequal user.type 'Medico'%}
+{%ifequal user.type 'Administrativo'%}
 <script type="text/javascript">
-    window.location.href = "{% url 'admin:Agenda_agendamiento_add' %}"
+    window.location.href = "{% url 'Web:home' %}"
 </script>
 {%endifequal%}
 {%if user.is_anonymous%}
@@ -82,20 +82,19 @@
     window.location.href = "{% url 'AppUsers:login' %}"
 </script>
 {%endif%}
-
-    <section class="gradient-custom py-5 h-100">
-        <div class="container py-5 h-100">
-            {%load crispy_forms_tags%}
-            
-            <div class="row d-flex justify-content-center align-items-center h-100">
+<section class="gradient-custom py-5 h-100">
+    <div class="container py-5 h-100">
+        {%load crispy_forms_tags%}
+        
+        <div class="row d-flex justify-content-center align-items-center h-100">
             <div class="col-12 col-md-8 col-lg-6 col-xl-6">
                 <div class="card bg-white text-dark" style="border-radius: 1rem;">
-                <div class="card-body p-5 text-center">
-    
-                    <div class="mb-md-3 mt-md-4 pb-3">
-                        <a href="{% url 'Web:home' %}"><img src="{% static 'img/logotipo.png' %}" class="img-fluid" ></a>
+                    <div class="card-body p-5 text-center">
                         
-                        {%ifequal user.type 'UsuarioPaciente'%}
+                        <div class="mb-md-3 mt-md-4 pb-3">
+                            <a href="{% url 'Web:home' %}"><img src="{% static 'img/logotipo.png' %}" class="img-fluid" ></a>
+                            
+                        {%ifequal user.id paciente_id%}
                         <h2 class="infotitulo fw-bold  text-uppercase" style="font-size: 30px;">Motivo Cancelación</h2>
                         <p class="fw-bold  text-uppercase" style="font-size: 20px;">Esta información nos Ayuda a Mantener la Mejor Atencion para Usted</p>
 
@@ -106,6 +105,10 @@
                             <a class="btn button cancel_button boton_formulario mx-auto justify-content-center"  href="{% url 'AppUsers:profile' %}" >Volver </a>
                             
                         </form>
+                        {%else%}
+                        <h2 class="infotitulo fw-bold  text-uppercase" style="font-size: 30px;">Acceso Denegado</h2>
+                        <img src="{% static 'img/denegado.png' %}" class="img-fluid" style="padding-bottom: 35px;padding-top: 30px;height: 200px;width: 150px;" >
+                        <a class="btn button  justify-content-center boton_formulario mx-auto"  href="{% url 'Web:home' %}" >Volver al Inicio </a>
                         {%endifequal%}
                         
                     </div>

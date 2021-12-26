@@ -165,7 +165,7 @@ class Agendamiento(AbstractBooking):
         on_delete=models.PROTECT,
         related_name="reservations",
     )
-    dia=  models.DateField('Dia de Consulta',blank=True,null=True)
+    dia=  models.DateField('Dia de Consulta',blank=False,null=True)
     start_time = models.DateTimeField(db_index=True,blank=True,null=True)
     end_time = models.DateTimeField(db_index=True,blank=True,null=True)
     approved = models.BooleanField('Confirmada',default=False)
