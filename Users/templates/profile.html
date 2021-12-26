@@ -61,15 +61,15 @@
                 </div>
             </div>
 
-            <hr class="divisor">
-            <h4 class="infotitulo  float-left" style="text-align: left;margin-top: 50px;margin-bottom: 30px;">Horas Medicas Agendadas</h4>
+            
             <style>
                 .card-cita
                 {
                     margin: 15px;
-                    height: 300px;
+                    height: 323px;
                     width:250px;
                     border-radius: 10px;
+                    border-color: var(--green);
                 }
                 .card-cita-title{
                     margin:0px;
@@ -87,18 +87,22 @@
                     width: 100%;
                 }
             
-                .button:hover{
+                .card-cita-title.button:hover{
                 color: var(--white);
                 background:var(--green);
                 transform: translate3d(0, -2px, 0);
                 outline: none;
                 border: none;
-    
-}
+                }
+                .hora{
+                    background-color:
+                }
             </style>
 
             <div class="row justify-content-center">
                 {%ifequal user.type 'UsuarioPaciente'%}
+                <hr class="divisor">
+            <h4 class="infotitulo  float-left" style="text-align: left;margin-top: 50px;margin-bottom: 30px;">Horas Medicas Agendadas</h4>
                 {%for a in agendas %}
                     <div class="col-12 col-sm-12 col-md-6 col-lg-4 mx-auto clear-fix">
                         <div class="card card-cita">
@@ -106,10 +110,10 @@
                             <div class="card-cita-dr justify-content-center mx-auto "><strong>{{a.Medico.nombre|title}} {{a.Medico.apellido_paterno|title}} {{a.Medico.apellido_materno|title}}</strong></div>
                             <div class=" "><strong></strong></div>
                             <img class="card-img img-fluid mx-auto" src="{{a.Medico.foto_perfil.url}}" alt="Medic image" style="height: 100px;width: 100px; margin-top: 25px;">
-                            <div class="mx-auto"><strong>Hora Agendada</strong></div>
-                            <div class="mx-auto"><strong>{{a.horarios}}</strong></div>
-                            <a class="btn button  boton_formulario mx-auto justify-content-center"  href="{% url 'Agenda:modificar_hora' a.id %}" >Modificar</a>
-                            <a class="btn button cancel_button boton_formulario mx-auto justify-content-center"  href="{% url 'Agenda:eliminar_hora' a.id %}" onclick="eliminar_hora()" >Eliminar </a>
+                            <div class="mx-auto hora"><strong>Hora Agendada</strong></div>
+                            <div class="mx-auto hora" style="font-size: 25px;"><strong>{{a.horarios}}</strong></div>
+                            <a class="btn button  boton_formulario mx-auto justify-content-center" style="margin-bottom: 0px;margin-top: 0px;" href="{% url 'Agenda:modificar_hora' a.id %}" >Modificar</a>
+                            <a class="btn button cancel_button boton_formulario mx-auto justify-content-center" style="margin-bottom: 0px;margin-top: 0px;" href="{% url 'Agenda:eliminar_hora' a.id %}" onclick="eliminar_hora()" >Eliminar </a>
 
                         </div>
                     </div>

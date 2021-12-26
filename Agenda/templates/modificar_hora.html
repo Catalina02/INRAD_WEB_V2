@@ -79,7 +79,7 @@
                             {% csrf_token %}
                             {{ form | crispy}}
                             <input type="submit" value='Ingresar' class='btn button  justify-content-center boton_formulario mx-auto' style='margin-top: 30px;' >
-                            <a class="btn button cancel_button boton_formulario mx-auto justify-content-center"  href="{% url 'Web:home' %}" >Volver </a>
+                            <a class="btn button cancel_button boton_formulario mx-auto justify-content-center"  href="{% url 'AppUsers:profile' %}" >Volver </a>
                             
                         </form>
                         {%endifequal%}

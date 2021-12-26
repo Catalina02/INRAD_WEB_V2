@@ -66,7 +66,6 @@ def agendar_paso1(request):
             return redirect('Web:home')
         else:
             data['form']=formulario
-
     return render(request,'agendar_paso1.html',data)
 
 def modificar_hora(request,id):
@@ -74,16 +73,25 @@ def modificar_hora(request,id):
     data={
         'form':AgendamientoForm(instance=agenda)
     }
-    if request.method=='POST':
+    if request.method=='POST':# si se reciben datos del formulario
         formulario=AgendamientoForm(data=request.POST,instance=agenda)
+        ocupado=AgendaOcupada.objects.filter(booking_id=id)[0]
         if formulario.is_valid():
-            formulario.instance.clean()
+            formulario.instance.paciente = request.user
+            formulario.instance.start_time=datetime.strptime(formulario.instance.dia.strftime('%Y%m%d ')+formulario.instance.horarios[:5] ,'%Y%m%d %H:%M').astimezone( pytz.timezone('UTC'))
+            formulario.instance.end_time=datetime.strptime(formulario.instance.dia.strftime('%Y%m%d ')+formulario.instance.horarios[-5:] ,'%Y%m%d %H:%M').astimezone( pytz.timezone('UTC'))
+            formulario.instance.approved=True
+            try:
+                formulario.instance.clean()
+            except:
+                sweetify.error(request, 'Horario Ocupado',icon='error')
+                return redirect('/modificar_hora/'+id)
+            ocupado.start=formulario.instance.start_time
+            ocupado.end=formulario.instance.end_time
             formulario.save()
             data['form']=formulario
-            sweetify.success(request, 'Modificado con Exito',icon='success')
+            sweetify.success(request, 'Agendado con Exito',icon='success')
             return redirect('AppUsers:profile')
-        else:
-            data['form']=formulario
             
     return render(request,'modificar_hora.html',data)
 
