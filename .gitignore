@@ -6,3 +6,4 @@ Users/migrations
 Agenda/migrations
 .sqlite3
 .DS_Store
+mydatabase

@@ -116,6 +116,7 @@ def eliminar_hora(request,id):
         formulario=Eliminar_con_Motivo(data=request.POST)
         if formulario.is_valid():
             formulario.instance.paciente_id=agenda.paciente_id
+            formulario.instance.medico_id=agenda.Medico.id
             formulario.instance.dia_cita=agenda.dia
             formulario.instance.hora_inicio_cita=agenda.start_time.astimezone(pytz.timezone('America/Santiago')).time()
             formulario.instance.hora_termino_cita=agenda.end_time.astimezone(pytz.timezone('America/Santiago')).time()

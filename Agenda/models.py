@@ -65,6 +65,7 @@ class Disponibilidad(AbstractAvailability):
 class DiasDisponibles(AbstractAvailabilityOccurrence):
     class AgendaMeta:
         availability_model = Disponibilidad
+        availability_field= 'disponibilidad'
         schedule_model = Medico
         schedule_field = "Medico"
 
@@ -82,7 +83,9 @@ class DiasDisponibles(AbstractAvailabilityOccurrence):
     def __str__(self):
         dia=self.start.astimezone(timezone('America/Santiago')).strftime('%d-%m-%Y')
         return dia
-
+    def rut_medico(self):
+        rut=self.Medico.rut_usuario
+        return rut
     def numero_telefono(self):
         numero=str(self.Medico.telefono_contacto)
         return numero
@@ -114,9 +117,12 @@ class AgendaOcupada(AbstractTimeSlot):
     def dia_de_cita(self):
         dia_de_cita=self.start.astimezone(timezone('America/Santiago')).strftime('%d-%m-%Y')
         return dia_de_cita
- 
+  
     def paciente(self):
         rut=self.booking.paciente
+        return rut
+    def rut_paciente(self):
+        rut=str(self.booking.paciente.rut)+'-'+str(self.booking.paciente.dv)
         return rut
     def numero_telefono(self):
         numero=str(self.booking.paciente.telefono_contacto)
@@ -130,12 +136,28 @@ class AgendaOcupada(AbstractTimeSlot):
         verbose_name = "Horario Bloqueado"
         verbose_name_plural = "Horarios Bloqueados"
 class CitasCanceladas(models.Model):
-    paciente=models.ForeignKey(UsuarioPaciente,on_delete=CASCADE)
+    paciente=models.ForeignKey(UsuarioPaciente,verbose_name='Paciente',on_delete=CASCADE,related_name='paciente_asociado')
+    medico=models.ForeignKey(Medico,verbose_name='Medico',on_delete=CASCADE,related_name='medico_asociado')
     dia_cita=models.DateField(null=False,blank=False)
     hora_inicio_cita=models.TimeField(null=False,blank=False)
     hora_termino_cita=models.TimeField(null=False,blank=False)
     motivo_cita=models.TextField(max_length=255,null=False,blank=False)
     motivo_cancelacion=models.TextField(max_length=255,null=False,blank=False)
+    resuelto = models.BooleanField('Resuelto',default=False,help_text='Indica si ya se ejecuto el Seguimiento correspondiente')
+    class Meta:
+        verbose_name = "Cita Cancelada"
+        verbose_name_plural = "Citas Canceladas"
+    def rut_paciente(self):
+        rut=self.paciente.rut_usuario
+        return rut
+    def __str__(self):
+        return 'Cita Cancelada de: '+str(self.paciente.nombre+' '+self.paciente.apellido_paterno+' '+self.paciente.apellido_materno)+', '+str(self.dia_cita)+' a las: '+str(self.hora_inicio_cita)
+    def numero_telefono(self):
+        numero=str(self.paciente.telefono_contacto)
+        return numero
+    def correo_electronico(self):
+        correo_electronico=self.paciente.email
+        return correo_electronico
 
 class Agendamiento(AbstractBooking):
     class AgendaMeta:
@@ -157,7 +179,7 @@ class Agendamiento(AbstractBooking):
     ]
     horarios = models.CharField(max_length=16, choices=HORARIOS)
     motivo_consulta=models.TextField(max_length=255,null=False,blank=True,default='')
-    modificado=models.BooleanField(default=False)
+    modificado=models.BooleanField(verbose_name='Cita Modificada',default=False,help_text='Indica si el Paciente ha modificado la fecha de Consulta')
     motivo_modificacion=models.TextField(max_length=255,null=False,blank=True,default='')
 
     paciente = models.ForeignKey(
@@ -166,10 +188,10 @@ class Agendamiento(AbstractBooking):
         related_name="reservations",
     )
     dia=  models.DateField('Dia de Consulta',blank=False,null=True)
-    start_time = models.DateTimeField(db_index=True,blank=True,null=True)
-    end_time = models.DateTimeField(db_index=True,blank=True,null=True)
-    approved = models.BooleanField('Confirmada',default=False)
-    disponibilidad =models.ForeignKey(Disponibilidad, on_delete = models.CASCADE,blank=True,null=True)
+    start_time = models.DateTimeField(verbose_name='Hora de Inicio',db_index=True,blank=True,null=True)
+    end_time = models.DateTimeField(verbose_name='Hora de Inicio',db_index=True,blank=True,null=True)
+    approved = models.BooleanField('Confirmada',default=False,help_text='Indica si la Hora esta Aprobada,\n Dos horas aprobadas no pueden superponerse')
+    disponibilidad =models.ForeignKey(Disponibilidad, on_delete = models.CASCADE,blank=True,null=True,verbose_name='Agenda Medico',help_text='Corresponde a la Franja Horaria de la Agenda del Medico')
     
     #medico=models.ForeignKey(Medico, on_delete = models.CASCADE,blank=False,null=True)
 
@@ -207,3 +229,6 @@ class Agendamiento(AbstractBooking):
     class Meta:
         verbose_name = "Cita Agendada"
         verbose_name_plural = "Citas Agedadas"
+
+    def __str__(self):
+        return 'Cita: '+str(self.paciente.nombre+' '+self.paciente.apellido_paterno+' '+self.paciente.apellido_materno)+', '+str(self.start_time.astimezone(timezone('America/Santiago')).strftime('%d-%m-%Y'))+', '+str(self.start_time.astimezone(timezone('America/Santiago')).strftime('%H:%M:%S'))+'-'+str(self.end_time.astimezone(timezone('America/Santiago')).strftime('%H:%M:%S'))

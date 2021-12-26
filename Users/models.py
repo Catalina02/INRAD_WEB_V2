@@ -31,7 +31,7 @@ class UsuarioManager(BaseUserManager):
 
 class Usuario(AbstractUser):
     #new Fields
-    rut=models.IntegerField(null=False, blank=False, unique=True)
+    rut=models.IntegerField(null=False, blank=False, unique=True,help_text = "Ingresar sin puntos, guión ni Digito Verificador")
     dv=models.CharField(max_length=1,null=False)
     
     nombre=models.CharField('Nombre',max_length=100,null=False)
@@ -39,8 +39,8 @@ class Usuario(AbstractUser):
     apellido_materno=models.CharField('Apellido Materno',max_length=100)
     
     email = models.EmailField('Correo Electronico',unique=True)
-    telefono_contacto=PhoneNumberField(null=False, blank=False)
-    telefono_contacto_2=PhoneNumberField(null=True,default='',blank=True)
+    telefono_contacto=PhoneNumberField(verbose_name='Telefono de Contacto',null=False, blank=False,help_text = "Ingresar en formato +56912345678")
+    telefono_contacto_2=PhoneNumberField(verbose_name='Telefono de Emergencias',null=True,default='',blank=True,help_text = "Ingresar en formato +56912345678")
     fecha_nacimiento=models.DateField(null=True,blank=True)
     
     prevision=models.CharField('Prevision',max_length=50,null=False,blank=True)
@@ -58,7 +58,8 @@ class Usuario(AbstractUser):
     username=None
     first_name=None
     last_name=None
-
+    is_staff = models.BooleanField(verbose_name="Personal INRAD", default=False,help_text = "Indica que este usuario tiene permisos pra Ingresar al Portal Administrador de INRAD")
+    is_superuser = models.BooleanField(verbose_name="Administrador del Sitio", default=False,help_text = "Indica que este usuario tiene todos los permisos sin asignárselos explícitamente")
     date_joined=models.DateField('Fecha Ingreso al Sistema',null=True,blank=True)
 
  

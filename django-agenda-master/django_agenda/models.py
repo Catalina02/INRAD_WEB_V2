@@ -393,8 +393,8 @@ class AbstractAvailabilityOccurrence(models.Model, metaclass=OccurrenceMeta):
 
     objects = models.Manager()
 
-    start = models.DateTimeField(db_index=True)
-    end = models.DateTimeField(db_index=True)
+    start = models.DateTimeField(verbose_name='Inicio',db_index=True)
+    end = models.DateTimeField(verbose_name='Termino',b_index=True)
 
     def __str__(self):
         return str(TimeSpan(self.start, self.end))
@@ -425,7 +425,7 @@ class AbstractBooking(models.Model, metaclass=Meta):
     class Meta:
         abstract = True
 
-    busy_message = _("Requested time {start}–{end} is busy")
+    busy_message = _("El Bloque seleccionado: {start}–{end} se encuentra Ocupado")
     un_free_message = _("EL Bloque {start}–{end} ya se encuentra agendado")
 
     def get_reserved_spans(self) -> List[TimeSpan]:

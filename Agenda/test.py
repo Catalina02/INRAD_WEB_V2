@@ -102,3 +102,42 @@ for single_date in daterange(start, end,DUR,padding):
 #only for test
 for single_date in daterange(start, end,DUR,padding):
     print(TimeSpan(single_date, (single_date+DUR)))
+
+
+
+
+'''NUEVO TESTEO DE VALIDACIONES'''
+from django_agenda.time_span import TimeSpan
+from datetime import datetime, timedelta
+from Agenda.models import *
+from Users.models import *
+dia=date.today()
+delta=relativedelta(days=+2) 
+dias=dia+delta
+dias=dias.strftime('%d-%m-%Y')
+dd=DiasDisponibles.objects.all()
+a=Agendamiento.objects.all()[0]
+ddl=[]
+for i in dd:
+    ddl.append(str(i))
+
+if dias  in ddl:
+    print('YAS')
+else:
+    print('NEL')
+
+
+def get_reserved_spans():
+    # we only reserve the time if the reservation has been approved
+    if a.approved:
+        yield TimeSpan(a.start_time, a.end_time)
+
+for i in get_reserved_spans():
+    print (i)
+
+usuario=Usuario.objects.all()[1]
+user=int(Usuario.id)
+agendas=Agendamiento.objects.filter(paciente==2)
+agendas=Agendamiento.objects.filter(paciente=usuario)
+
+from django.db.models import Count, F, Value
