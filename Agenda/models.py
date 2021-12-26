@@ -129,6 +129,13 @@ class AgendaOcupada(AbstractTimeSlot):
     class Meta:
         verbose_name = "Horario Bloqueado"
         verbose_name_plural = "Horarios Bloqueados"
+class CitasCanceladas(models.Model):
+    paciente=models.ForeignKey(UsuarioPaciente,on_delete=CASCADE)
+    dia_cita=models.DateField(null=False,blank=False)
+    hora_inicio_cita=models.TimeField(null=False,blank=False)
+    hora_termino_cita=models.TimeField(null=False,blank=False)
+    motivo_cita=models.TextField(max_length=255,null=False,blank=False)
+    motivo_cancelacion=models.TextField(max_length=255,null=False,blank=False)
 
 class Agendamiento(AbstractBooking):
     class AgendaMeta:
@@ -149,7 +156,9 @@ class Agendamiento(AbstractBooking):
     ('19:00-19:45','19:00-19:45'),
     ]
     horarios = models.CharField(max_length=16, choices=HORARIOS)
-    #motivo_consulta=models.TextField(max_length=255,null=True,blank=True)
+    motivo_consulta=models.TextField(max_length=255,null=False,blank=True,default='')
+    modificado=models.BooleanField(default=False)
+    motivo_modificacion=models.TextField(max_length=255,null=False,blank=True,default='')
 
     paciente = models.ForeignKey(
         to=UsuarioPaciente,

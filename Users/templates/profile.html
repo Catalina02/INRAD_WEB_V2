@@ -22,6 +22,8 @@
              })
          }
 </script>
+
+
 {%endblock%}
     {% block contenido%}
    
@@ -115,30 +117,37 @@
                 outline: none;
                 border: none;
                 }
-                .hora{
-                    background-color:
-                }
+
             </style>
 
             <div class="row justify-content-center">
                 {%ifequal user.type 'UsuarioPaciente'%}
                 <hr class="divisor">
             <h4 class="infotitulo  float-left" style="text-align: left;margin-top: 50px;margin-bottom: 30px;">Horas Medicas Agendadas</h4>
-                {%for a in agendas %}
+                
+            
+                 {%if not agendas%}
+                    <h2 class="infotitulo fw-bold  text-uppercase" style="font-size: 30px; color:var(--gray)">No Registra Horas Medicas</h2>
+                {%else%}
+
+                {%endif%}
+                    {%for a in agendas %}
+                
                     <div class="col-12 col-sm-12 col-md-6 col-lg-4 mx-auto clear-fix">
                         <div class="card card-cita">
                             <div class="card-cita-title mx-auto btn button  justify-content-center boton_formulario mx-auto"><strong>{{a.dia}}</strong></div>
-                            <div class="card-cita-dr justify-content-center mx-auto "><strong>{{a.Medico.nombre|title}} {{a.Medico.apellido_paterno|title}} {{a.Medico.apellido_materno|title}}</strong></div>
+                            <div class="card-cita-dr justify-content-center mx-auto "><strong>{%ifequal a.Medico.sexo 'mujer'%}Dra. {%else%}Dr. {%endifequal%}{{a.Medico.nombre|title}} {{a.Medico.apellido_paterno|title}} {{a.Medico.apellido_materno|title}}</strong></div>
                             <div class=" "><strong></strong></div>
                             <img class="card-img img-fluid mx-auto" src="{{a.Medico.foto_perfil.url}}" alt="Medic image" style="height: 100px;width: 100px; margin-top: 25px;">
                             <div class="mx-auto hora"><strong>Hora Agendada</strong></div>
                             <div class="mx-auto hora" style="font-size: 25px;"><strong>{{a.horarios}}</strong></div>
                             <a class="btn button  boton_formulario mx-auto justify-content-center" style="margin-bottom: 0px;margin-top: 0px;" href="{% url 'Agenda:modificar_hora' a.id %}" >Modificar</a>
-                            <a class="btn button cancel_button boton_formulario mx-auto justify-content-center" style="margin-bottom: 0px;margin-top: 0px;" href="#" onclick="eliminar_hora({{a.id}})" >Eliminar </a>
+                            <a class="btn button cancel_button boton_formulario mx-auto justify-content-center" style="margin-bottom: 0px;margin-top: 0px;" href="{% url 'Agenda:eliminar_hora' a.id %}" >Eliminar </a>
 
                         </div>
                     </div>
                     {%endfor%}
+                
                 {%endifequal%}
             </div>
         </div>

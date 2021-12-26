@@ -71,7 +71,11 @@ def edit_profile(request    ):
         if formulario.is_valid():
             formulario.save()
             sweetify.success(request, 'Datos Modificados Correctamente',icon='success')
-            return HttpResponseRedirect(reverse_lazy('AppUsers:profile'))
+            #return HttpResponseRedirect(reverse_lazy('AppUsers:profile'))
+            return redirect('AppUsers:profile')
+        else:
+            sweetify.error(request, 'Telefono Ingresado Incorrecto',icon='error')
+            return redirect('AppUsers:edit_profile')
     else:
         formulario=CustomUserEditionForm(instance=request.user)
         data={'form':formulario}
