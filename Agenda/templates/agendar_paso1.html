@@ -43,7 +43,7 @@
      }
 
  </style>
- <!---
+
 {%ifequal user.type 'Medico'%}
 <script type="text/javascript">
     window.location.href = "{% url 'admin:Agenda_agendamiento_add' %}"
@@ -59,7 +59,7 @@
     window.location.href = "{% url 'AppUsers:login' %}"
 </script>
 {%endif%}
--->
+
     <section class="gradient-custom py-5 h-100">
         <div class="container py-5 h-100">
             {%load crispy_forms_tags%}
