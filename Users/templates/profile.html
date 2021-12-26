@@ -4,7 +4,6 @@
 
     {% block contenido%}
    
-    </style>
     <div class="container rounded bg-white mt-5 mb-5">
         
         
@@ -45,19 +44,7 @@
                             <div class="col-12 col-md-6 profile_list"><label class="labels" >Telefono de Contacto Emergencia</label><strong><div class='user_label'> {{user.telefono_contacto_2}}</div></strong></div>
                             <div class="col-12 col-md-6 profile_list"><label class="labels" >Fecha de Nacimiento</label><strong><div class='user_label'> {{user.fecha_nacimiento}}</div></strong></div>
                             <div class="col-12 col-md-12 profile_list"><label class="labels">Domicilio</label><strong><div class='user_label'> {{user.domicilio}}</div></strong></div>
-                        </div><!--
-                        {%ifequal user.type 'UsuarioPaciente'%}
-                            <h4 class="infotitulo  float-left" style='text-align: left;'>Informacion Medica</h4>
-                            <div class="row py-3">
-                                <div class="col-12 col-md-12 profile_list"><label class="labels">Diagnostico</label><strong><div class='user_label'>{{user.informacionmedica.diagnostico|title}} </div></strong></div>
-                                <div class="col-12 col-md-6 profile_list"><label class="labels">Prevision</label><strong><div class='user_label'>{{user.prevision|title }} </div></strong></div>
-                                <div class="col-12 col-md-6 profile_list"><label class="labels">Medico INRAD</label><strong><div class='user_label'>{{user.informacionmedica.medico_INRAD|title}} </div></strong></div>
-                                <div class="col-12 col-md-6 profile_list"><label class="labels">Medico Derivante</label><strong><div class='user_label'>{{user.informacionmedica.medico_derivante|title}} </div></strong></div>
-                                <div class="col-12 col-md-6 profile_list"><label class="labels">Institucion Derivante</label><strong><div class='user_label'>{{user.informacionmedica.institucion_derivante|title}} </div></strong></div>
-                                
-                                
-                            </div>
-                        {%endifequal%}-->
+                        </div>
                     </div>
 
                     
@@ -65,13 +52,69 @@
                 </div>
             </div>
    
-            <div class="row">
+            <div class="row text-center">
                 <div class="col-12 col-md-4 mx-auto ">
                     <div class="mt-5 text-center"><a href="{% url 'AppUsers:edit_profile' %}"><button class="btn button  justify-content-center boton_formulario mx-auto" type="button">Editar Perfil</button></a></div>
                 </div>
                 <div class="col-12 col-md-4 mx-auto ">
                     <div class="mt-5 text-center"><a href="{% url 'AppUsers:change_password' %}"><button class="btn button  justify-content-center boton_formulario mx-auto" type="button">Cambiar Contraseña</button></a></div>
                 </div>
+            </div>
+
+            <hr class="divisor">
+            <h4 class="infotitulo  float-left" style="text-align: left;margin-top: 50px;margin-bottom: 30px;">Horas Medicas Agendadas</h4>
+            <style>
+                .card-cita
+                {
+                    margin: 15px;
+                    height: 300px;
+                    width:250px;
+                    border-radius: 10px;
+                }
+                .card-cita-title{
+                    margin:0px;
+                    padding: 10px;
+                    background:var(--green);
+                }
+                .card-cita-dr{
+                    margin:0px;
+                    color: azure;
+                    text-align: center;
+                    background:var(--darkgreen);
+                    z-index: 1;
+                    top: 40px;
+                    position: absolute;
+                    width: 100%;
+                }
+            
+                .button:hover{
+                color: var(--white);
+                background:var(--green);
+                transform: translate3d(0, -2px, 0);
+                outline: none;
+                border: none;
+    
+}
+            </style>
+
+            <div class="row justify-content-center">
+                {%ifequal user.type 'UsuarioPaciente'%}
+                {%for a in agendas %}
+                    <div class="col-12 col-sm-12 col-md-6 col-lg-4 mx-auto clear-fix">
+                        <div class="card card-cita">
+                            <div class="card-cita-title mx-auto btn button  justify-content-center boton_formulario mx-auto"><strong>{{a.dia}}</strong></div>
+                            <div class="card-cita-dr justify-content-center mx-auto "><strong>{{a.Medico.nombre|title}} {{a.Medico.apellido_paterno|title}} {{a.Medico.apellido_materno|title}}</strong></div>
+                            <div class=" "><strong></strong></div>
+                            <img class="card-img img-fluid mx-auto" src="{{a.Medico.foto_perfil.url}}" alt="Medic image" style="height: 100px;width: 100px; margin-top: 25px;">
+                            <div class="mx-auto"><strong>Hora Agendada</strong></div>
+                            <div class="mx-auto"><strong>{{a.horarios}}</strong></div>
+                            <a class="btn button  boton_formulario mx-auto justify-content-center"  href="{% url 'Agenda:modificar_hora' a.id %}" >Modificar</a>
+                            <a class="btn button cancel_button boton_formulario mx-auto justify-content-center"  href="{% url 'Agenda:eliminar_hora' a.id %}" onclick="eliminar_hora()" >Eliminar </a>
+
+                        </div>
+                    </div>
+                    {%endfor%}
+                {%endifequal%}
             </div>
         </div>
     </div>

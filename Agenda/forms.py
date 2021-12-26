@@ -1,6 +1,7 @@
 from django import forms
 from .models import Disponibilidad,Agendamiento,DiasDisponibles
 from django.forms import TextInput,TimeInput,ChoiceField
+import sweetify
 
 class AvailabilityForm(forms.ModelForm):
     class Meta:
@@ -20,20 +21,59 @@ class AvailabilityForm(forms.ModelForm):
         'recurrence':'Otorgar Recurrencia'
         }
 
-class AgendamientoForm(forms.ModelForm):
-    def clean_dia(self):
-        start_time=self.cleaned_data.get('start_time')
-        end_time=self.cleaned_data.get('end_time')
+class AgendamientoEditForm(forms.ModelForm):
+    
+    def cleaned_data(self):
+        med = self.cleaned_data['Medico']
         dia=self.cleaned_data.get('dia')
-        medico=self.cleaned_data('Medico_id')
-        #validaciones
-        medselect=DiasDisponibles.objects.filter(Medico_id=medico)
-        
-        return self.cleaned_data
+        dd=DiasDisponibles.objects.filter(Medico_id=med)
+        dias=dia.strftime('%d-%m-%Y')
+        ddl=[]
+        for i in dd:
+            ddl.append(str(i))
+        if dias  in ddl:
+            approved=self.cleaned_data['approved']
+            return self.cleaned_data
+        else:
+            raise forms.ValidationError(f'Día no Disponible')
+    
+
     class Meta:
         #obtiene tipos de datos desde el modelo definido
+        DIASDD=[]
+        elegirdia = forms.ChoiceField(choices = DIASDD)
         model=Agendamiento
-        fields='Medico','dia','horarios'
+        fields='Medico','dia','horarios',
+        widgets = {
+            'dia': forms.DateInput()
+        }
+        labels = {
+         "Medico": "Seleccione Medico",
+        }
+
+class AgendamientoForm(forms.ModelForm):
+    
+    def cleaned_data(self):
+        med = self.cleaned_data['Medico']
+        dia=self.cleaned_data.get('dia')
+        dd=DiasDisponibles.objects.filter(Medico_id=med)
+        dias=dia.strftime('%d-%m-%Y')
+        ddl=[]
+        for i in dd:
+            ddl.append(str(i))
+        if dias  in ddl:
+            approved=self.cleaned_data['approved']
+            return self.cleaned_data
+        else:
+            raise forms.ValidationError(f'Día no Disponible')
+    
+
+    class Meta:
+        #obtiene tipos de datos desde el modelo definido
+        DIASDD=[]
+        elegirdia = forms.ChoiceField(choices = DIASDD)
+        model=Agendamiento
+        fields='Medico','dia','horarios',
         widgets = {
             'dia': forms.DateInput(format=('%d/%m/%Y'), attrs={'class':'form-control', 'placeholder':'Seleccione una Fecha', 'type':'date','lang': 'es',}),
         }

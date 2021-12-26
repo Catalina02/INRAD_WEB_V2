@@ -135,8 +135,8 @@ class Agendamiento(AbstractBooking):
         schedule_model = Medico
         schedule_field = "Medico"
     HORARIOS=[
-    ('8:00-8:45','8:00-8:45'),
-    ('9:00-9:45','9:00-9:45'),
+    ('08:00-08:45','08:00-08:45'),
+    ('09:00-09:45','09:00-09:45'),
     ('10:00-10:45','10:00-10:45'),
     ('11:00-11:45','11:00-11:45'),
     ('12:00-12:45','12:00-12:45'),
@@ -149,6 +149,8 @@ class Agendamiento(AbstractBooking):
     ('19:00-19:45','19:00-19:45'),
     ]
     horarios = models.CharField(max_length=16, choices=HORARIOS)
+    #motivo_consulta=models.TextField(max_length=255,null=True,blank=True)
+
     paciente = models.ForeignKey(
         to=UsuarioPaciente,
         on_delete=models.PROTECT,

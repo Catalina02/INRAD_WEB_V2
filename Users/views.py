@@ -1,6 +1,7 @@
 from django.contrib.auth.models import User
 from .forms import CustomUserCreationForm, CustomUserEditionForm,PasswordChangeForm
 from django.shortcuts import redirect, render
+from Agenda.models import Agendamiento
 from django.urls import reverse, reverse_lazy
 from django.contrib.auth import authenticate, login,logout,update_session_auth_hash
 from django.http import HttpResponseRedirect
@@ -28,7 +29,12 @@ def registro(request):
 
      
 def profile(request):
-    return render(request,'profile.html')
+    user=request.user.id
+    agendas=Agendamiento.objects.filter(paciente_id=user).order_by('dia')
+    data={
+        'agendas':agendas
+    }
+    return render(request,'profile.html',data)
 
 
 def logoutView(request):
