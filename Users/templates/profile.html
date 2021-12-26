@@ -1,7 +1,28 @@
     {% extends 'base_2.html' %}
     {%load static%}
 
-
+{%block js%}
+<script>
+    function eliminar_hora(id){
+             Swal.fire({
+             'title': 'Eliminar Hora',
+             'text': '¿Estas Seguro?',
+             'icon': 'warning',
+             'showCancelButton': true,
+             'confirmButtonColor': '#16a89f',
+             'cancelButtonColor': '#8f0c1f',
+             'confirmButtonText': 'Si',
+             'cancelButtonText':'No',
+             'reverseButtons':false,
+             }).then(function(result){
+             if (result.isConfirmed) {
+                 
+                 window.location.href = '/eliminar_hora/'+id.toString()+'/'
+                 }
+             })
+         }
+</script>
+{%endblock%}
     {% block contenido%}
    
     <div class="container rounded bg-white mt-5 mb-5">
@@ -113,7 +134,7 @@
                             <div class="mx-auto hora"><strong>Hora Agendada</strong></div>
                             <div class="mx-auto hora" style="font-size: 25px;"><strong>{{a.horarios}}</strong></div>
                             <a class="btn button  boton_formulario mx-auto justify-content-center" style="margin-bottom: 0px;margin-top: 0px;" href="{% url 'Agenda:modificar_hora' a.id %}" >Modificar</a>
-                            <a class="btn button cancel_button boton_formulario mx-auto justify-content-center" style="margin-bottom: 0px;margin-top: 0px;" href="{% url 'Agenda:eliminar_hora' a.id %}" onclick="eliminar_hora()" >Eliminar </a>
+                            <a class="btn button cancel_button boton_formulario mx-auto justify-content-center" style="margin-bottom: 0px;margin-top: 0px;" href="#" onclick="eliminar_hora({{a.id}})" >Eliminar </a>
 
                         </div>
                     </div>
