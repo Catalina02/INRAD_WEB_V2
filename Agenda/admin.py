@@ -5,7 +5,10 @@ from . import models
 
 from Users.models import Medico
 
-class DiasDisponiblesAdmin(admin.ModelAdmin):
+from import_export import resources
+from import_export.admin import ImportExportModelAdmin
+
+class DiasDisponiblesAdmin(ImportExportModelAdmin,admin.ModelAdmin):
     list_display= ['rut_medico','Medico','__str__','hora_inicio','hora_termino','numero_telefono','correo_electronico']
     verbose_name='Disponibilidad'
     list_filter=['Medico__apellido_paterno',('start', DateFieldListFilter)]
@@ -22,7 +25,7 @@ class DiasDisponiblesAdmin(admin.ModelAdmin):
         }),
     )
 
-class AgendamientoAdmin(admin.ModelAdmin):
+class AgendamientoAdmin(ImportExportModelAdmin,admin.ModelAdmin):
 
     list_display = ['rut_paciente','paciente','dia_de_cita','hora_inicio','hora_termino','approved','numero_telefono','correo_electronico','medico_a_cargo','modificado']
     list_editable=['approved']
@@ -58,7 +61,7 @@ class AgendaOcupadaAdmin(admin.ModelAdmin):
 #admin.site.register(models.AgendaOcupada,AgendaOcupadaAdmin)
 
 
-class CitasCanceladasAdmin(admin.ModelAdmin):
+class CitasCanceladasAdmin(ImportExportModelAdmin,admin.ModelAdmin):
     list_display = ['rut_paciente','paciente','dia_cita','hora_inicio_cita','hora_termino_cita','medico','resuelto','numero_telefono','correo_electronico']
     list_filter=['resuelto','medico__apellido_paterno','dia_cita']
     search_fields=['medico__nombre','medico__apellido_paterno','medico__apellido_materno','paciente__nombre','paciente__apellido_paterno','paciente__apellido_materno','paciente__rut','medico__rut']
