@@ -21,7 +21,8 @@ class Paciente(models.Model):
     class Meta:
         managed = False
         db_table = 'paciente'
-
+    def __str__(self):
+        return str(self.nombre)+' '+str(self.apellido)
 class Diagnostico(models.Model):
     id_diagnostico = models.AutoField(primary_key=True)
     descripcion = models.TextField(blank=True, null=True)#
@@ -29,7 +30,8 @@ class Diagnostico(models.Model):
     class Meta:
         managed = False
         db_table = 'diagnostico'
-
+    def __str__(self):
+        return ''
 class Historia(models.Model):
     id_historia = models.AutoField(primary_key=True)
     descripcion = models.TextField(blank=True, null=True)#
@@ -37,7 +39,8 @@ class Historia(models.Model):
     class Meta:
         managed = False
         db_table = 'historia'
-
+    def __str__(self):
+        return ''
 class Observaciones(models.Model):
     id_observaciones = models.AutoField(primary_key=True)
     fecha = models.CharField(max_length=100, blank=True, null=True)
@@ -46,7 +49,8 @@ class Observaciones(models.Model):
     class Meta:
         managed = False
         db_table = 'observaciones'
-
+    def __str__(self):
+        return ''
 #link a la imagen
 class Imagenologia(models.Model):
     id_imagen = models.AutoField(primary_key=True)
@@ -56,36 +60,8 @@ class Imagenologia(models.Model):
     class Meta:
         managed = False
         db_table = 'imagenologia'
-
-
-class Equipo(models.Model):
-    id_equipo = models.AutoField(primary_key=True)
-    nombre = models.CharField(max_length=100, blank=True, null=True)#
-    descripcion = models.TextField(blank=True, null=True)# 
-    
-
-    class Meta:
-        managed = False
-        db_table = 'equipo'
-
-class Modalidad(models.Model):
-    id_modalidad = models.AutoField(primary_key=True)
-    nombre = models.CharField(max_length=100, blank=True, null=True)
-    descripcion = models.TextField(blank=True, null=True)
-
-    class Meta:
-        managed = False
-        db_table = 'modalidad'
-
-class Tecnica(models.Model):
-    id_tecnica = models.AutoField(primary_key=True)
-    nombre = models.CharField(max_length=100, blank=True, null=True)
-    descripcion = models.TextField(blank=True, null=True)
-
-    class Meta:
-        managed = False
-        db_table = 'tecnica'
-
+    def __str__(self):
+        return ''
 
 class Equipo(models.Model):
     id_equipo = models.AutoField(primary_key=True)
@@ -115,13 +91,47 @@ class Tecnica(models.Model):
         managed = False
         db_table = 'tecnica'
 
+
+class Equipo(models.Model):
+    id_equipo = models.AutoField(primary_key=True)
+    nombre = models.CharField(max_length=100, blank=True, null=True)#
+    descripcion = models.TextField(blank=True, null=True)# 
+    
+
+    class Meta:
+        managed = False
+        db_table = 'equipo'
+    def __str__(self):
+        return str(self.nombre)
+
+class Modalidad(models.Model):
+    id_modalidad = models.AutoField(primary_key=True)
+    nombre = models.CharField(max_length=100, blank=True, null=True)
+    descripcion = models.TextField(blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'modalidad'
+    def __str__(self):
+        return str(self.nombre)
+
+class Tecnica(models.Model):
+    id_tecnica = models.AutoField(primary_key=True)
+    nombre = models.CharField(max_length=100, blank=True, null=True)
+    descripcion = models.TextField(blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'tecnica'
+    def __str__(self):
+        return str(self.nombre)
 
 
 class Tratamiento(models.Model):
     id_tratamiento = models.AutoField(primary_key=True)
-    id_modalidad = models.ForeignKey(Modalidad, models.DO_NOTHING, db_column='id_modalidad')
-    id_equipo = models.ForeignKey(Equipo, models.DO_NOTHING, db_column='id_equipo')
-    id_tecnica = models.ForeignKey(Tecnica, models.DO_NOTHING, db_column='id_tecnica')
+    modalidad = models.ForeignKey(Modalidad, models.DO_NOTHING, db_column='modalidad_id')
+    equipo = models.ForeignKey(Equipo, models.DO_NOTHING, db_column='equipo_id')
+    tecnica = models.ForeignKey(Tecnica, models.DO_NOTHING, db_column='tecnica_id')
     energia = models.CharField(max_length=100, blank=True, null=True)
     zona_irradiada = models.CharField(max_length=100, blank=True, null=True)
     dosis = models.CharField(max_length=100, blank=True, null=True)
@@ -134,3 +144,5 @@ class Tratamiento(models.Model):
     class Meta:
         managed = False
         db_table = 'tratamiento'
+    def __str__(self):
+        return 'Tratamiento Paciente: '+str(self.paciente.nombre)+' '+str(self.paciente.apellido)
