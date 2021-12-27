@@ -14,9 +14,9 @@ import re
 class CustomUserCreationForm(UserCreationForm):
     '''
     rut=forms.IntegerField(min_value=5,max_value=99999999,widget=forms.TextInput(attrs={'placeholder': 'Rut sin puntos, sin guión y sin dv', 'style': 'text-align:left;'}))
-    dv=forms.CharField(max_length=1)
-    foto_perfil=forms.ImageField(required=False,validators=[MaxSizeImgValidator(max_file_size=2)])
- '''
+    dv=forms.CharField(max_length=1)'''
+    foto_perfil=forms.ImageField(required=False,validators=[MaxSizeImgValidator(max_file_size=5)])
+
     #verificar rut
     def clean(self):
         dv=self.cleaned_data.get('dv')
